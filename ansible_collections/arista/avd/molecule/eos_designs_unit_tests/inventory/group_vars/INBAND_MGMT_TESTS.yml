@@ -1,5 +1,13 @@
 ---
+
+# Testing reverting to <5.0.0 description since 'inband-mgmt-subnet' exposes the uppercase peer hostname on a port-channel.
+underlay_l2_ethernet_description: "{peer!u}_{peer_interface}"
+underlay_l2_port_channel_description: "{peer_node_group_or_uppercase_peer}_Po{peer_port_channel_id}"
+
 default_node_types:
+  - match_hostnames:
+      - inband-mgmt-spine.*
+    node_type: spine
   - match_hostnames:
       - inband-mgmt-parent.*
     node_type: l3leaf
@@ -8,11 +16,36 @@ default_node_types:
     node_type: l2leaf
 
 default_interfaces:
+  - types: [ spine ]
+    platforms: [ default ]
+    downlink_interfaces: [ Ethernet1-10 ]
   - types: [ l3leaf, l2leaf ]
     platforms: [ default ]
     uplink_interfaces: [ Ethernet1-10 ]
     mlag_interfaces: [ Ethernet11-20 ]
     downlink_interfaces: [ Ethernet21-30 ]
+
+default_mgmt_method: none
+
+cvp_instance_ips:
+  - apiserver.arista.io
+
+name_servers:
+  - 1.1.1.1
+  - 8.8.8.8
+
+ntp_settings:
+  servers:
+    - name: 2.2.2.55
+    - name: pool.ntp.org
+
+spine:
+  defaults:
+    loopback_ipv4_pool: 10.0.254.0/24
+    bgp_as: 64999
+  nodes:
+    - name: inband-mgmt-spine1-ztp
+      id: 1
 
 l3leaf:
   defaults:
@@ -26,9 +59,15 @@ l3leaf:
   nodes:
     - name: inband-mgmt-parent
       id: 1
+      inband_ztp: true
+      uplink_switches: [inband-mgmt-spine1-ztp]
+      uplink_ipv4_pool: 172.16.255.0/24
     - name: inband-mgmt-parent-vrf
       inband_mgmt_vrf: INBANDMGMT
       id: 2
+      inband_ztp: true
+      uplink_switches: [inband-mgmt-spine1-ztp]
+      uplink_ipv4_pool: 172.16.255.0/24
   node_groups:
     - group: inband-mgmt-parents-dualstack
       mlag_peer_ipv4_pool: 100.64.0.0/24
@@ -47,7 +86,6 @@ l3leaf:
         - name: inband-mgmt-parent-ipv6-2
           inband_mgmt_vrf: INBANDMGMT
           id: 6
-
 
 l2leaf:
   defaults:
@@ -101,6 +139,22 @@ l2leaf:
       inband_mgmt_ipv6_subnet: 2a00:107::/64
       inband_mgmt_vrf: INBANDMGMT
       id: 7
+  node_groups:
+    - group: inband-mgmt-mlag-test
+      mlag: true
+      mlag_peer_ipv4_pool: 100.64.0.0/24
+      mlag_peer_l3_ipv4_pool: 100.64.1.0/24
+      inband_mgmt_vlan: 101
+      inband_mgmt_gateway: 192.168.101.21
+      nodes:
+        - name: inband-mgmt-mlag-a
+          id: 101
+          inband_mgmt_ip: 192.168.101.22/24
+          uplink_switch_interfaces: [Ethernet101, Ethernet101]
+        - name: inband-mgmt-mlag-b
+          id: 102
+          inband_mgmt_ip: 192.168.101.23/24
+          uplink_switch_interfaces: [Ethernet102, Ethernet102]
 
 tenants:
   - name: INBAND_MGMT_TESTS

@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2024 Arista Networks, Inc.
+  ~ Copyright (c) 2025 Arista Networks, Inc.
   ~ Use of this source code is governed by the Apache License 2.0
   ~ that can be found in the LICENSE file.
   -->
@@ -10,6 +10,10 @@
     | [<samp>metadata</samp>](## "metadata") | Dictionary |  |  |  | The data under `metadata` is used for documentation, validation or integration purposes.<br>It will not affect the generated EOS configuration. |
     | [<samp>&nbsp;&nbsp;platform</samp>](## "metadata.platform") | String |  |  |  |  |
     | [<samp>&nbsp;&nbsp;system_mac_address</samp>](## "metadata.system_mac_address") | String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;rack</samp>](## "metadata.rack") | String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;pod_name</samp>](## "metadata.pod_name") | String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;dc_name</samp>](## "metadata.dc_name") | String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;fabric_name</samp>](## "metadata.fabric_name") | String |  |  |  |  |
     | [<samp>&nbsp;&nbsp;cv_tags</samp>](## "metadata.cv_tags") | Dictionary |  |  |  |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;device_tags</samp>](## "metadata.cv_tags.device_tags") | List, items: Dictionary |  |  |  |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;name</samp>](## "metadata.cv_tags.device_tags.[].name") | String | Required |  |  |  |
@@ -26,6 +30,7 @@
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;site</samp>](## "metadata.cv_pathfinder.site") | String |  |  |  |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;vtep_ip</samp>](## "metadata.cv_pathfinder.vtep_ip") | String |  |  |  |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;ssl_profile</samp>](## "metadata.cv_pathfinder.ssl_profile") | String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;address</samp>](## "metadata.cv_pathfinder.address") | String |  |  |  |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;pathfinders</samp>](## "metadata.cv_pathfinder.pathfinders") | List, items: Dictionary |  |  |  |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;vtep_ip</samp>](## "metadata.cv_pathfinder.pathfinders.[].vtep_ip") | String | Required |  |  |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;interfaces</samp>](## "metadata.cv_pathfinder.interfaces") | List, items: Dictionary |  |  |  |  |
@@ -59,12 +64,15 @@
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;jitter</samp>](## "metadata.cv_pathfinder.vrfs.[].avts.[].constraints.jitter") | Integer |  |  |  |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;latency</samp>](## "metadata.cv_pathfinder.vrfs.[].avts.[].constraints.latency") | Integer |  |  |  |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lossrate</samp>](## "metadata.cv_pathfinder.vrfs.[].avts.[].constraints.lossrate") | String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hop_count</samp>](## "metadata.cv_pathfinder.vrfs.[].avts.[].constraints.hop_count") | String |  |  |  |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description</samp>](## "metadata.cv_pathfinder.vrfs.[].avts.[].description") | String |  |  |  |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id</samp>](## "metadata.cv_pathfinder.vrfs.[].avts.[].id") | Integer |  |  |  |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name</samp>](## "metadata.cv_pathfinder.vrfs.[].avts.[].name") | String |  |  |  |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pathgroups</samp>](## "metadata.cv_pathfinder.vrfs.[].avts.[].pathgroups") | List, items: Dictionary |  |  |  |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;name</samp>](## "metadata.cv_pathfinder.vrfs.[].avts.[].pathgroups.[].name") | String |  |  |  |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;preference</samp>](## "metadata.cv_pathfinder.vrfs.[].avts.[].pathgroups.[].preference") | String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;application_profiles</samp>](## "metadata.cv_pathfinder.vrfs.[].avts.[].application_profiles") | List, items: String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&lt;str&gt;</samp>](## "metadata.cv_pathfinder.vrfs.[].avts.[].application_profiles.[]") | String |  |  |  |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;internet_exit_policies</samp>](## "metadata.cv_pathfinder.internet_exit_policies") | List, items: Dictionary |  |  |  |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;name</samp>](## "metadata.cv_pathfinder.internet_exit_policies.[].name") | String | Required |  |  |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type</samp>](## "metadata.cv_pathfinder.internet_exit_policies.[].type") | String | Required |  |  |  |
@@ -82,6 +90,38 @@
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tunnels</samp>](## "metadata.cv_pathfinder.internet_exit_policies.[].tunnels") | List, items: Dictionary | Required |  |  |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;name</samp>](## "metadata.cv_pathfinder.internet_exit_policies.[].tunnels.[].name") | String | Required |  |  |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;preference</samp>](## "metadata.cv_pathfinder.internet_exit_policies.[].tunnels.[].preference") | String | Required |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;endpoint</samp>](## "metadata.cv_pathfinder.internet_exit_policies.[].tunnels.[].endpoint") | Dictionary | Required |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ip_address</samp>](## "metadata.cv_pathfinder.internet_exit_policies.[].tunnels.[].endpoint.ip_address") | String | Required |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;datacenter</samp>](## "metadata.cv_pathfinder.internet_exit_policies.[].tunnels.[].endpoint.datacenter") | String | Required |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;city</samp>](## "metadata.cv_pathfinder.internet_exit_policies.[].tunnels.[].endpoint.city") | String | Required |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;country</samp>](## "metadata.cv_pathfinder.internet_exit_policies.[].tunnels.[].endpoint.country") | String | Required |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;region</samp>](## "metadata.cv_pathfinder.internet_exit_policies.[].tunnels.[].endpoint.region") | String | Required |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;latitude</samp>](## "metadata.cv_pathfinder.internet_exit_policies.[].tunnels.[].endpoint.latitude") | String | Required |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;longitude</samp>](## "metadata.cv_pathfinder.internet_exit_policies.[].tunnels.[].endpoint.longitude") | String | Required |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;applications</samp>](## "metadata.cv_pathfinder.applications") | Dictionary |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;profiles</samp>](## "metadata.cv_pathfinder.applications.profiles") | List, items: Dictionary |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;name</samp>](## "metadata.cv_pathfinder.applications.profiles.[].name") | String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;builtin_applications</samp>](## "metadata.cv_pathfinder.applications.profiles.[].builtin_applications") | List, items: Dictionary |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;name</samp>](## "metadata.cv_pathfinder.applications.profiles.[].builtin_applications.[].name") | String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;services</samp>](## "metadata.cv_pathfinder.applications.profiles.[].builtin_applications.[].services") | List, items: String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&lt;str&gt;</samp>](## "metadata.cv_pathfinder.applications.profiles.[].builtin_applications.[].services.[]") | String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user_defined_applications</samp>](## "metadata.cv_pathfinder.applications.profiles.[].user_defined_applications") | List, items: Dictionary |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;name</samp>](## "metadata.cv_pathfinder.applications.profiles.[].user_defined_applications.[].name") | String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;categories</samp>](## "metadata.cv_pathfinder.applications.profiles.[].categories") | List, items: Dictionary |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;category</samp>](## "metadata.cv_pathfinder.applications.profiles.[].categories.[].category") | String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;services</samp>](## "metadata.cv_pathfinder.applications.profiles.[].categories.[].services") | List, items: String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&lt;str&gt;</samp>](## "metadata.cv_pathfinder.applications.profiles.[].categories.[].services.[]") | String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transport_protocols</samp>](## "metadata.cv_pathfinder.applications.profiles.[].transport_protocols") | List, items: String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&lt;str&gt;</samp>](## "metadata.cv_pathfinder.applications.profiles.[].transport_protocols.[]") | String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;categories</samp>](## "metadata.cv_pathfinder.applications.categories") | Dictionary |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;builtin_applications</samp>](## "metadata.cv_pathfinder.applications.categories.builtin_applications") | List, items: Dictionary |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;name</samp>](## "metadata.cv_pathfinder.applications.categories.builtin_applications.[].name") | String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;category</samp>](## "metadata.cv_pathfinder.applications.categories.builtin_applications.[].category") | String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;services</samp>](## "metadata.cv_pathfinder.applications.categories.builtin_applications.[].services") | List, items: String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&lt;str&gt;</samp>](## "metadata.cv_pathfinder.applications.categories.builtin_applications.[].services.[]") | String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;user_defined_applications</samp>](## "metadata.cv_pathfinder.applications.categories.user_defined_applications") | List, items: Dictionary |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;name</samp>](## "metadata.cv_pathfinder.applications.categories.user_defined_applications.[].name") | String |  |  |  |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;category</samp>](## "metadata.cv_pathfinder.applications.categories.user_defined_applications.[].category") | String |  |  |  |  |
 
 === "YAML"
 
@@ -91,6 +131,10 @@
     metadata:
       platform: <str>
       system_mac_address: <str>
+      rack: <str>
+      pod_name: <str>
+      dc_name: <str>
+      fabric_name: <str>
       cv_tags:
         device_tags:
           - name: <str; required>
@@ -109,6 +153,7 @@
         site: <str>
         vtep_ip: <str>
         ssl_profile: <str>
+        address: <str>
         pathfinders:
           - vtep_ip: <str; required>
         interfaces:
@@ -142,12 +187,15 @@
                   jitter: <int>
                   latency: <int>
                   lossrate: <str>
+                  hop_count: <str>
                 description: <str>
                 id: <int>
                 name: <str>
                 pathgroups:
                   - name: <str>
                     preference: <str>
+                application_profiles:
+                  - <str>
         internet_exit_policies:
           - name: <str; required>
             type: <str; required>
@@ -165,4 +213,36 @@
             tunnels: # required
               - name: <str; required>
                 preference: <str; required>
+                endpoint: # required
+                  ip_address: <str; required>
+                  datacenter: <str; required>
+                  city: <str; required>
+                  country: <str; required>
+                  region: <str; required>
+                  latitude: <str; required>
+                  longitude: <str; required>
+        applications:
+          profiles:
+            - name: <str>
+              builtin_applications:
+                - name: <str>
+                  services:
+                    - <str>
+              user_defined_applications:
+                - name: <str>
+              categories:
+                - category: <str>
+                  services:
+                    - <str>
+              transport_protocols:
+                - <str>
+          categories:
+            builtin_applications:
+              - name: <str>
+                category: <str>
+                services:
+                  - <str>
+            user_defined_applications:
+              - name: <str>
+                category: <str>
     ```

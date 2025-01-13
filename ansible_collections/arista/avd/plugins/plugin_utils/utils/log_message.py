@@ -1,12 +1,10 @@
-# Copyright (c) 2023-2024 Arista Networks, Inc.
+# Copyright (c) 2023-2025 Arista Networks, Inc.
 # Use of this source code is governed by the Apache License 2.0
 # that can be found in the LICENSE file.
 from __future__ import annotations
 
 import logging
 from typing import Any
-
-from ansible_collections.arista.avd.plugins.plugin_utils.errors import AristaAvdError
 
 LOGGER = logging.getLogger(__name__)
 LOGGING_LEVELS = ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
@@ -36,7 +34,8 @@ def log_message(
     """
     # Validate logging level
     if log_level.upper() not in LOGGING_LEVELS:
-        raise AristaAvdError("Invalid logging level. Please choose from DEBUG, INFO, WARNING, ERROR, CRITICAL.")
+        msg = "Invalid logging level. Please choose from DEBUG, INFO, WARNING, ERROR, CRITICAL."
+        raise ValueError(msg)
 
     dot_notation = f"{key_path}.{key}" if key_path else f"{key}"
     msg_type = "is missing" if not value else f"!= '{value}'"

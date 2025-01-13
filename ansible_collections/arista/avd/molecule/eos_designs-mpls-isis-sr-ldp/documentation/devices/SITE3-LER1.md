@@ -5,6 +5,8 @@
 - [Management](#management)
   - [Management Interfaces](#management-interfaces)
   - [Management API HTTP](#management-api-http)
+- [Authentication](#authentication)
+  - [Enable Password](#enable-password)
 - [Spanning Tree](#spanning-tree)
   - [Spanning Tree Summary](#spanning-tree-summary)
   - [Spanning Tree Device Configuration](#spanning-tree-device-configuration)
@@ -23,6 +25,7 @@
 - [MPLS](#mpls)
   - [MPLS and LDP](#mpls-and-ldp)
   - [MPLS Interfaces](#mpls-interfaces)
+  - [MPLS Device Configuration](#mpls-device-configuration)
 - [Multicast](#multicast)
   - [IP IGMP Snooping](#ip-igmp-snooping)
 - [VRF Instances](#vrf-instances)
@@ -40,20 +43,20 @@
 
 | Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management1 | oob_management | oob | MGMT | 192.168.200.110/24 | 192.168.200.5 |
+| Management1 | OOB_MANAGEMENT | oob | MGMT | 192.168.200.110/24 | 192.168.200.5 |
 
 ##### IPv6
 
 | Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management1 | oob_management | oob | MGMT | - | - |
+| Management1 | OOB_MANAGEMENT | oob | MGMT | - | - |
 
 #### Management Interfaces Device Configuration
 
 ```eos
 !
 interface Management1
-   description oob_management
+   description OOB_MANAGEMENT
    no shutdown
    vrf MGMT
    ip address 192.168.200.110/24
@@ -84,6 +87,12 @@ management api http-commands
    vrf MGMT
       no shutdown
 ```
+
+## Authentication
+
+### Enable Password
+
+Enable password has been disabled
 
 ## Spanning Tree
 
@@ -130,13 +139,13 @@ vlan internal order ascending range 1006 1199
 
 | Interface | Description | VRF | IP Address |
 | --------- | ----------- | --- | ---------- |
-| Loopback0 | LSR_Router_ID | default | 100.70.0.10/32 |
+| Loopback0 | ROUTER_ID | default | 100.70.0.10/32 |
 
 ##### IPv6
 
 | Interface | Description | VRF | IPv6 Address |
 | --------- | ----------- | --- | ------------ |
-| Loopback0 | LSR_Router_ID | default | 2000:1234:ffff:ffff::a/128 |
+| Loopback0 | ROUTER_ID | default | 2000:1234:ffff:ffff::a/128 |
 
 ##### ISIS
 
@@ -149,15 +158,15 @@ vlan internal order ascending range 1006 1199
 ```eos
 !
 interface Loopback0
-   description LSR_Router_ID
+   description ROUTER_ID
    no shutdown
    ip address 100.70.0.10/32
    ipv6 address 2000:1234:ffff:ffff::a/128
-   isis enable CORE
-   isis passive
    mpls ldp interface
    node-segment ipv4 index 210
    node-segment ipv6 index 210
+   isis enable CORE
+   isis passive
 ```
 
 ## Routing
@@ -239,14 +248,19 @@ ip route vrf MGMT 0.0.0.0/0 192.168.200.5
 | Settings | Value |
 | -------- | ----- |
 | Instance | CORE |
-| Net-ID | 49.0001.0000.0001.0010.00 |
+| Net-ID | 49.0001.1000.7000.0010.00 |
 | Type | level-1-2 |
 | Router-ID | 100.70.0.10 |
 | Log Adjacency Changes | True |
 | MPLS LDP Sync Default | True |
-| Local Convergence Delay (ms) | 15000 |
 | Advertise Passive-only | True |
 | SR MPLS Enabled | True |
+
+#### ISIS Route Timers
+
+| Settings | Value |
+| -------- | ----- |
+| Local Convergence Delay | 15000 milliseconds |
 
 #### ISIS Interfaces Summary
 
@@ -281,9 +295,9 @@ ip route vrf MGMT 0.0.0.0/0 192.168.200.5
 ```eos
 !
 router isis CORE
-   net 49.0001.0000.0001.0010.00
-   is-type level-1-2
+   net 49.0001.1000.7000.0010.00
    router-id ipv4 100.70.0.10
+   is-type level-1-2
    log-adjacency-changes
    mpls ldp sync default
    timers local-convergence-delay 15000 protected-prefixes
@@ -315,24 +329,24 @@ router isis CORE
 | LDP Interface Disabled Default | True |
 | LDP Transport-Address Interface | Loopback0 |
 
-#### MPLS and LDP Device Configuration
+### MPLS Interfaces
+
+| Interface | MPLS IP Enabled | LDP Enabled | IGP Sync |
+| --------- | --------------- | ----------- | -------- |
+| Loopback0 | - | True | - |
+
+### MPLS Device Configuration
 
 ```eos
 !
 mpls ip
 !
 mpls ldp
-   interface disabled default
    router-id 100.70.0.10
-   no shutdown
    transport-address interface Loopback0
+   interface disabled default
+   no shutdown
 ```
-
-### MPLS Interfaces
-
-| Interface | MPLS IP Enabled | LDP Enabled | IGP Sync |
-| --------- | --------------- | ----------- | -------- |
-| Loopback0 | - | True | - |
 
 ## Multicast
 

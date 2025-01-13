@@ -9,6 +9,7 @@
   - [Management API HTTP](#management-api-http)
 - [Authentication](#authentication)
   - [Local Users](#local-users)
+  - [Enable Password](#enable-password)
 - [Monitoring](#monitoring)
   - [TerminAttr Daemon](#terminattr-daemon)
 - [Hardware TCAM Profile](#hardware-tcam-profile)
@@ -59,20 +60,20 @@
 
 | Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management1 | oob_management | oob | MGMT | 192.168.200.110/24 | 192.168.200.5 |
+| Management1 | OOB_MANAGEMENT | oob | MGMT | 192.168.200.110/24 | 192.168.200.5 |
 
 ##### IPv6
 
 | Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management1 | oob_management | oob | MGMT | - | - |
+| Management1 | OOB_MANAGEMENT | oob | MGMT | - | - |
 
 #### Management Interfaces Device Configuration
 
 ```eos
 !
 interface Management1
-   description oob_management
+   description OOB_MANAGEMENT
    no shutdown
    vrf MGMT
    ip address 192.168.200.110/24
@@ -163,6 +164,10 @@ username admin privilege 15 role network-admin nopassword
 username cvpadmin privilege 15 role network-admin secret sha512 <removed>
 ```
 
+### Enable Password
+
+Enable password has been disabled
+
 ## Monitoring
 
 ### TerminAttr Daemon
@@ -171,7 +176,7 @@ username cvpadmin privilege 15 role network-admin secret sha512 <removed>
 
 | CV Compression | CloudVision Servers | VRF | Authentication | Smash Excludes | Ingest Exclude | Bypass AAA |
 | -------------- | ------------------- | --- | -------------- | -------------- | -------------- | ---------- |
-| gzip | 192.168.200.11:9910 | MGMT | key,telarista | ale,flexCounter,hardware,kni,pulse,strata | /Sysdb/cell/1/agent,/Sysdb/cell/2/agent | False |
+| gzip | 192.168.200.11:9910 | MGMT | key,<removed> | ale,flexCounter,hardware,kni,pulse,strata | /Sysdb/cell/1/agent,/Sysdb/cell/2/agent | False |
 
 #### TerminAttr Daemon Device Configuration
 
@@ -268,70 +273,70 @@ vlan 350
 
 ##### IPv4
 
-| Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
-| --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet11 | P2P_LINK_TO_outside-r1_other1 | routed | - | 10.23.23.1/30 | default | 1500 | False | - | - |
-| Ethernet4000 | My test | routed | - | 10.1.2.3/12 | default | 1500 | False | - | - |
+| Interface | Description | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
+| --------- | ----------- | ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
+| Ethernet11 | P2P_outside-r1_other1 | - | 10.23.23.1/30 | default | 1500 | False | - | - |
+| Ethernet4000 | My test | - | 10.1.2.3/12 | default | 1500 | False | - | - |
 
 ##### IPv6
 
-| Interface | Description | Type | Channel Group | IPv6 Address | VRF | MTU | Shutdown | ND RA Disabled | Managed Config Flag | IPv6 ACL In | IPv6 ACL Out |
-| --------- | ----------- | ---- | --------------| ------------ | --- | --- | -------- | -------------- | -------------------| ----------- | ------------ |
-| Ethernet1 | P2P_LINK_TO_DC1-SPINE1_Ethernet6 | routed | - | - | default | 1500 | False | - | - | - | - |
-| Ethernet2 | P2P_LINK_TO_DC1-SPINE2_Ethernet6 | routed | - | - | default | 1500 | False | - | - | - | - |
-| Ethernet3 | P2P_LINK_TO_DC1-SPINE3_Ethernet6 | routed | - | - | default | 1500 | False | - | - | - | - |
-| Ethernet4 | P2P_LINK_TO_DC1-SPINE4_Ethernet6 | routed | - | - | default | 1500 | False | - | - | - | - |
-| Ethernet9 | P2P_LINK_TO_DC1-BL1B_Ethernet9 | routed | - | - | default | 1500 | False | - | - | - | - |
-| Ethernet10 | P2P_LINK_TO_DC1-BL1B_Ethernet10 | routed | - | - | default | 1500 | False | - | - | - | - |
+| Interface | Description | Channel Group | IPv6 Address | VRF | MTU | Shutdown | ND RA Disabled | Managed Config Flag | IPv6 ACL In | IPv6 ACL Out |
+| --------- | ----------- | --------------| ------------ | --- | --- | -------- | -------------- | -------------------| ----------- | ------------ |
+| Ethernet1 | P2P_DC1-SPINE1_Ethernet6 | - | - | default | 1500 | False | - | - | - | - |
+| Ethernet2 | P2P_DC1-SPINE2_Ethernet6 | - | - | default | 1500 | False | - | - | - | - |
+| Ethernet3 | P2P_DC1-SPINE3_Ethernet6 | - | - | default | 1500 | False | - | - | - | - |
+| Ethernet4 | P2P_DC1-SPINE4_Ethernet6 | - | - | default | 1500 | False | - | - | - | - |
+| Ethernet9 | P2P_DC1-BL1B_Ethernet9 | - | - | default | 1500 | False | - | - | - | - |
+| Ethernet10 | P2P_DC1-BL1B_Ethernet10 | - | - | default | 1500 | False | - | - | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
 ```eos
 !
 interface Ethernet1
-   description P2P_LINK_TO_DC1-SPINE1_Ethernet6
+   description P2P_DC1-SPINE1_Ethernet6
    no shutdown
    mtu 1500
    no switchport
    ipv6 enable
 !
 interface Ethernet2
-   description P2P_LINK_TO_DC1-SPINE2_Ethernet6
+   description P2P_DC1-SPINE2_Ethernet6
    no shutdown
    mtu 1500
    no switchport
    ipv6 enable
 !
 interface Ethernet3
-   description P2P_LINK_TO_DC1-SPINE3_Ethernet6
+   description P2P_DC1-SPINE3_Ethernet6
    no shutdown
    mtu 1500
    no switchport
    ipv6 enable
 !
 interface Ethernet4
-   description P2P_LINK_TO_DC1-SPINE4_Ethernet6
+   description P2P_DC1-SPINE4_Ethernet6
    no shutdown
    mtu 1500
    no switchport
    ipv6 enable
 !
 interface Ethernet9
-   description P2P_LINK_TO_DC1-BL1B_Ethernet9
+   description P2P_DC1-BL1B_Ethernet9
    no shutdown
    mtu 1500
    no switchport
    ipv6 enable
 !
 interface Ethernet10
-   description P2P_LINK_TO_DC1-BL1B_Ethernet10
+   description P2P_DC1-BL1B_Ethernet10
    no shutdown
    mtu 1500
    no switchport
    ipv6 enable
 !
 interface Ethernet11
-   description P2P_LINK_TO_outside-r1_other1
+   description P2P_outside-r1_other1
    no shutdown
    mtu 1500
    no switchport
@@ -353,27 +358,27 @@ interface Ethernet4000
 
 | Interface | Description | VRF | IP Address |
 | --------- | ----------- | --- | ---------- |
-| Loopback0 | EVPN_Overlay_Peering | default | 192.168.255.10/32 |
-| Loopback1 | VTEP_VXLAN_Tunnel_Source | default | 192.168.254.10/32 |
+| Loopback0 | ROUTER_ID | default | 192.168.255.10/32 |
+| Loopback1 | VXLAN_TUNNEL_SOURCE | default | 192.168.254.10/32 |
 
 ##### IPv6
 
 | Interface | Description | VRF | IPv6 Address |
 | --------- | ----------- | --- | ------------ |
-| Loopback0 | EVPN_Overlay_Peering | default | - |
-| Loopback1 | VTEP_VXLAN_Tunnel_Source | default | - |
+| Loopback0 | ROUTER_ID | default | - |
+| Loopback1 | VXLAN_TUNNEL_SOURCE | default | - |
 
 #### Loopback Interfaces Device Configuration
 
 ```eos
 !
 interface Loopback0
-   description EVPN_Overlay_Peering
+   description ROUTER_ID
    no shutdown
    ip address 192.168.255.10/32
 !
 interface Loopback1
-   description VTEP_VXLAN_Tunnel_Source
+   description VXLAN_TUNNEL_SOURCE
    no shutdown
    ip address 192.168.254.10/32
 ```
@@ -390,11 +395,11 @@ interface Loopback1
 
 ##### IPv4
 
-| Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | VRRP | ACL In | ACL Out |
-| --------- | --- | ---------- | ------------------ | ------------------------- | ---- | ------ | ------- |
-| Vlan150 |  Tenant_A_WAN_Zone  |  -  |  10.1.40.1/24  |  -  |  -  |  -  |  -  |
-| Vlan250 |  Tenant_B_WAN_Zone  |  -  |  10.2.50.1/24  |  -  |  -  |  -  |  -  |
-| Vlan350 |  Tenant_C_WAN_Zone  |  -  |  10.3.50.1/24  |  -  |  -  |  -  |  -  |
+| Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | ACL In | ACL Out |
+| --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
+| Vlan150 |  Tenant_A_WAN_Zone  |  -  |  10.1.40.1/24  |  -  |  -  |  -  |
+| Vlan250 |  Tenant_B_WAN_Zone  |  -  |  10.2.50.1/24  |  -  |  -  |  -  |
+| Vlan350 |  Tenant_C_WAN_Zone  |  -  |  10.3.50.1/24  |  -  |  -  |  -  |
 
 #### VLAN Interfaces Device Configuration
 
@@ -612,9 +617,9 @@ ASN Notation: asplain
 | 192.168.255.2 | 65001 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 | 192.168.255.3 | 65001 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
 | 192.168.255.4 | 65001 | default | - | Inherited from peer group EVPN-OVERLAY-PEERS | Inherited from peer group EVPN-OVERLAY-PEERS | - | Inherited from peer group EVPN-OVERLAY-PEERS | - | - | - | - |
-| 123.1.1.10 | 1234 | Tenant_A_WAN_Zone | - | standard extended | 0 (no limit) | - | - | - | - | - |
-| fd5a:fe45:8831:06c5::a | 12345 | Tenant_A_WAN_Zone | - | - | - | - | - | - | - | - |
-| fd5a:fe45:8831:06c5::b | 12345 | Tenant_A_WAN_Zone | - | - | - | - | - | - | - | - |
+| 123.1.1.10 | 1234 | Tenant_A_WAN_Zone | - | standard extended | 0 (no limit) | - | - | - | - | - | - |
+| fd5a:fe45:8831:06c5::a | 12345 | Tenant_A_WAN_Zone | - | - | - | - | - | - | - | - | - |
+| fd5a:fe45:8831:06c5::b | 12345 | Tenant_A_WAN_Zone | - | - | - | - | - | - | - | - | - |
 
 #### BGP Neighbor Interfaces
 
@@ -631,9 +636,9 @@ ASN Notation: asplain
 
 ##### EVPN Peer Groups
 
-| Peer Group | Activate | Encapsulation |
-| ---------- | -------- | ------------- |
-| EVPN-OVERLAY-PEERS | True | default |
+| Peer Group | Activate | Route-map In | Route-map Out | Encapsulation |
+| ---------- | -------- | ------------ | ------------- | ------------- |
+| EVPN-OVERLAY-PEERS | True |  - | - | default |
 
 ##### EVPN Host Flapping Settings
 
@@ -663,9 +668,9 @@ ASN Notation: asplain
 !
 router bgp 65104
    router-id 192.168.255.10
-   maximum-paths 4 ecmp 4
    update wait-install
    no bgp default ipv4-unicast
+   maximum-paths 4 ecmp 4
    distance bgp 20 200 200
    neighbor EVPN-OVERLAY-PEERS peer group
    neighbor EVPN-OVERLAY-PEERS update-source Loopback0
@@ -678,28 +683,28 @@ router bgp 65104
    neighbor UNDERLAY_PEERS password 7 <removed>
    neighbor UNDERLAY_PEERS send-community
    neighbor UNDERLAY_PEERS maximum-routes 12000
+   neighbor 10.23.23.2 peer group UNDERLAY_PEERS
+   neighbor 10.23.23.2 remote-as 64900
+   neighbor 10.23.23.2 description outside-r1
+   neighbor 192.168.255.1 peer group EVPN-OVERLAY-PEERS
+   neighbor 192.168.255.1 remote-as 65001
+   neighbor 192.168.255.1 description DC1-SPINE1_Loopback0
+   neighbor 192.168.255.2 peer group EVPN-OVERLAY-PEERS
+   neighbor 192.168.255.2 remote-as 65001
+   neighbor 192.168.255.2 description DC1-SPINE2_Loopback0
+   neighbor 192.168.255.3 peer group EVPN-OVERLAY-PEERS
+   neighbor 192.168.255.3 remote-as 65001
+   neighbor 192.168.255.3 description DC1-SPINE3_Loopback0
+   neighbor 192.168.255.4 peer group EVPN-OVERLAY-PEERS
+   neighbor 192.168.255.4 remote-as 65001
+   neighbor 192.168.255.4 description DC1-SPINE4_Loopback0
+   redistribute connected route-map RM-CONN-2-BGP
    neighbor interface Ethernet1 peer-group UNDERLAY_PEERS remote-as 65001
    neighbor interface Ethernet2 peer-group UNDERLAY_PEERS remote-as 65001
    neighbor interface Ethernet3 peer-group UNDERLAY_PEERS remote-as 65001
    neighbor interface Ethernet4 peer-group UNDERLAY_PEERS remote-as 65001
    neighbor interface Ethernet9 peer-group UNDERLAY_PEERS remote-as 65105
    neighbor interface Ethernet10 peer-group UNDERLAY_PEERS remote-as 65105
-   neighbor 10.23.23.2 peer group UNDERLAY_PEERS
-   neighbor 10.23.23.2 remote-as 64900
-   neighbor 10.23.23.2 description outside-r1
-   neighbor 192.168.255.1 peer group EVPN-OVERLAY-PEERS
-   neighbor 192.168.255.1 remote-as 65001
-   neighbor 192.168.255.1 description DC1-SPINE1
-   neighbor 192.168.255.2 peer group EVPN-OVERLAY-PEERS
-   neighbor 192.168.255.2 remote-as 65001
-   neighbor 192.168.255.2 description DC1-SPINE2
-   neighbor 192.168.255.3 peer group EVPN-OVERLAY-PEERS
-   neighbor 192.168.255.3 remote-as 65001
-   neighbor 192.168.255.3 description DC1-SPINE3
-   neighbor 192.168.255.4 peer group EVPN-OVERLAY-PEERS
-   neighbor 192.168.255.4 remote-as 65001
-   neighbor 192.168.255.4 description DC1-SPINE4
-   redistribute connected route-map RM-CONN-2-BGP
    !
    vlan-aware-bundle Tenant_A_WAN_Zone
       rd 192.168.255.10:14
@@ -720,13 +725,13 @@ router bgp 65104
       vlan 350
    !
    address-family evpn
-      host-flap detection window 20 threshold 30
       neighbor EVPN-OVERLAY-PEERS activate
+      host-flap detection window 20 threshold 30
    !
    address-family ipv4
       no neighbor EVPN-OVERLAY-PEERS activate
-      neighbor UNDERLAY_PEERS next-hop address-family ipv6 originate
       neighbor UNDERLAY_PEERS activate
+      neighbor UNDERLAY_PEERS next-hop address-family ipv6 originate
    !
    vrf Tenant_A_WAN_Zone
       rd 192.168.255.10:14
@@ -736,13 +741,13 @@ router bgp 65104
       update wait-install
       neighbor 123.1.1.10 remote-as 1234
       neighbor 123.1.1.10 local-as 123 no-prepend replace-as
+      neighbor 123.1.1.10 update-source Loopback123
       neighbor 123.1.1.10 description External IPv4 BGP peer
       neighbor 123.1.1.10 ebgp-multihop 3
+      neighbor 123.1.1.10 route-map RM-Tenant_A_WAN_Zone-123.1.1.10-SET-NEXT-HOP-OUT out
+      neighbor 123.1.1.10 default-originate route-map RM-Tenant_A_WAN_Zone-123.1.1.10-SET-NEXT-HOP-OUT
       neighbor 123.1.1.10 send-community standard extended
       neighbor 123.1.1.10 maximum-routes 0
-      neighbor 123.1.1.10 default-originate route-map RM-Tenant_A_WAN_Zone-123.1.1.10-SET-NEXT-HOP-OUT
-      neighbor 123.1.1.10 update-source Loopback123
-      neighbor 123.1.1.10 route-map RM-Tenant_A_WAN_Zone-123.1.1.10-SET-NEXT-HOP-OUT out
       neighbor fd5a:fe45:8831:06c5::a remote-as 12345
       neighbor fd5a:fe45:8831:06c5::a route-map RM-Tenant_A_WAN_Zone-fd5a:fe45:8831:06c5::a-SET-NEXT-HOP-OUT out
       neighbor fd5a:fe45:8831:06c5::b remote-as 12345

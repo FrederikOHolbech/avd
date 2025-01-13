@@ -7,6 +7,7 @@
   - [Management API HTTP](#management-api-http)
 - [Authentication](#authentication)
   - [Local Users](#local-users)
+  - [Enable Password](#enable-password)
 - [Management Security](#management-security)
   - [Management Security Summary](#management-security-summary)
   - [Management Security Device Configuration](#management-security-device-configuration)
@@ -31,6 +32,7 @@
 - [MPLS](#mpls)
   - [MPLS and LDP](#mpls-and-ldp)
   - [MPLS Interfaces](#mpls-interfaces)
+  - [MPLS Device Configuration](#mpls-device-configuration)
 - [VRF Instances](#vrf-instances)
   - [VRF Instances Summary](#vrf-instances-summary)
   - [VRF Instances Device Configuration](#vrf-instances-device-configuration)
@@ -45,20 +47,20 @@
 
 | Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management1 | oob_management | oob | MGMT | 172.16.1.152/24 | 172.16.1.1 |
+| Management1 | OOB_MANAGEMENT | oob | MGMT | 172.16.1.152/24 | 172.16.1.1 |
 
 ##### IPv6
 
 | Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management1 | oob_management | oob | MGMT | - | - |
+| Management1 | OOB_MANAGEMENT | oob | MGMT | - | - |
 
 #### Management Interfaces Device Configuration
 
 ```eos
 !
 interface Management1
-   description oob_management
+   description OOB_MANAGEMENT
    no shutdown
    vrf MGMT
    ip address 172.16.1.152/24
@@ -108,6 +110,10 @@ management api http-commands
 username admin privilege 15 role network-admin nopassword
 username ansible privilege 15 role network-admin secret sha512 <removed>
 ```
+
+### Enable Password
+
+Enable password has been disabled
 
 ## Management Security
 
@@ -168,26 +174,26 @@ vlan internal order ascending range 1006 1199
 
 ##### IPv4
 
-| Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
-| --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet2 | P2P_LINK_TO_p4_Ethernet2 | routed | - | 10.255.3.18/31 | default | 1500 | False | - | - |
-| Ethernet3 | P2P_LINK_TO_p2_Ethernet3 | routed | - | 10.255.3.16/31 | default | 1500 | False | - | - |
-| Ethernet4 | P2P_LINK_TO_rr1_Ethernet4 | routed | - | 10.255.3.15/31 | default | 1500 | False | - | - |
+| Interface | Description | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
+| --------- | ----------- | ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
+| Ethernet2 | P2P_p4_Ethernet2 | - | 10.255.3.18/31 | default | 1500 | False | - | - |
+| Ethernet3 | P2P_p2_Ethernet3 | - | 10.255.3.16/31 | default | 1500 | False | - | - |
+| Ethernet4 | P2P_rr1_Ethernet4 | - | 10.255.3.15/31 | default | 1500 | False | - | - |
 
 ##### ISIS
 
-| Interface | Channel Group | ISIS Instance | ISIS Metric | Mode | ISIS Circuit Type | Hello Padding | Authentication Mode |
-| --------- | ------------- | ------------- | ----------- | ---- | ----------------- | ------------- | ------------------- |
-| Ethernet2 | - | CORE | 50 | point-to-point | level-2 | True | md5 |
-| Ethernet3 | - | CORE | 50 | point-to-point | level-2 | True | md5 |
-| Ethernet4 | - | CORE | 50 | point-to-point | level-2 | True | md5 |
+| Interface | Channel Group | ISIS Instance | ISIS BFD | ISIS Metric | Mode | ISIS Circuit Type | Hello Padding | ISIS Authentication Mode |
+| --------- | ------------- | ------------- | -------- | ----------- | ---- | ----------------- | ------------- | ------------------------ |
+| Ethernet2 | - | CORE | - | 50 | point-to-point | level-2 | True | md5 |
+| Ethernet3 | - | CORE | - | 50 | point-to-point | level-2 | True | md5 |
+| Ethernet4 | - | CORE | - | 50 | point-to-point | level-2 | True | md5 |
 
 #### Ethernet Interfaces Device Configuration
 
 ```eos
 !
 interface Ethernet2
-   description P2P_LINK_TO_p4_Ethernet2
+   description P2P_p4_Ethernet2
    no shutdown
    mtu 1500
    no switchport
@@ -204,7 +210,7 @@ interface Ethernet2
    isis authentication key 7 <removed>
 !
 interface Ethernet3
-   description P2P_LINK_TO_p2_Ethernet3
+   description P2P_p2_Ethernet3
    no shutdown
    mtu 1500
    no switchport
@@ -221,7 +227,7 @@ interface Ethernet3
    isis authentication key 7 <removed>
 !
 interface Ethernet4
-   description P2P_LINK_TO_rr1_Ethernet4
+   description P2P_rr1_Ethernet4
    no shutdown
    mtu 1500
    no switchport
@@ -246,13 +252,13 @@ interface Ethernet4
 
 | Interface | Description | VRF | IP Address |
 | --------- | ----------- | --- | ---------- |
-| Loopback0 | MPLS_Overlay_peering | default | 10.255.2.2/32 |
+| Loopback0 | ROUTER_ID | default | 10.255.2.2/32 |
 
 ##### IPv6
 
 | Interface | Description | VRF | IPv6 Address |
 | --------- | ----------- | --- | ------------ |
-| Loopback0 | MPLS_Overlay_peering | default | - |
+| Loopback0 | ROUTER_ID | default | - |
 
 ##### ISIS
 
@@ -265,12 +271,12 @@ interface Ethernet4
 ```eos
 !
 interface Loopback0
-   description MPLS_Overlay_peering
+   description ROUTER_ID
    no shutdown
    ip address 10.255.2.2/32
+   mpls ldp interface
    isis enable CORE
    isis passive
-   mpls ldp interface
 ```
 
 ## Routing
@@ -332,7 +338,7 @@ ip route vrf MGMT 0.0.0.0/0 172.16.1.1
 | Settings | Value |
 | -------- | ----- |
 | Instance | CORE |
-| Net-ID | 49.0001.0000.0002.0002.00 |
+| Net-ID | 49.0001.0102.5500.2002.00 |
 | Type | level-2 |
 | Router-ID | 10.255.2.2 |
 | Log Adjacency Changes | True |
@@ -359,9 +365,9 @@ ip route vrf MGMT 0.0.0.0/0 172.16.1.1
 ```eos
 !
 router isis CORE
-   net 49.0001.0000.0002.0002.00
-   is-type level-2
+   net 49.0001.0102.5500.2002.00
    router-id ipv4 10.255.2.2
+   is-type level-2
    log-adjacency-changes
    mpls ldp sync default
    !
@@ -424,22 +430,14 @@ ASN Notation: asplain
 | 10.255.1.3 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - | - |
 | 10.255.2.1 | Inherited from peer group RR-OVERLAY-PEERS | default | - | Inherited from peer group RR-OVERLAY-PEERS | Inherited from peer group RR-OVERLAY-PEERS | - | Inherited from peer group RR-OVERLAY-PEERS | - | - | - | - |
 
-#### Router BGP EVPN Address Family
-
-##### EVPN Peer Groups
-
-| Peer Group | Activate | Encapsulation |
-| ---------- | -------- | ------------- |
-| RR-OVERLAY-PEERS | True | default |
-
 #### Router BGP VPN-IPv4 Address Family
 
 ##### VPN-IPv4 Peer Groups
 
-| Peer Group | Activate | Route-map In | Route-map Out |
-| ---------- | -------- | ------------ | ------------- |
-| MPLS-OVERLAY-PEERS | True | - | - |
-| RR-OVERLAY-PEERS | True | - | - |
+| Peer Group | Activate | Route-map In | Route-map Out | RCF In | RCF Out |
+| ---------- | -------- | ------------ | ------------- | ------ | ------- |
+| MPLS-OVERLAY-PEERS | True | - | - | - | - |
+| RR-OVERLAY-PEERS | True | - | - | - | - |
 
 #### Router BGP Device Configuration
 
@@ -447,15 +445,15 @@ ASN Notation: asplain
 !
 router bgp 65001
    router-id 10.255.2.2
-   distance bgp 20 200 200
-   maximum-paths 4 ecmp 4
    no bgp default ipv4-unicast
+   distance bgp 20 200 200
    bgp cluster-id 10.255.2.2
+   maximum-paths 4 ecmp 4
    neighbor MPLS-OVERLAY-PEERS peer group
    neighbor MPLS-OVERLAY-PEERS remote-as 65001
    neighbor MPLS-OVERLAY-PEERS update-source Loopback0
-   neighbor MPLS-OVERLAY-PEERS route-reflector-client
    neighbor MPLS-OVERLAY-PEERS bfd
+   neighbor MPLS-OVERLAY-PEERS route-reflector-client
    neighbor MPLS-OVERLAY-PEERS password 7 <removed>
    neighbor MPLS-OVERLAY-PEERS send-community
    neighbor MPLS-OVERLAY-PEERS maximum-routes 0
@@ -467,16 +465,13 @@ router bgp 65001
    neighbor RR-OVERLAY-PEERS send-community
    neighbor RR-OVERLAY-PEERS maximum-routes 0
    neighbor 10.255.1.1 peer group MPLS-OVERLAY-PEERS
-   neighbor 10.255.1.1 description pe1
+   neighbor 10.255.1.1 description pe1_Loopback0
    neighbor 10.255.1.2 peer group MPLS-OVERLAY-PEERS
-   neighbor 10.255.1.2 description pe2
+   neighbor 10.255.1.2 description pe2_Loopback0
    neighbor 10.255.1.3 peer group MPLS-OVERLAY-PEERS
-   neighbor 10.255.1.3 description pe3
+   neighbor 10.255.1.3 description pe3_Loopback0
    neighbor 10.255.2.1 peer group RR-OVERLAY-PEERS
-   neighbor 10.255.2.1 description rr1
-   !
-   address-family evpn
-      neighbor RR-OVERLAY-PEERS activate
+   neighbor 10.255.2.1 description rr1_Loopback0
    !
    address-family ipv4
       no neighbor MPLS-OVERLAY-PEERS activate
@@ -519,19 +514,6 @@ router bfd
 | LDP Interface Disabled Default | True |
 | LDP Transport-Address Interface | Loopback0 |
 
-#### MPLS and LDP Device Configuration
-
-```eos
-!
-mpls ip
-!
-mpls ldp
-   interface disabled default
-   router-id 10.255.2.2
-   no shutdown
-   transport-address interface Loopback0
-```
-
 ### MPLS Interfaces
 
 | Interface | MPLS IP Enabled | LDP Enabled | IGP Sync |
@@ -540,6 +522,19 @@ mpls ldp
 | Ethernet3 | True | True | True |
 | Ethernet4 | True | True | True |
 | Loopback0 | - | True | - |
+
+### MPLS Device Configuration
+
+```eos
+!
+mpls ip
+!
+mpls ldp
+   router-id 10.255.2.2
+   transport-address interface Loopback0
+   interface disabled default
+   no shutdown
+```
 
 ## VRF Instances
 

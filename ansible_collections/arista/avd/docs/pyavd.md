@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2023-2024 Arista Networks, Inc.
+  ~ Copyright (c) 2023-2025 Arista Networks, Inc.
   ~ Use of this source code is governed by the Apache License 2.0
   ~ that can be found in the LICENSE file.
   -->
@@ -53,7 +53,6 @@ Feedback is very welcome. Please use [GitHub discussions](https://github.com/ari
 - Add more tests (current coverage is 85%)
 - Add network state validation similar to `eos_validate_state`.
 - Add CloudVision tag integrations
-- Make PyAVD the source of AVD logic and use as a dependency for the `arista.avd` Ansible collection.
 - Explore support for custom Jinja2 templates.
 
 ## Installation
@@ -61,60 +60,94 @@ Feedback is very welcome. Please use [GitHub discussions](https://github.com/ari
 Install the `pyavd` Python package:
 
 ```sh
-pip3 install pyavd
+pip install pyavd
 ```
 
-Requirements (automatically installed with above command):
-
-```ini
-jinja2>=3.0
-jsonschema>=4.5.1,<4.18
-deepmerge>=1.1.0
-```
+Python dependencies are automatically installed with above command.
 
 ### Optional requirements
 
-For support of `get_device_doc(..., add_md_toc=True)` install with extra `mdtoc`:
+To install Ansible [AVD collection Python requirements](installation/collection-installation.md#python-requirements-installation) install with extra `ansible`:
 
 ```sh
-pip3 install pyavd[mdtoc]
-```
-
-Optional `md-toc` requirement (automatically installed with above command):
-
-```ini
-md-toc>=8.1.8
+pip install pyavd[ansible]
 ```
 
 ## Reference
 
 ::: pyavd.validate_inputs
     options:
+      heading_level: 3
       show_root_toc_entry: false
+      show_object_full_path: true
       paths: ../../../../python-avd
 
 ::: pyavd.get_avd_facts
     options:
+      heading_level: 3
       show_root_toc_entry: false
+      show_object_full_path: true
+      paths: ../../../../python-avd
 
 ::: pyavd.get_device_structured_config
     options:
+      heading_level: 3
       show_root_toc_entry: false
+      show_object_full_path: true
+      paths: ../../../../python-avd
 
 ::: pyavd.validate_structured_config
     options:
+      heading_level: 3
       show_root_toc_entry: false
+      show_object_full_path: true
+      paths: ../../../../python-avd
+
+::: pyavd.get_fabric_documentation
+    options:
+      heading_level: 3
+      show_root_toc_entry: false
+      show_object_full_path: true
       paths: ../../../../python-avd
 
 ::: pyavd.get_device_config
     options:
+      heading_level: 3
       show_root_toc_entry: false
+      show_object_full_path: true
+      paths: ../../../../python-avd
 
 ::: pyavd.get_device_doc
     options:
+      heading_level: 3
       show_root_toc_entry: false
+      show_object_full_path: true
+      paths: ../../../../python-avd
 
 ::: pyavd.validation_result
     options:
+      heading_level: 3
       show_root_toc_entry: false
+      show_object_full_path: true
+      paths: ../../../../python-avd
+
+::: pyavd.api.fabric_documentation
+    options:
+      heading_level: 3
+      show_root_toc_entry: false
+      show_object_full_path: true
+      paths: ../../../../python-avd
+
+::: pyavd.api.interface_descriptions
+    options:
+      heading_level: 3
+      show_root_toc_entry: false
+      show_object_full_path: true
+      paths: ../../../../python-avd
+
+::: pyavd.api.ip_addressing
+    options:
+      heading_level: 3
+      show_root_toc_entry: false
+      show_object_full_path: true
       paths: ../../../../python-avd

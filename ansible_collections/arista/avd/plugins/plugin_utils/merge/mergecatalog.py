@@ -1,9 +1,23 @@
-# Copyright (c) 2023-2024 Arista Networks, Inc.
+# Copyright (c) 2023-2025 Arista Networks, Inc.
 # Use of this source code is governed by the Apache License 2.0
 # that can be found in the LICENSE file.
 from __future__ import annotations
 
-from ansible_collections.arista.avd.plugins.plugin_utils.errors import AristaAvdError
+from ansible.errors import AnsibleActionFail
+
+from ansible_collections.arista.avd.plugins.plugin_utils.pyavd_wrappers import RaiseOnUse
+
+PLUGIN_NAME = "arista.avd.eos_validate_state"
+
+try:
+    from pyavd._errors import AristaAvdError
+except ImportError as e:
+    AristaAvdError = RaiseOnUse(
+        AnsibleActionFail(
+            f"The '{PLUGIN_NAME}' plugin requires the 'pyavd' Python library. Got import error",
+            orig_exc=e,
+        ),
+    )
 
 try:
     from deepmerge import always_merger

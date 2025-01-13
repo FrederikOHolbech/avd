@@ -3,7 +3,7 @@
 title: arista.avd.configlet_build_config
 ---
 <!--
-  ~ Copyright (c) 2023-2024 Arista Networks, Inc.
+  ~ Copyright (c) 2023-2025 Arista Networks, Inc.
   ~ Use of this source code is governed by the Apache License 2.0
   ~ that can be found in the LICENSE file.
   -->
@@ -33,7 +33,6 @@ Build configuration to publish configlets to Cloudvision.
 ```yaml
 # tasks file for configlet_build_config
 - name: generate intended variables
-  tags: [build, provision]
   configlet_build_config:
     configlet_dir: '/path/to/configlets/folder/'
     configlet_prefix: 'AVD_'

@@ -1,4 +1,4 @@
-# Copyright (c) 2023-2024 Arista Networks, Inc.
+# Copyright (c) 2023-2025 Arista Networks, Inc.
 # Use of this source code is governed by the Apache License 2.0
 # that can be found in the LICENSE file.
 from __future__ import annotations
@@ -139,7 +139,7 @@ class ResultsManager:
     def total_tests(self) -> int:
         """Calculates the total number of tests processed.
 
-        Returns
+        Returns:
         -------
             int: The total number of tests.
         """
@@ -149,7 +149,7 @@ class ResultsManager:
     def sorted_category_stats(self) -> dict:
         """A property that returns the category_stats dictionary sorted by key name.
 
-        Returns
+        Returns:
         -------
             dict: The sorted category_stats dictionary.
         """

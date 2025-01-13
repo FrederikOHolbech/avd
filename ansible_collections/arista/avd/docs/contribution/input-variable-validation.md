@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2023-2024 Arista Networks, Inc.
+  ~ Copyright (c) 2023-2025 Arista Networks, Inc.
   ~ Use of this source code is governed by the Apache License 2.0
   ~ that can be found in the LICENSE file.
   -->
@@ -28,75 +28,43 @@ The current implementation supports the automatic conversions listed below.
 | `bool`, `str` | `int` |
 | `int`, `str` | `bool` |
 | `bool`, `int` | `str` |
-| `dict`*, `list`** | `list` |
-
-\* If `primary_key` is set on the `list` schema, conversion from `dict`-of-`dicts` to `list`-of-`dicts` will insert the `primary_key`
-with the value of the outer dictionary key in each `dict`. If `primary_key` is *not* set on the `list` schema, only the input `dict`
-keys are returned as `list` items (any input `dict` values are lost).
-\*\* If `primary_key` is set on the `list` schema, conversion from `list` to `list`-of-`dicts` will insert the `primary_key` with the
-value of the input `list` items in each `dict`.
 
 An example of input variable conversion is `bgp_as`. `bgp_as` is expected as a string (`str`) since 32-bit AS numbers can be
-written with dot-notation such as `"65001.10000"`. Most deployments use 16-bit AS numbers, where the setting `bgp_as: 65001` will be interpreted as an integer in YAML, unless it is enclosed in quotes `bgp_as: "65001"`. In the schema for `bgp_as` the `convert_types` option is configured to `['int']` which means AVD Action Plugins will automatically convert
+written with dot-notation such as `"65001.10000"`. Most deployments use 16-bit AS numbers, where the setting `bgp_as: 65001`
+will be interpreted as an integer in YAML, unless it is enclosed in quotes `bgp_as: "65001"`. In the schema for `bgp_as` the
+`convert_types` option is configured to `['int']` which means AVD Action Plugins will automatically convert
 `bgp_as: 65001` to `bgp_as: "65001"`.
 
-Type conversion is also used for introducing changes to the data models without affecting existing deployments. For example,
-in AVD 4.0, the data models using "Dictionaries with wildcard keys" has been be changed to lists.
-Ex. the old data model:
+## Data model deprecations
 
-```yaml
-tenants:
-  mytenant:
-    vrfs:
-      myvrf:
-        ...
-```
+Deprecation status can be set for every data model and can contain information about when the key will be removed or if it is already removed.
+The deprecation details can also contain a pointer to a data model to use instead and a URL for further information.
 
-has been be changed to:
+If a deprecated key is set in the inputs, a deprecation warning will be shown. If the deprecation details point to a new data model and this new model
+is also given in the inputs, there is a conflict leading to validation error to be raised and the task will fail.
 
-```yaml
-tenants:
-  - name: mytenant
-    vrfs:
-      - name: myvrf
-        ...
-```
-
-The input data will be converted automatically and validated according to the new model to allow for a gracious introduction of this data-model changes in late 3.x versions.
-
-Type conversion is turned on by default.
-
-!!! CAUTION
-    Although conversion can be disabled, this is **not** recommended, and will most likely lead to issues with AVD or the generated
-    configuration. Data conversion also handles data deprecation and upgrades.
+If a removed key is set in the inputs, a validation error will be raised and the task will fail.
 
 ## Validation Options
 
 Schema validation is built in to the central Action plugins used in AVD. Each plugin runs variable type conversion first and then
 performs validation of the converted data.
 
-By default the data conversions are logged with `-v` and data validation issues will trigger warnings - not blocking further processing.
+By default any data validation issues will trigger errors - blocking further processing.
 This behavior can be adjusted by setting the variables described below.
 
-```yaml
-# Conversion Mode for AVD input data conversion | Optional
-# During conversion, messages will generated with information about the host(s) and key(s) which required conversion.
-# "disabled" means that conversion will not run - avoid this since conversion is also handling data deprecation and upgrade.
-# "error" will produce error messages and fail the task.
-# "warning" will produce warning messages.
-# "info" will produce regular log messages.
-# "debug" will produce hidden debug messages viewable with -v.
-# "quiet" will not produce any messages
-avd_data_conversion_mode: < "disabled" | "error" | "warning" | "info" | "debug" | "quiet" | default -> "debug" >
+!!! danger
+    The input variable `avd_data_validation_mode` now has a default value of `error`, and while it can be set to `warning`, this is highly discouraged.
+    All AVD code relies on the validation to ensure valid data, so the code assumes that the data is valid.
 
+    If the validation mode is set to `warning`, execution will continue with invalid data, which can lead to hard-to-read errors or incorrect behavior.
+
+```yaml
 # Validation Mode for AVD input data validation | Optional
 # During validation, messages will generated with information about the host(s) and key(s) which failed validation.
-# "disabled" means that validation will not run.
 # "error" will produce error messages and fail the task.
 # "warning" will produce warning messages.
-# "info" will produce regular log messages.
-# "debug" will produce hidden debug messages viewable with -v.
-avd_data_validation_mode: < "disabled" | "error" | "warning" | "info" | "debug" | default -> "warning" >
+avd_data_validation_mode: < "error" | "warning" | default -> "error" >
 ```
 
 ## Schema Details
@@ -125,21 +93,23 @@ This fragment will be merged with other fragments during development, to form th
 
 For reference, the full Role Schemas can be found here:
 
-- [`eos_designs` AVD Schema, not ready yet](../../roles/eos_designs/schemas/eos_designs.schema.yml)
-- [`eos_cli_config_gen` AVD Schema](../../roles/eos_cli_config_gen/schemas/eos_cli_config_gen.schema.yml)
+- [`eos_designs` AVD Schema](https://github.com/aristanetworks/avd/tree/devel/python-avd/pyavd/_eos_designs/schema/eos_designs.schema.yml)
+- [`eos_cli_config_gen` AVD Schema](https://github.com/aristanetworks/avd/tree/devel/python-avd/pyavd/_eos_cli_config_gen/schema/eos_cli_config_gen.schema.yml)
 
 The supported schema options depend on the type of variable that is described. The supported types are `int`, `bool`, `str`,
 `dict` and `list`. The schema does not support mixed types for the same variable, but the automatic type conversion mentioned
 above can address the usability aspect by helping the user with common mistakes.
 
 The supported schema options for AVD Schema are described in a meta-schema using JSON Schema Draft-7 format. The meta-schema
-can be seen [here](../../plugins/plugin_utils/schema/avd_meta_schema.json). In addition, below is a more detailed description of the supported
+can be seen [here](https://github.com/aristanetworks/avd/tree/devel/python-avd/pyavd/_schema/avd_meta_schema.json). In addition, below is a more detailed description of the supported
 schema options per variable type.
 
 All schema options (ex. `type`, `max`, `valid_values`) are validated individually, and to pass the validation, the data must
 conform to all the rules given by the schema options.
 This means that the validator may report multiple errors about the same piece of data if it violates more than on rule.
 This also means that a poorly written schema could have conflicting schema options, which may not allow any value. For example `type: str` schema with `min_length: 10` and `max_length: 5` would never be satisfied.
+
+The `deprecation.new_key` field is used for detecting conflicts with old and new data models. To properly detect conflicts the `new_key` must be a relative path to the new data model or multiple relative paths separated by `" or "`. Conflict detection only works if the new data model in or below the same dict as the deprecated model.
 
 ### Schema Options for type `int` (Integer)
 
@@ -200,8 +170,8 @@ The meta-schema does not allow for other keys to be set in the schema.
 | <samp>type</samp> | String | True | | Valid Values:<br>- `"str"` | Type of variable using the Python short names for each type.<br>`str` for String |
 | <samp>convert_to_lower_case</samp> | Boolean | | False | | Convert string value to lower case before performing validation |
 | <samp>convert_types</samp> | List, items: String | | | | List of types to auto-convert from.<br>For type `str`, auto-conversion is supported from `bool` and `int` |
-| <samp>default</samp> | String | | | | Default value |
 | <samp>&nbsp;&nbsp;- \<str\></samp> | String | | | Valid Values:<br>- `"bool"`<br>- `"int"` | |
+| <samp>default</samp> | String | | | | Default value |
 | <samp>format</samp> | String | | | Valid Values:<br>- `"ipv4"`<br>- `"ipv4_cidr"`<br>- `"ipv6"`<br>- `"ipv6_cidr"`<br>- `"ip"`<br>- `"cidr"`<br>- `"mac"` | Expected format of the string value.<br>`ipv4` accepts a single IPv4 address (`x.x.x.x`)<br>`ipv4_cidr` accepts an IPv4 CIDR (`x.x.x.x/x`)<br>`ipv6` accepts a single IPv6 address (`x:x::x:x`)<br>`ipv6_cidr` accepts an IPv6 CIDR (`x:x::x:x/x`)<br>`ip` accepts a single IPv4 or IPv6 address<br>`cidr` accepts an IPv4 or IPv6 CIDR<br>`mac` accepts a MAC address (`xx:xx:xx:xx:xx:xx`) |
 | <samp>max_length</samp> | Integer | | | | Maximum length |
 | <samp>min_length</samp> | Integer | | | | Minimum length |
@@ -228,13 +198,11 @@ The meta-schema does not allow for other keys to be set in the schema.
 | Key | Type | Required | Default | Value Restrictions | Description |
 | ----| ---- | -------- | ------- | ------------------ | ----------- |
 | <samp>type</samp> | String | True | | Valid Values:<br>- `"list"` | Type of variable using the Python short names for each type.<br>`list` for List |
-| <samp>convert_types</samp> | List, items: String | | | | List of types to auto-convert from.<br>For `list` auto-conversion is supported from `dict` if `primary_key` is set on the list schema |
 | <samp>default</samp> | List | | | | Default value |
 | <samp>items</samp> | Dict | | | | Dictionary describing the schema of each list item. This is a recursive schema, so the value must conform to AVD Schema |
 | <samp>max_length</samp> | Integer | | | | Maximum length |
 | <samp>min_length</samp> | Integer | | | | Minimum length |
 | <samp>primary_key</samp> | String | | | Pattern: `^[a-z][a-z0-9_]*$` | Name of a primary key in a list of dictionaries.<br>The configured key is implicitly required and must have unique values between the list elements |
-| <samp>secondary_key</samp> | String | | | Pattern: `^[a-z][a-z0-9_]*$` | Name of a secondary key, which is used with `convert_types:['dict']` in case of values not being dictionaries |
 | <samp>unique_keys</samp> | List, items: String | | | Item Pattern: `^[a-z][a-z0-9_]*$` | Name of a key in a list of dictionaries.<br>The configured key must have unique values between the list elements.<br>This can also be a variable path using dot-notation like `parent_key.child_key` in case of nested lists of dictionaries. |
 | <samp>display_name</samp> | String | | | Regex Pattern: `"^[^\n]+$"` | Free text display name for forms and documentation (single line) |
 | <samp>description</samp> | String | | | Minimum Length: 1 | Free text description for forms and documentation (multi line) |

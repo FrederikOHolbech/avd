@@ -5,6 +5,8 @@
 - [Management](#management)
   - [Management Interfaces](#management-interfaces)
   - [Management API HTTP](#management-api-http)
+- [Authentication](#authentication)
+  - [Enable Password](#enable-password)
 - [Spanning Tree](#spanning-tree)
   - [Spanning Tree Summary](#spanning-tree-summary)
   - [Spanning Tree Device Configuration](#spanning-tree-device-configuration)
@@ -23,6 +25,7 @@
 - [MPLS](#mpls)
   - [MPLS and LDP](#mpls-and-ldp)
   - [MPLS Interfaces](#mpls-interfaces)
+  - [MPLS Device Configuration](#mpls-device-configuration)
 - [VRF Instances](#vrf-instances)
   - [VRF Instances Summary](#vrf-instances-summary)
   - [VRF Instances Device Configuration](#vrf-instances-device-configuration)
@@ -38,20 +41,20 @@
 
 | Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management1 | oob_management | oob | MGMT | 192.168.200.102/24 | 192.168.200.5 |
+| Management1 | OOB_MANAGEMENT | oob | MGMT | 192.168.200.102/24 | 192.168.200.5 |
 
 ##### IPv6
 
 | Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management1 | oob_management | oob | MGMT | - | - |
+| Management1 | OOB_MANAGEMENT | oob | MGMT | - | - |
 
 #### Management Interfaces Device Configuration
 
 ```eos
 !
 interface Management1
-   description oob_management
+   description OOB_MANAGEMENT
    no shutdown
    vrf MGMT
    ip address 192.168.200.102/24
@@ -82,6 +85,12 @@ management api http-commands
    vrf MGMT
       no shutdown
 ```
+
+## Authentication
+
+### Enable Password
+
+Enable password has been disabled
 
 ## Spanning Tree
 
@@ -126,31 +135,31 @@ vlan internal order ascending range 1006 1199
 
 ##### IPv4
 
-| Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
-| --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet1 | P2P_LINK_TO_SITE1-LER2_Ethernet1 | routed | - | 100.64.48.3/31 | default | 9214 | False | - | - |
-| Ethernet3 | P2P_LINK_TO_SITE2-LSR2_Ethernet3 | routed | - | 100.64.48.10/31 | default | 9178 | False | - | - |
+| Interface | Description | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
+| --------- | ----------- | ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
+| Ethernet1 | P2P_SITE1-LER2_Ethernet1 | - | 100.64.48.3/31 | default | 9214 | False | - | - |
+| Ethernet3 | P2P_SITE2-LSR2_Ethernet3 | - | 100.64.48.10/31 | default | 9178 | False | - | - |
 
 ##### IPv6
 
-| Interface | Description | Type | Channel Group | IPv6 Address | VRF | MTU | Shutdown | ND RA Disabled | Managed Config Flag | IPv6 ACL In | IPv6 ACL Out |
-| --------- | ----------- | ---- | --------------| ------------ | --- | --- | -------- | -------------- | -------------------| ----------- | ------------ |
-| Ethernet1 | P2P_LINK_TO_SITE1-LER2_Ethernet1 | routed | - | - | default | 9214 | False | - | - | - | - |
-| Ethernet3 | P2P_LINK_TO_SITE2-LSR2_Ethernet3 | routed | - | - | default | 9178 | False | - | - | - | - |
+| Interface | Description | Channel Group | IPv6 Address | VRF | MTU | Shutdown | ND RA Disabled | Managed Config Flag | IPv6 ACL In | IPv6 ACL Out |
+| --------- | ----------- | --------------| ------------ | --- | --- | -------- | -------------- | -------------------| ----------- | ------------ |
+| Ethernet1 | P2P_SITE1-LER2_Ethernet1 | - | - | default | 9214 | False | - | - | - | - |
+| Ethernet3 | P2P_SITE2-LSR2_Ethernet3 | - | - | default | 9178 | False | - | - | - | - |
 
 ##### ISIS
 
-| Interface | Channel Group | ISIS Instance | ISIS Metric | Mode | ISIS Circuit Type | Hello Padding | Authentication Mode |
-| --------- | ------------- | ------------- | ----------- | ---- | ----------------- | ------------- | ------------------- |
-| Ethernet1 | - | CORE | 50 | point-to-point | level-1-2 | False | md5 |
-| Ethernet3 | - | CORE | 60 | point-to-point | level-2 | False | md5 |
+| Interface | Channel Group | ISIS Instance | ISIS BFD | ISIS Metric | Mode | ISIS Circuit Type | Hello Padding | ISIS Authentication Mode |
+| --------- | ------------- | ------------- | -------- | ----------- | ---- | ----------------- | ------------- | ------------------------ |
+| Ethernet1 | - | CORE | - | 50 | point-to-point | level-1-2 | False | md5 |
+| Ethernet3 | - | CORE | - | 60 | point-to-point | level-2 | False | md5 |
 
 #### Ethernet Interfaces Device Configuration
 
 ```eos
 !
 interface Ethernet1
-   description P2P_LINK_TO_SITE1-LER2_Ethernet1
+   description P2P_SITE1-LER2_Ethernet1
    no shutdown
    mtu 9214
    speed forced 100gfull
@@ -171,7 +180,7 @@ interface Ethernet1
 
 !
 interface Ethernet3
-   description P2P_LINK_TO_SITE2-LSR2_Ethernet3
+   description P2P_SITE2-LSR2_Ethernet3
    no shutdown
    mtu 9178
    speed forced 40gfull
@@ -200,13 +209,13 @@ interface Ethernet3
 
 | Interface | Description | VRF | IP Address |
 | --------- | ----------- | --- | ---------- |
-| Loopback0 | LSR_Router_ID | default | 100.70.0.2/32 |
+| Loopback0 | ROUTER_ID | default | 100.70.0.2/32 |
 
 ##### IPv6
 
 | Interface | Description | VRF | IPv6 Address |
 | --------- | ----------- | --- | ------------ |
-| Loopback0 | LSR_Router_ID | default | 2000:1234:ffff:ffff::2/128 |
+| Loopback0 | ROUTER_ID | default | 2000:1234:ffff:ffff::2/128 |
 
 ##### ISIS
 
@@ -219,15 +228,15 @@ interface Ethernet3
 ```eos
 !
 interface Loopback0
-   description LSR_Router_ID
+   description ROUTER_ID
    no shutdown
    ip address 100.70.0.2/32
    ipv6 address 2000:1234:ffff:ffff::2/128
-   isis enable CORE
-   isis passive
    mpls ldp interface
    node-segment ipv4 index 302
    node-segment ipv6 index 302
+   isis enable CORE
+   isis passive
 ```
 
 ## Routing
@@ -296,14 +305,19 @@ ip route vrf MGMT 0.0.0.0/0 192.168.200.5
 | Settings | Value |
 | -------- | ----- |
 | Instance | CORE |
-| Net-ID | 49.0001.0000.0000.0002.00 |
+| Net-ID | 49.0001.1000.7000.0002.00 |
 | Type | level-2 |
 | Router-ID | 100.70.0.2 |
 | Log Adjacency Changes | True |
 | MPLS LDP Sync Default | True |
-| Local Convergence Delay (ms) | 15000 |
 | Advertise Passive-only | True |
 | SR MPLS Enabled | True |
+
+#### ISIS Route Timers
+
+| Settings | Value |
+| -------- | ----- |
+| Local Convergence Delay | 15000 milliseconds |
 
 #### ISIS Interfaces Summary
 
@@ -340,9 +354,9 @@ ip route vrf MGMT 0.0.0.0/0 192.168.200.5
 ```eos
 !
 router isis CORE
-   net 49.0001.0000.0000.0002.00
-   is-type level-2
+   net 49.0001.1000.7000.0002.00
    router-id ipv4 100.70.0.2
+   is-type level-2
    log-adjacency-changes
    mpls ldp sync default
    timers local-convergence-delay 15000 protected-prefixes
@@ -374,19 +388,6 @@ router isis CORE
 | LDP Interface Disabled Default | True |
 | LDP Transport-Address Interface | Loopback0 |
 
-#### MPLS and LDP Device Configuration
-
-```eos
-!
-mpls ip
-!
-mpls ldp
-   interface disabled default
-   router-id 100.70.0.2
-   no shutdown
-   transport-address interface Loopback0
-```
-
 ### MPLS Interfaces
 
 | Interface | MPLS IP Enabled | LDP Enabled | IGP Sync |
@@ -394,6 +395,19 @@ mpls ldp
 | Ethernet1 | True | True | True |
 | Ethernet3 | True | True | True |
 | Loopback0 | - | True | - |
+
+### MPLS Device Configuration
+
+```eos
+!
+mpls ip
+!
+mpls ldp
+   router-id 100.70.0.2
+   transport-address interface Loopback0
+   interface disabled default
+   no shutdown
+```
 
 ## VRF Instances
 

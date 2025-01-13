@@ -3,7 +3,7 @@
 title: arista.avd.set_vars
 ---
 <!--
-  ~ Copyright (c) 2023-2024 Arista Networks, Inc.
+  ~ Copyright (c) 2023-2025 Arista Networks, Inc.
   ~ Use of this source code is governed by the Apache License 2.0
   ~ that can be found in the LICENSE file.
   -->
@@ -27,7 +27,6 @@ Arguments are treated as one dict so all arguments will be set as vars.
 
 ```yaml
 - name: Remove avd_switch_facts
-  tags: [build, provision, facts, remove_avd_switch_facts]
   arista.avd.set_vars:
     avd_switch_facts: null
   run_once: true

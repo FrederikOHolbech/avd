@@ -1,4 +1,4 @@
-# Copyright (c) 2023-2024 Arista Networks, Inc.
+# Copyright (c) 2023-2025 Arista Networks, Inc.
 # Use of this source code is governed by the Apache License 2.0
 # that can be found in the LICENSE file.
 from __future__ import annotations
@@ -7,15 +7,15 @@ import logging
 from functools import cached_property
 
 from ansible_collections.arista.avd.plugins.plugin_utils.eos_validate_state_utils.avdtestbase import AvdTestBase
-from ansible_collections.arista.avd.plugins.plugin_utils.utils import get
+from ansible_collections.arista.avd.plugins.plugin_utils.utils import default, get
+
+from ..bgp_constants import BGP_ADDRESS_FAMILIES  # noqa: TID252 will be fixed when moving to pyavd
 
 LOGGER = logging.getLogger(__name__)
 
 
 class AvdTestRoutingTable(AvdTestBase):
-    """
-    AvdTestRoutingTable class for routing table entry verification tests.
-    """
+    """AvdTestRoutingTable class for routing table entry verification tests."""
 
     anta_module = "anta.tests.routing.generic"
 
@@ -35,7 +35,6 @@ class AvdTestRoutingTable(AvdTestBase):
 
             Avoids duplicate tests for the same IP address (e.g. MLAG VTEPs).
             """
-
             processed_ips = set()
 
             for peer, ip in mapping:
@@ -48,8 +47,8 @@ class AvdTestRoutingTable(AvdTestBase):
                             "VerifyRoutingTableEntry": {
                                 "routes": [ip],
                                 "result_overwrite": {"custom_field": f"Route: {ip} - Peer: {peer}"},
-                            }
-                        }
+                            },
+                        },
                     )
                     processed_ips.add(ip)
 
@@ -57,8 +56,11 @@ class AvdTestRoutingTable(AvdTestBase):
         if get(self.structured_config, "vxlan_interface") is None:
             LOGGER.info("Host is not a VTEP since it doesn't have a VXLAN interface. %s is skipped.", self.__class__.__name__)
             return None
-
-        vtep_interface = get(self.structured_config, "vxlan_interface.Vxlan1.vxlan.source_interface")
+        # TODO: Remove the support of Vxlan1 in AVD 6.0.0 version
+        vtep_interface = default(
+            get(self.structured_config, "vxlan_interface.vxlan1.vxlan.source_interface"),
+            get(self.structured_config, "vxlan_interface.Vxlan1.vxlan.source_interface"),
+        )
 
         # TODO: For now, we exclude WAN VTEPs from testing
         if "Dps" in vtep_interface:
@@ -76,17 +78,15 @@ class AvdTestRoutingTable(AvdTestBase):
 class AvdTestBGP(AvdTestBase):
     """AvdTestBGP class for BGP tests.
 
-    Supports IPv4, IPv6 and EVPN address families.
+    Supports IPv4, IPv6, Path-Selection, Link-State and EVPN address families.
     """
 
     anta_module = "anta.tests.routing"
-    anta_tests = {}
+    anta_tests = {}  # noqa: RUF012
 
-    def add_test(self, afi: str, bgp_neighbor_ip: str, bgp_peer: str, safi: str | None = None) -> dict:
+    def add_test(self, afi: str, bgp_neighbor_ip: str, bgp_peer: str, description: str, safi: str | None = None) -> dict:
         """Add a BGP test definition with the proper input parameters."""
-        formatted_afi = "IPv4" if afi.lower() == "ipv4" else "IPv6" if afi.lower() == "ipv6" else afi.upper()
-        formatted_safi = f" {safi.capitalize()}" if safi else ""
-        custom_field = f"BGP {formatted_afi}{formatted_safi} Peer: {bgp_peer} (IP: {bgp_neighbor_ip})"
+        custom_field = f"BGP {description} Peer: {f'{bgp_peer} (IP: {bgp_neighbor_ip})' if bgp_peer is not None else bgp_neighbor_ip}"
 
         address_family = {"afi": afi, "peers": [bgp_neighbor_ip]}
         if safi:
@@ -101,13 +101,19 @@ class AvdTestBGP(AvdTestBase):
             },
         )
 
-    def create_tests(self, afi: str, safi: str | None = None) -> None:
+    def create_tests(
+        self,
+        afi: str,
+        description: str,
+        avd_key: str,
+        safi: str | None = None,
+    ) -> None:
         """Create BGP tests for the given AFI and SAFI."""
         bgp_neighbors = get(self.structured_config, "router_bgp.neighbors", [])
 
         # Retrieve peer groups and direct neighbors.
-        peer_groups = get(self.structured_config, f"router_bgp.address_family_{afi}.peer_groups", [])
-        direct_neighbors = get(self.structured_config, f"router_bgp.address_family_{afi}.neighbors", [])
+        peer_groups = get(self.structured_config, f"router_bgp.{avd_key}.peer_groups", [])
+        direct_neighbors = get(self.structured_config, f"router_bgp.{avd_key}.neighbors", [])
 
         # Only explicitly activated neighbors and peer groups are tested.
         filtered_peer_groups = [peer_group["name"] for peer_group in peer_groups if peer_group.get("activate")]
@@ -125,13 +131,13 @@ class AvdTestBGP(AvdTestBase):
             # Check peer availability if the 'peer' key exists. Otherwise, still include the test for potential BGP external peers.
             if peer is not None and not self.is_peer_available(peer):
                 continue
-            self.add_test(afi=afi, safi=safi, bgp_neighbor_ip=str(ip), bgp_peer=peer)
+            self.add_test(afi=afi, safi=safi, bgp_neighbor_ip=str(ip), bgp_peer=peer, description=description)
 
     @cached_property
     def test_definition(self) -> dict | None:
         """Generates the proper ANTA test definition for all BGP tests.
 
-        Returns
+        Returns:
         -------
             test_definition (dict): ANTA test definition.
 
@@ -152,8 +158,8 @@ class AvdTestBGP(AvdTestBase):
                 },
             },
         )
-        # Create tests for IPv4, IPv6 and EVPN address families
-        for afi, safi in [("evpn", None), ("ipv4", "unicast"), ("ipv6", "unicast")]:
-            self.create_tests(afi=afi, safi=safi)
+        # Create tests for IPv4, IPv6, Path-Selection, Link-State and EVPN address families
+        for family in BGP_ADDRESS_FAMILIES:
+            self.create_tests(**family)
 
         return self.anta_tests if self.anta_tests.get(f"{self.anta_module}.bgp") else None

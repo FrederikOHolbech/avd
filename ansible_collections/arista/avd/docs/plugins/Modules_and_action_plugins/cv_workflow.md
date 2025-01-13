@@ -3,7 +3,7 @@
 title: arista.avd.cv_workflow
 ---
 <!--
-  ~ Copyright (c) 2023-2024 Arista Networks, Inc.
+  ~ Copyright (c) 2023-2025 Arista Networks, Inc.
   ~ Use of this source code is governed by the Apache License 2.0
   ~ that can be found in the LICENSE file.
   -->
@@ -35,7 +35,7 @@ The `arista.avd.cv_workflow` module is an Ansible Action Plugin providing the fo
 | <samp>cv_token</samp> | str | True | None |  | Service account token. It is strongly recommended to use Vault for this. |
 | <samp>cv_verify_certs</samp> | bool | optional | True |  | Verifies CloudVison server certificates. |
 | <samp>configuration_dir</samp> | str | True | None |  | Path to directory containing .cfg files with EOS configurations. |
-| <samp>structured_config_dir</samp> | str | True | None |  | Path to directory containing files with AVD structured configurations.<br>If found, the `serial_number` or `system_mac_address` will be used to identify the Device on CloudVision.<br>Any tags found in the structured configuration metadata will be applied to the Device and/or Interfaces. |
+| <samp>structured_config_dir</samp> | str | False | None |  | Path to directory containing files with AVD structured configurations.<br>If found, the `serial_number` or `system_mac_address` will be used to identify the Device on CloudVision.<br>Any tags found in the structured configuration metadata will be applied to the Device and/or Interfaces. |
 | <samp>structured_config_suffix</samp> | str | optional | yml |  | File suffix for AVD structured configuration files. |
 | <samp>device_list</samp> | list | True | None |  | List of devices to deploy. The names are used to find AVD structured configuration and EOS configuration files. |
 | <samp>strict_tags</samp> | bool | optional | False |  | If `true` other tags associated with the devices will get removed. Otherwise other tags will be left as-is. |
@@ -56,6 +56,15 @@ The `arista.avd.cv_workflow` module is an Ansible Action Plugin providing the fo
 | <samp>&nbsp;&nbsp;&nbsp;&nbsp;change_control_creation_timeout</samp> | float | optional | 300.0 |  | Time to wait for Change Control creation before failing. |
 | <samp>return_details</samp> | bool | optional | False |  | If `true` all details will be returned to Ansible and can be registered.<br>For large inventories this can affect performance, so it is disabled by default. |
 
+## Notes
+
+- When interacting with CVaaS the regional URL where the tenant is deployed should be used, e.g:
+  `cv_servers: [ www.cv-prod-euwest-2.arista.io ]`
+  To see the full list of regional URLs, please visit the [cv_deploy](../../../roles/cv_deploy/README.md#overview)
+  role documentation.
+- To generate service accounts check [cv_deploy](../../../roles/cv_deploy/README.md#steps-to-create-service-accounts-on-cloudvision)
+  role documentation or the CloudVision Help Center.
+
 ## Examples
 
 ```yaml
@@ -71,7 +80,7 @@ The `arista.avd.cv_workflow` module is an Ansible Action Plugin providing the fo
       arista.avd.cv_workflow:
         cv_servers: [ "www.arista.io" ]
         cv_token: "<insert vaulted service account token here>"
-        # cv_verify_certs: True
+        # cv_verify_certs: true
         configuration_dir: "{{ inventory_dir }}/intended/configs"
         structured_config_dir: "{{ inventory_dir }}/intended/structured_configs"
         # structured_config_suffix: "yml"
@@ -84,7 +93,7 @@ The `arista.avd.cv_workflow` module is an Ansible Action Plugin providing the fo
         #   description:
         #   id: <uuid or similar>
           requested_state: submitted
-          force: True
+          force: true
         change_control:
         #   name:
         #   description:

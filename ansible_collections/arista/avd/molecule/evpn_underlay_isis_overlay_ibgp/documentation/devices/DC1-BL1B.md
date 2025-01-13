@@ -9,6 +9,7 @@
   - [Management API HTTP](#management-api-http)
 - [Authentication](#authentication)
   - [Local Users](#local-users)
+  - [Enable Password](#enable-password)
 - [Monitoring](#monitoring)
   - [TerminAttr Daemon](#terminattr-daemon)
 - [MLAG](#mlag)
@@ -58,20 +59,20 @@
 
 | Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management1 | oob_management | oob | MGMT | 192.168.200.111/24 | 192.168.200.5 |
+| Management1 | OOB_MANAGEMENT | oob | MGMT | 192.168.200.111/24 | 192.168.200.5 |
 
 ##### IPv6
 
 | Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management1 | oob_management | oob | MGMT | - | - |
+| Management1 | OOB_MANAGEMENT | oob | MGMT | - | - |
 
 #### Management Interfaces Device Configuration
 
 ```eos
 !
 interface Management1
-   description oob_management
+   description OOB_MANAGEMENT
    no shutdown
    vrf MGMT
    ip address 192.168.200.111/24
@@ -162,6 +163,10 @@ username admin privilege 15 role network-admin nopassword
 username cvpadmin privilege 15 role network-admin secret sha512 <removed>
 ```
 
+### Enable Password
+
+Enable password has been disabled
+
 ## Monitoring
 
 ### TerminAttr Daemon
@@ -170,7 +175,7 @@ username cvpadmin privilege 15 role network-admin secret sha512 <removed>
 
 | CV Compression | CloudVision Servers | VRF | Authentication | Smash Excludes | Ingest Exclude | Bypass AAA |
 | -------------- | ------------------- | --- | -------------- | -------------- | -------------- | ---------- |
-| gzip | 192.168.200.11:9910 | MGMT | key,telarista | ale,flexCounter,hardware,kni,pulse,strata | /Sysdb/cell/1/agent,/Sysdb/cell/2/agent | True |
+| gzip | 192.168.200.11:9910 | MGMT | key,<removed> | ale,flexCounter,hardware,kni,pulse,strata | /Sysdb/cell/1/agent,/Sysdb/cell/2/agent | True |
 
 #### TerminAttr Daemon Device Configuration
 
@@ -250,19 +255,19 @@ vlan internal order ascending range 1006 1199
 
 | VLAN ID | Name | Trunk Groups |
 | ------- | ---- | ------------ |
-| 4093 | LEAF_PEER_L3 | LEAF_PEER_L3 |
-| 4094 | MLAG_PEER | MLAG |
+| 4093 | MLAG_L3 | MLAG |
+| 4094 | MLAG | MLAG |
 
 ### VLANs Device Configuration
 
 ```eos
 !
 vlan 4093
-   name LEAF_PEER_L3
-   trunk group LEAF_PEER_L3
+   name MLAG_L3
+   trunk group MLAG
 !
 vlan 4094
-   name MLAG_PEER
+   name MLAG
    trunk group MLAG
 ```
 
@@ -276,84 +281,88 @@ vlan 4094
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet5 | MLAG_PEER_DC1-BL1A_Ethernet5 | *trunk | *- | *- | *['LEAF_PEER_L3', 'MLAG'] | 5 |
-| Ethernet6 | MLAG_PEER_DC1-BL1A_Ethernet6 | *trunk | *- | *- | *['LEAF_PEER_L3', 'MLAG'] | 5 |
+| Ethernet5 | MLAG_DC1-BL1A_Ethernet5 | *trunk | *- | *- | *MLAG | 5 |
+| Ethernet6 | MLAG_DC1-BL1A_Ethernet6 | *trunk | *- | *- | *MLAG | 5 |
 
 *Inherited from Port-Channel Interface
 
 ##### IPv4
 
-| Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
-| --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet1 | P2P_LINK_TO_DC1-SPINE1_Ethernet7 | routed | - | 172.31.255.49/31 | default | 1500 | False | - | - |
-| Ethernet2 | P2P_LINK_TO_DC1-SPINE2_Ethernet7 | routed | - | 172.31.255.51/31 | default | 1500 | False | - | - |
-| Ethernet3 | P2P_LINK_TO_DC1-SPINE3_Ethernet7 | routed | - | 172.31.255.53/31 | default | 1500 | False | - | - |
-| Ethernet4 | P2P_LINK_TO_DC1-SPINE4_Ethernet7 | routed | - | 172.31.255.55/31 | default | 1500 | False | - | - |
+| Interface | Description | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
+| --------- | ----------- | ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
+| Ethernet1 | P2P_DC1-SPINE1_Ethernet7 | - | 172.31.255.49/31 | default | 1500 | False | - | - |
+| Ethernet2 | P2P_DC1-SPINE2_Ethernet7 | - | 172.31.255.51/31 | default | 1500 | False | - | - |
+| Ethernet3 | P2P_DC1-SPINE3_Ethernet7 | - | 172.31.255.53/31 | default | 1500 | False | - | - |
+| Ethernet4 | P2P_DC1-SPINE4_Ethernet7 | - | 172.31.255.55/31 | default | 1500 | False | - | - |
 
 ##### ISIS
 
-| Interface | Channel Group | ISIS Instance | ISIS Metric | Mode | ISIS Circuit Type | Hello Padding | Authentication Mode |
-| --------- | ------------- | ------------- | ----------- | ---- | ----------------- | ------------- | ------------------- |
-| Ethernet1 | - | EVPN_UNDERLAY | 50 | point-to-point | level-2 | - | - |
-| Ethernet2 | - | EVPN_UNDERLAY | 50 | point-to-point | level-2 | - | - |
-| Ethernet3 | - | EVPN_UNDERLAY | 50 | point-to-point | level-2 | - | - |
-| Ethernet4 | - | EVPN_UNDERLAY | 50 | point-to-point | level-2 | - | - |
+| Interface | Channel Group | ISIS Instance | ISIS BFD | ISIS Metric | Mode | ISIS Circuit Type | Hello Padding | ISIS Authentication Mode |
+| --------- | ------------- | ------------- | -------- | ----------- | ---- | ----------------- | ------------- | ------------------------ |
+| Ethernet1 | - | EVPN_UNDERLAY | True | 50 | point-to-point | level-2 | - | - |
+| Ethernet2 | - | EVPN_UNDERLAY | True | 50 | point-to-point | level-2 | - | - |
+| Ethernet3 | - | EVPN_UNDERLAY | True | 50 | point-to-point | level-2 | - | - |
+| Ethernet4 | - | EVPN_UNDERLAY | True | 50 | point-to-point | level-2 | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
 ```eos
 !
 interface Ethernet1
-   description P2P_LINK_TO_DC1-SPINE1_Ethernet7
+   description P2P_DC1-SPINE1_Ethernet7
    no shutdown
    mtu 1500
    no switchport
    ip address 172.31.255.49/31
    isis enable EVPN_UNDERLAY
+   isis bfd
    isis circuit-type level-2
    isis metric 50
    isis network point-to-point
 !
 interface Ethernet2
-   description P2P_LINK_TO_DC1-SPINE2_Ethernet7
+   description P2P_DC1-SPINE2_Ethernet7
    no shutdown
    mtu 1500
    no switchport
    ip address 172.31.255.51/31
    isis enable EVPN_UNDERLAY
+   isis bfd
    isis circuit-type level-2
    isis metric 50
    isis network point-to-point
 !
 interface Ethernet3
-   description P2P_LINK_TO_DC1-SPINE3_Ethernet7
+   description P2P_DC1-SPINE3_Ethernet7
    no shutdown
    mtu 1500
    no switchport
    ip address 172.31.255.53/31
    isis enable EVPN_UNDERLAY
+   isis bfd
    isis circuit-type level-2
    isis metric 50
    isis network point-to-point
 !
 interface Ethernet4
-   description P2P_LINK_TO_DC1-SPINE4_Ethernet7
+   description P2P_DC1-SPINE4_Ethernet7
    no shutdown
    mtu 1500
    no switchport
    ip address 172.31.255.55/31
    isis enable EVPN_UNDERLAY
+   isis bfd
    isis circuit-type level-2
    isis metric 50
    isis network point-to-point
 !
 interface Ethernet5
-   description MLAG_PEER_DC1-BL1A_Ethernet5
+   description MLAG_DC1-BL1A_Ethernet5
    no shutdown
    channel-group 5 mode active
 !
 interface Ethernet6
-   description MLAG_PEER_DC1-BL1A_Ethernet6
+   description MLAG_DC1-BL1A_Ethernet6
    no shutdown
    channel-group 5 mode active
 ```
@@ -364,21 +373,20 @@ interface Ethernet6
 
 ##### L2
 
-| Interface | Description | Type | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
-| --------- | ----------- | ---- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
-| Port-Channel5 | MLAG_PEER_DC1-BL1A_Po5 | switched | trunk | - | - | ['LEAF_PEER_L3', 'MLAG'] | - | - | - | - |
+| Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
+| --------- | ----------- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
+| Port-Channel5 | MLAG_DC1-BL1A_Port-Channel5 | trunk | - | - | MLAG | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
 
 ```eos
 !
 interface Port-Channel5
-   description MLAG_PEER_DC1-BL1A_Po5
+   description MLAG_DC1-BL1A_Port-Channel5
    no shutdown
-   switchport
    switchport mode trunk
-   switchport trunk group LEAF_PEER_L3
    switchport trunk group MLAG
+   switchport
 ```
 
 ### Loopback Interfaces
@@ -389,15 +397,15 @@ interface Port-Channel5
 
 | Interface | Description | VRF | IP Address |
 | --------- | ----------- | --- | ---------- |
-| Loopback0 | EVPN_Overlay_Peering | default | 192.168.255.11/32 |
-| Loopback1 | VTEP_VXLAN_Tunnel_Source | default | 192.168.254.10/32 |
+| Loopback0 | ROUTER_ID | default | 192.168.255.11/32 |
+| Loopback1 | VXLAN_TUNNEL_SOURCE | default | 192.168.254.10/32 |
 
 ##### IPv6
 
 | Interface | Description | VRF | IPv6 Address |
 | --------- | ----------- | --- | ------------ |
-| Loopback0 | EVPN_Overlay_Peering | default | - |
-| Loopback1 | VTEP_VXLAN_Tunnel_Source | default | - |
+| Loopback0 | ROUTER_ID | default | - |
+| Loopback1 | VXLAN_TUNNEL_SOURCE | default | - |
 
 ##### ISIS
 
@@ -411,14 +419,14 @@ interface Port-Channel5
 ```eos
 !
 interface Loopback0
-   description EVPN_Overlay_Peering
+   description ROUTER_ID
    no shutdown
    ip address 192.168.255.11/32
    isis enable EVPN_UNDERLAY
    isis passive
 !
 interface Loopback1
-   description VTEP_VXLAN_Tunnel_Source
+   description VXLAN_TUNNEL_SOURCE
    no shutdown
    ip address 192.168.254.10/32
    isis enable EVPN_UNDERLAY
@@ -431,37 +439,38 @@ interface Loopback1
 
 | Interface | Description | VRF |  MTU | Shutdown |
 | --------- | ----------- | --- | ---- | -------- |
-| Vlan4093 | MLAG_PEER_L3_PEERING | default | 1500 | False |
-| Vlan4094 | MLAG_PEER | default | 1500 | False |
+| Vlan4093 | MLAG_L3 | default | 1500 | False |
+| Vlan4094 | MLAG | default | 1500 | False |
 
 ##### IPv4
 
-| Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | VRRP | ACL In | ACL Out |
-| --------- | --- | ---------- | ------------------ | ------------------------- | ---- | ------ | ------- |
-| Vlan4093 |  default  |  10.255.251.11/31  |  -  |  -  |  -  |  -  |  -  |
-| Vlan4094 |  default  |  10.255.252.11/31  |  -  |  -  |  -  |  -  |  -  |
+| Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | ACL In | ACL Out |
+| --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
+| Vlan4093 |  default  |  10.255.251.11/31  |  -  |  -  |  -  |  -  |
+| Vlan4094 |  default  |  10.255.252.11/31  |  -  |  -  |  -  |  -  |
 
 ##### ISIS
 
-| Interface | ISIS Instance | ISIS Metric | Mode |
-| --------- | ------------- | ----------- | ---- |
-| Vlan4093 | EVPN_UNDERLAY | 50 | point-to-point |
+| Interface | ISIS Instance | ISIS BFD | ISIS Metric | Mode | ISIS Authentication Mode |
+| --------- | ------------- | -------- | ----------- | ---- | ------------------------ |
+| Vlan4093 | EVPN_UNDERLAY | True | 50 | point-to-point | - |
 
 #### VLAN Interfaces Device Configuration
 
 ```eos
 !
 interface Vlan4093
-   description MLAG_PEER_L3_PEERING
+   description MLAG_L3
    no shutdown
    mtu 1500
    ip address 10.255.251.11/31
    isis enable EVPN_UNDERLAY
+   isis bfd
    isis metric 50
    isis network point-to-point
 !
 interface Vlan4094
-   description MLAG_PEER
+   description MLAG
    no shutdown
    mtu 1500
    no autostate
@@ -561,7 +570,7 @@ ip route vrf MGMT 0.0.0.0/0 192.168.200.5
 | Settings | Value |
 | -------- | ----- |
 | Instance | EVPN_UNDERLAY |
-| Net-ID | 49.0001.0001.0001.0007.00 |
+| Net-ID | 49.0001.1921.6825.5011.00 |
 | Type | level-2 |
 | Router-ID | 192.168.255.11 |
 | Log Adjacency Changes | True |
@@ -590,9 +599,9 @@ ip route vrf MGMT 0.0.0.0/0 192.168.200.5
 ```eos
 !
 router isis EVPN_UNDERLAY
-   net 49.0001.0001.0001.0007.00
-   is-type level-2
+   net 49.0001.1921.6825.5011.00
    router-id ipv4 192.168.255.11
+   is-type level-2
    log-adjacency-changes
    !
    address-family ipv4 unicast
@@ -641,9 +650,9 @@ ASN Notation: asplain
 
 ##### EVPN Peer Groups
 
-| Peer Group | Activate | Encapsulation |
-| ---------- | -------- | ------------- |
-| OVERLAY-PEERS | True | default |
+| Peer Group | Activate | Route-map In | Route-map Out | Encapsulation |
+| ---------- | -------- | ------------ | ------------- | ------------- |
+| OVERLAY-PEERS | True |  RM-EVPN-SOO-IN | RM-EVPN-SOO-OUT | default |
 
 #### Router BGP Device Configuration
 
@@ -651,9 +660,9 @@ ASN Notation: asplain
 !
 router bgp 65000
    router-id 192.168.255.11
-   maximum-paths 4 ecmp 4
    update wait-install
    no bgp default ipv4-unicast
+   maximum-paths 4 ecmp 4
    distance bgp 20 200 200
    neighbor OVERLAY-PEERS peer group
    neighbor OVERLAY-PEERS remote-as 65000
@@ -663,14 +672,14 @@ router bgp 65000
    neighbor OVERLAY-PEERS send-community
    neighbor OVERLAY-PEERS maximum-routes 0
    neighbor 192.168.255.1 peer group OVERLAY-PEERS
-   neighbor 192.168.255.1 description DC1-SPINE1
+   neighbor 192.168.255.1 description DC1-SPINE1_Loopback0
    neighbor 192.168.255.4 peer group OVERLAY-PEERS
-   neighbor 192.168.255.4 description DC1-SPINE4
+   neighbor 192.168.255.4 description DC1-SPINE4_Loopback0
    !
    address-family evpn
+      neighbor OVERLAY-PEERS activate
       neighbor OVERLAY-PEERS route-map RM-EVPN-SOO-IN in
       neighbor OVERLAY-PEERS route-map RM-EVPN-SOO-OUT out
-      neighbor OVERLAY-PEERS activate
    !
    address-family ipv4
       no neighbor OVERLAY-PEERS activate

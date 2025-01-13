@@ -1,0 +1,97 @@
+{#
+ Copyright (c) 2023-2025 Arista Networks, Inc.
+ Use of this source code is governed by the Apache License 2.0
+ that can be found in the LICENSE file.
+#}
+{# doc - router-adaptive-virtual-topology #}
+{% if router_adaptive_virtual_topology is arista.avd.defined %}
+
+### Router Adaptive Virtual Topology
+
+#### Router Adaptive Virtual Topology Summary
+{%     if router_adaptive_virtual_topology.topology_role is arista.avd.defined %}
+
+Topology role: {{ router_adaptive_virtual_topology.topology_role }}
+{%         if router_adaptive_virtual_topology.gateway_vxlan is arista.avd.defined(true) and router_adaptive_virtual_topology.topology_role in ["edge", "transit zone", "transit region"] %}
+
+VXLAN gateway: Enabled
+{%         endif %}
+{%     endif %}
+{%     if router_adaptive_virtual_topology.region is arista.avd.defined or router_adaptive_virtual_topology.zone is arista.avd.defined  or router_adaptive_virtual_topology.site is arista.avd.defined %}
+
+| Hierarchy | Name | ID |
+| --------- | ---- | -- |
+{%         if router_adaptive_virtual_topology.region.name is arista.avd.defined and router_adaptive_virtual_topology.region.id %}
+| Region | {{ router_adaptive_virtual_topology.region.name }} | {{ router_adaptive_virtual_topology.region.id }} |
+{%         endif %}
+{%         if router_adaptive_virtual_topology.zone.name is arista.avd.defined and router_adaptive_virtual_topology.zone.id %}
+| Zone | {{ router_adaptive_virtual_topology.zone.name }} | {{ router_adaptive_virtual_topology.zone.id }} |
+{%         endif %}
+{%         if router_adaptive_virtual_topology.site.name is arista.avd.defined and router_adaptive_virtual_topology.site.id %}
+| Site | {{ router_adaptive_virtual_topology.site.name }} | {{ router_adaptive_virtual_topology.site.id }} |
+{%         endif %}
+{%     endif %}
+{%     if router_adaptive_virtual_topology.profiles is arista.avd.defined
+        and router_adaptive_virtual_topology.profiles | length > 0 %}
+
+#### AVT Profiles
+
+| Profile name | Load balance policy | Internet exit policy | Metric Order | Jitter Threshold (ms) | Latency Threshold (ms) | Load (%) | Loss Rate (%) |
+| ------------ | ------------------- | -------------------- | ------------ | --------------------- | ---------------------- | -------- | ------------- |
+{%         for profile in router_adaptive_virtual_topology.profiles | arista.avd.natural_sort('name') %}
+{%             set load_balance_policy =  profile.load_balance_policy | arista.avd.default("-") %}
+{%             set internet_exit_policy =  profile.internet_exit_policy | arista.avd.default("-") %}
+{%             set metric_order =  profile.metric_order.preferred_metric | arista.avd.default("-") %}
+{%             set jitter =  profile.outlier_elimination.threshold.jitter | arista.avd.default("-") %}
+{%             set latency =  profile.outlier_elimination.threshold.latency | arista.avd.default("-") %}
+{%             set load =  profile.outlier_elimination.threshold.load | arista.avd.default("-") %}
+{%             set loss_rate =  profile.outlier_elimination.threshold.loss_rate | arista.avd.default("-") %}
+| {{ profile.name }} | {{ load_balance_policy }} | {{ internet_exit_policy }} | {{ metric_order }} | {{ jitter }} | {{ latency }} | {{ load }} | {{ loss_rate }} |
+{%         endfor %}
+{%     endif %}
+{%     if router_adaptive_virtual_topology.policies is arista.avd.defined
+        and router_adaptive_virtual_topology.policies | length > 0 %}
+
+#### AVT Policies
+{%         for policy in router_adaptive_virtual_topology.policies | arista.avd.natural_sort('name') %}
+
+##### AVT policy {{ policy.name }}
+
+| Application profile | AVT Profile | Traffic Class | DSCP |
+| ------------------- | ----------- | ------------- | ---- |
+{%             for match in policy.matches %}
+| {{ match.application_profile }} | {{ match.avt_profile | arista.avd.default("-") }} | {{ match.traffic_class | arista.avd.default("-") }} | {{ match.dscp | arista.avd.default("-") }} |
+{%             endfor %}
+{%         endfor %}
+{%     endif %}
+{%     if router_adaptive_virtual_topology.vrfs is arista.avd.defined
+        and router_adaptive_virtual_topology.vrfs | length > 0 %}
+
+#### VRFs configuration
+{%         for vrf in router_adaptive_virtual_topology.vrfs | arista.avd.natural_sort('name') %}
+
+##### VRF {{ vrf.name }}
+{%             if vrf.policy is arista.avd.defined %}
+
+| AVT policy |
+| ---------- |
+| {{ vrf.policy | arista.avd.default("-") }} |
+{%             endif %}
+{%             if vrf.profiles is arista.avd.defined
+                and vrf.profiles | length > 0 %}
+
+| AVT Profile | AVT ID |
+| ----------- | ------ |
+{%                 for profile in vrf.profiles | arista.avd.natural_sort('id') %}
+| {{ profile.name }} | {{ profile.id }} |
+{%                 endfor %}
+{%             endif %}
+{%         endfor %}
+{%     endif %}
+
+#### Router Adaptive Virtual Topology Configuration
+
+```eos
+{%     include 'eos/router-adaptive-virtual-topology.j2' %}
+```
+{% endif %}

@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright (c) 2024 Arista Networks, Inc.
+  ~ Copyright (c) 2025 Arista Networks, Inc.
   ~ Use of this source code is governed by the Apache License 2.0
   ~ that can be found in the LICENSE file.
   -->
@@ -15,14 +15,15 @@
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ike_lifetime</samp>](## "ip_security.ike_policies.[].ike_lifetime") | Integer |  |  | Min: 1<br>Max: 24 | IKE lifetime in hours. |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;encryption</samp>](## "ip_security.ike_policies.[].encryption") | String |  |  | Valid Values:<br>- <code>3des</code><br>- <code>aes128</code><br>- <code>aes256</code> | IKE encryption algorithm. |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dh_group</samp>](## "ip_security.ike_policies.[].dh_group") | Integer |  |  | Valid Values:<br>- <code>1</code><br>- <code>2</code><br>- <code>5</code><br>- <code>14</code><br>- <code>15</code><br>- <code>16</code><br>- <code>17</code><br>- <code>20</code><br>- <code>21</code><br>- <code>24</code> | Diffie-Hellman group for the key exchange. |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;integrity</samp>](## "ip_security.ike_policies.[].integrity") | String |  |  | Valid Values:<br>- <code>md5</code><br>- <code>sha1</code><br>- <code>sha256</code><br>- <code>sha384</code><br>- <code>sha512</code> | Integrity algorithm. |
     | [<samp>&nbsp;&nbsp;sa_policies</samp>](## "ip_security.sa_policies") | List, items: Dictionary |  |  |  | Security Association policies. |
-    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;name</samp>](## "ip_security.sa_policies.[].name") | String | Required, Unique |  |  | Name of the SA policy. The "null" value is deprecated and will be removed in AVD 5.0.0. |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;name</samp>](## "ip_security.sa_policies.[].name") | String | Required, Unique |  |  | Name of the SA policy. |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sa_lifetime</samp>](## "ip_security.sa_policies.[].sa_lifetime") | Dictionary |  |  |  |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value</samp>](## "ip_security.sa_policies.[].sa_lifetime.value") | Integer |  |  |  | Lifetime value for this SA.<br>Valid range depends on the unit.<br><1-24>       Lifetime in hours ( default )<br><1-4000000>  Packet limit in thousands<br><1-6000>     Byte limit in GB ( 1024 MB )<br><1-6144000>  Byte limit in MB ( 1024 KB ) |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unit</samp>](## "ip_security.sa_policies.[].sa_lifetime.unit") | String |  | `hours` | Valid Values:<br>- <code>gigabytes</code><br>- <code>hours</code><br>- <code>megabytes</code><br>- <code>thousand-packets</code> |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;esp</samp>](## "ip_security.sa_policies.[].esp") | Dictionary |  |  |  |  |
-    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;integrity</samp>](## "ip_security.sa_policies.[].esp.integrity") | String |  |  | Valid Values:<br>- <code>disabled</code><br>- <code>sha1</code><br>- <code>sha256</code><br>- <code>null</code> |  |
-    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;encryption</samp>](## "ip_security.sa_policies.[].esp.encryption") | String |  |  | Valid Values:<br>- <code>disabled</code><br>- <code>aes128</code><br>- <code>aes128gcm128</code><br>- <code>aes128gcm64</code><br>- <code>aes256</code><br>- <code>aes256gcm128</code><br>- <code>null</code> |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;integrity</samp>](## "ip_security.sa_policies.[].esp.integrity") | String |  |  | Valid Values:<br>- <code>disabled</code><br>- <code>sha1</code><br>- <code>sha256</code><br>- <code>sha384</code><br>- <code>sha512</code><br>- <code>md5</code> |  |
+    | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;encryption</samp>](## "ip_security.sa_policies.[].esp.encryption") | String |  |  | Valid Values:<br>- <code>disabled</code><br>- <code>aes128</code><br>- <code>aes128gcm128</code><br>- <code>aes128gcm64</code><br>- <code>aes256</code><br>- <code>aes256gcm128</code><br>- <code>3des</code> |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pfs_dh_group</samp>](## "ip_security.sa_policies.[].pfs_dh_group") | Integer |  |  | Valid Values:<br>- <code>1</code><br>- <code>2</code><br>- <code>5</code><br>- <code>14</code><br>- <code>15</code><br>- <code>16</code><br>- <code>17</code><br>- <code>20</code><br>- <code>21</code><br>- <code>24</code> |  |
     | [<samp>&nbsp;&nbsp;profiles</samp>](## "ip_security.profiles") | List, items: Dictionary |  |  |  | IPSec profiles. |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;name</samp>](## "ip_security.profiles.[].name") | String | Required, Unique |  |  | Name of the IPsec profile. |
@@ -39,6 +40,7 @@
     | [<samp>&nbsp;&nbsp;key_controller</samp>](## "ip_security.key_controller") | Dictionary |  |  |  |  |
     | [<samp>&nbsp;&nbsp;&nbsp;&nbsp;profile</samp>](## "ip_security.key_controller.profile") | String |  |  |  | IPsec profile name to use. |
     | [<samp>&nbsp;&nbsp;hardware_encryption_disabled</samp>](## "ip_security.hardware_encryption_disabled") | Boolean |  | `False` |  | Disable hardware encryption.<br>An SFE restart is needed for this change to take effect. |
+    | [<samp>&nbsp;&nbsp;connection_tx_interface_match_source_ip</samp>](## "ip_security.connection_tx_interface_match_source_ip") | Boolean |  |  |  | Match source interface of the IPsec connection. |
 
 === "YAML"
 
@@ -69,10 +71,13 @@
           # Diffie-Hellman group for the key exchange.
           dh_group: <int; 1 | 2 | 5 | 14 | 15 | 16 | 17 | 20 | 21 | 24>
 
+          # Integrity algorithm.
+          integrity: <str; "md5" | "sha1" | "sha256" | "sha384" | "sha512">
+
       # Security Association policies.
       sa_policies:
 
-          # Name of the SA policy. The "null" value is deprecated and will be removed in AVD 5.0.0.
+          # Name of the SA policy.
         - name: <str; required; unique>
           sa_lifetime:
 
@@ -85,8 +90,8 @@
             value: <int>
             unit: <str; "gigabytes" | "hours" | "megabytes" | "thousand-packets"; default="hours">
           esp:
-            integrity: <str; "disabled" | "sha1" | "sha256" | "null">
-            encryption: <str; "disabled" | "aes128" | "aes128gcm128" | "aes128gcm64" | "aes256" | "aes256gcm128" | "null">
+            integrity: <str; "disabled" | "sha1" | "sha256" | "sha384" | "sha512" | "md5">
+            encryption: <str; "disabled" | "aes128" | "aes128gcm128" | "aes128gcm64" | "aes256" | "aes256gcm128" | "3des">
           pfs_dh_group: <int; 1 | 2 | 5 | 14 | 15 | 16 | 17 | 20 | 21 | 24>
 
       # IPSec profiles.
@@ -137,4 +142,7 @@
       # Disable hardware encryption.
       # An SFE restart is needed for this change to take effect.
       hardware_encryption_disabled: <bool; default=False>
+
+      # Match source interface of the IPsec connection.
+      connection_tx_interface_match_source_ip: <bool>
     ```

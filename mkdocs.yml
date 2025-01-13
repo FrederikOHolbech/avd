@@ -3,6 +3,9 @@ site_name: Arista AVD
 site_author: Arista Ansible Team
 site_description: Arista Validated Designs documentation
 copyright: Copyright &copy; 2019 - 2023 Arista Networks
+strict: true
+exclude_docs: |
+  /README.md
 
 # Repository information
 repo_name: AVD on Github
@@ -20,9 +23,10 @@ theme:
     - content.tabs.link
     - header.autohide
     - navigation.instant
+    - navigation.prune
     - navigation.top
     - search.highlight
-    #- toc.integrate
+    # - toc.integrate
     - toc.follow
   highlightjs: true
   icon:
@@ -78,7 +82,16 @@ plugins:
         - docs/release-notes/1.1.x.md
         - docs/release-notes/2.x.x.md
         - docs/release-notes/3.x.x.md
+        - docs/*/4.x.x.md
         - roles/*/docs/tables/*
+      regex:
+        # Exclude examples common md snippets
+        - '^examples\/common/.*'
+        # Exclude all examples but single-dc-l3ls which is referenced in getting getting-started
+        - '^examples\/((?!single-dc-l3ls).*)\/documentation\/.*'
+        # Exclude all single-dc-l3ls files not referenced in getting getting-started
+        - '^examples\/single-dc-l3ls\/documentation\/fabric\/((?!FABRIC-documentation.md).*)'
+        - '^examples\/single-dc-l3ls\/documentation\/devices\/((?!dc1-leaf1a.md).*)'
   - include_dir_to_nav
   - git-revision-date-localized:
       type: date
@@ -128,15 +141,17 @@ markdown_extensions:
 # TOC
 docs_dir: ansible_collections/arista/avd/
 nav:
-  - Home: README.md
+  - Home: index.md
   - Getting Started:
       - Introduction to Ansible and AVD: docs/getting-started/intro-to-ansible-and-avd.md
+      - AVD and Ansible Automation Platform: docs/getting-started/avd-aap.md
   - Examples:
       - Single DC L3LS: examples/single-dc-l3ls/README.md
       - Dual DC L3LS: examples/dual-dc-l3ls/README.md
       - L2LS Fabric: examples/l2ls-fabric/README.md
       - Campus Fabric: examples/campus-fabric/README.md
       - ISIS-LDP IPVPN: examples/isis-ldp-ipvpn/README.md
+      - CV Pathfinder: examples/cv-pathfinder/README.md
   - Installation:
       - Collection Installation: docs/installation/collection-installation.md
   - Ansible Collection Roles:
@@ -147,6 +162,7 @@ nav:
           - How-To Guides:
               - Configuring PTP: roles/eos_designs/docs/how-to/ptp.md
               - Configuring WAN: roles/eos_designs/docs/how-to/wan.md
+              - Custom descriptions and names: roles/eos_designs/docs/how-to/custom-descriptions-names.md
               - Custom Structured Configuration: roles/eos_designs/docs/how-to/custom-structured-configuration.md
               - Custom Templates: roles/eos_designs/docs/how-to/custom-templates.md
               - Generate CloudVision Tags Preview: roles/eos_designs/docs/how-to/cloudvision-tags-preview.md
@@ -161,9 +177,7 @@ nav:
           - Overview: roles/eos_config_deploy_cvp/README.md
           - Integrating AVD with CVaaS: roles/eos_config_deploy_cvp/docs/avd-to-cvaas.md
       - eos_config_deploy_eapi: roles/eos_config_deploy_eapi/README.md
-      - eos_validate_state:
-          - Overview: roles/eos_validate_state/README.md
-          - ANTA Preview: roles/eos_validate_state/ANTA-Preview.md
+      - eos_validate_state: roles/eos_validate_state/README.md
       - eos_snapshot: roles/eos_snapshot/README.md
       - dhcp_provisioner: roles/dhcp_provisioner/README.md
       - build_output_folders: roles/build_output_folders/README.md
@@ -171,19 +185,18 @@ nav:
   - Ansible Collection Plugins: docs/plugins/
   - Contributing to AVD:
       - Overview: docs/contribution/overview.md
-      - Setup Environment: docs/contribution/setup-environment.md
-      - Git Installation: docs/contribution/setup-git.md
-      - Getting Started: docs/contribution/getting-started.md
+      - Development Tooling: docs/contribution/development-tooling.md
       - Code Style: docs/contribution/style-guide.md
-      - Development Tips & Tricks: docs/contribution/development.md
       - Validation of Input Variables: docs/contribution/input-variable-validation.md
       - EOS Designs internal notes: docs/contribution/eos_designs_internal_notes.md
+      - Authoring eos_cli_config_gen Role Guide: docs/contribution/authoring_eos_cli_config_gen.md
   - External Resources:
       - Ansible Collection User Guide: https://docs.ansible.com/ansible/latest/user_guide/collections_using.html
       - Ansible User Guide: https://docs.ansible.com/ansible/latest/user_guide/index.html
-  - Release Notes: docs/release-notes/4.x.x.md
-  - Porting Guide: docs/porting-guides/4.x.x.md
+  - Release Notes: docs/release-notes/5.x.x.md
+  - Porting Guide: docs/porting-guides/5.x.x.md
   - PyAVD: docs/pyavd.md
+  - Versioning: docs/semantic-versioning.md
   - AVD Dev Containers:
       - Overview: docs/containers/overview.md
   - About:

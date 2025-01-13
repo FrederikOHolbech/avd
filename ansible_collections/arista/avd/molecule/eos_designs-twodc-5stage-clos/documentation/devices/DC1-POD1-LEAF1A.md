@@ -6,6 +6,7 @@
   - [Management API HTTP](#management-api-http)
 - [Authentication](#authentication)
   - [Local Users](#local-users)
+  - [Enable Password](#enable-password)
 - [Monitoring](#monitoring)
   - [SNMP](#snmp)
 - [Spanning Tree](#spanning-tree)
@@ -86,6 +87,10 @@ management api http-commands
 username admin privilege 15 role network-admin secret sha512 <removed>
 ```
 
+### Enable Password
+
+Enable password has been disabled
+
 ## Monitoring
 
 ### SNMP
@@ -157,47 +162,47 @@ vlan 4085
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet3 | DC1-POD1-L2LEAF1A_Ethernet1 | *trunk | *4085 | *- | *- | 3 |
+| Ethernet3 | L2_DC1-POD1-L2LEAF1A_Ethernet1 | *trunk | *4085 | *- | *- | 3 |
 
 *Inherited from Port-Channel Interface
 
 ##### IPv4
 
-| Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
-| --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet1 | P2P_LINK_TO_DC1-POD1-SPINE1_Ethernet3 | routed | - | 172.17.110.1/31 | default | - | False | - | - |
-| Ethernet2 | P2P_LINK_TO_DC1-POD1-SPINE2_Ethernet3 | routed | - | 172.17.110.3/31 | default | - | False | - | - |
-| Ethernet4 | P2P_LINK_TO_DC1-RS1_Ethernet3 | routed | - | 172.17.10.4/31 | default | - | False | - | - |
+| Interface | Description | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
+| --------- | ----------- | ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
+| Ethernet1 | P2P_DC1-POD1-SPINE1_Ethernet3 | - | 172.17.110.1/31 | default | - | False | - | - |
+| Ethernet2 | P2P_DC1-POD1-SPINE2_Ethernet3 | - | 172.17.110.3/31 | default | - | False | - | - |
+| Ethernet4 | P2P_DC1-RS1_Ethernet3 | - | 172.17.10.4/31 | default | - | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
 ```eos
 !
 interface Ethernet1
-   description P2P_LINK_TO_DC1-POD1-SPINE1_Ethernet3
+   description P2P_DC1-POD1-SPINE1_Ethernet3
    no shutdown
-   mac security profile MACSEC_PROFILE
    no switchport
    ip address 172.17.110.1/31
+   mac security profile MACSEC_PROFILE
    ptp enable
    service-profile QOS-PROFILE
 !
 interface Ethernet2
-   description P2P_LINK_TO_DC1-POD1-SPINE2_Ethernet3
+   description P2P_DC1-POD1-SPINE2_Ethernet3
    no shutdown
-   mac security profile MACSEC_PROFILE
    no switchport
    ip address 172.17.110.3/31
+   mac security profile MACSEC_PROFILE
    ptp enable
    service-profile QOS-PROFILE
 !
 interface Ethernet3
-   description DC1-POD1-L2LEAF1A_Ethernet1
+   description L2_DC1-POD1-L2LEAF1A_Ethernet1
    no shutdown
    channel-group 3 mode active
 !
 interface Ethernet4
-   description P2P_LINK_TO_DC1-RS1_Ethernet3
+   description P2P_DC1-RS1_Ethernet3
    no shutdown
    no switchport
    ip address 172.17.10.4/31
@@ -210,20 +215,20 @@ interface Ethernet4
 
 ##### L2
 
-| Interface | Description | Type | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
-| --------- | ----------- | ---- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
-| Port-Channel3 | DC1-POD1-L2LEAF1A_Po1 | switched | trunk | 4085 | - | - | - | - | - | - |
+| Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
+| --------- | ----------- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
+| Port-Channel3 | L2_DC1-POD1-L2LEAF1A_Port-Channel1 | trunk | 4085 | - | - | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
 
 ```eos
 !
 interface Port-Channel3
-   description DC1-POD1-L2LEAF1A_Po1
+   description L2_DC1-POD1-L2LEAF1A_Port-Channel1
    no shutdown
-   switchport
    switchport trunk allowed vlan 4085
    switchport mode trunk
+   switchport
    service-profile QOS-PROFILE
 ```
 
@@ -235,27 +240,27 @@ interface Port-Channel3
 
 | Interface | Description | VRF | IP Address |
 | --------- | ----------- | --- | ---------- |
-| Loopback0 | EVPN_Overlay_Peering | default | 172.16.110.3/32 |
-| Loopback1 | VTEP_VXLAN_Tunnel_Source | default | 172.18.110.3/32 |
+| Loopback0 | ROUTER_ID | default | 172.16.110.3/32 |
+| Loopback1 | VXLAN_TUNNEL_SOURCE | default | 172.18.110.3/32 |
 
 ##### IPv6
 
 | Interface | Description | VRF | IPv6 Address |
 | --------- | ----------- | --- | ------------ |
-| Loopback0 | EVPN_Overlay_Peering | default | - |
-| Loopback1 | VTEP_VXLAN_Tunnel_Source | default | - |
+| Loopback0 | ROUTER_ID | default | - |
+| Loopback1 | VXLAN_TUNNEL_SOURCE | default | - |
 
 #### Loopback Interfaces Device Configuration
 
 ```eos
 !
 interface Loopback0
-   description EVPN_Overlay_Peering
+   description ROUTER_ID
    no shutdown
    ip address 172.16.110.3/32
 !
 interface Loopback1
-   description VTEP_VXLAN_Tunnel_Source
+   description VXLAN_TUNNEL_SOURCE
    no shutdown
    ip address 172.18.110.3/32
 ```
@@ -270,9 +275,9 @@ interface Loopback1
 
 ##### IPv4
 
-| Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | VRRP | ACL In | ACL Out |
-| --------- | --- | ---------- | ------------------ | ------------------------- | ---- | ------ | ------- |
-| Vlan4085 |  default  |  172.21.110.2/24  |  -  |  172.21.110.1  |  -  |  -  |  -  |
+| Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | ACL In | ACL Out |
+| --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
+| Vlan4085 |  default  |  172.21.110.2/24  |  -  |  172.21.110.1  |  -  |  -  |
 
 #### VLAN Interfaces Device Configuration
 
@@ -429,9 +434,9 @@ ASN Notation: asplain
 
 ##### EVPN Peer Groups
 
-| Peer Group | Activate | Encapsulation |
-| ---------- | -------- | ------------- |
-| EVPN-OVERLAY-PEERS | True | default |
+| Peer Group | Activate | Route-map In | Route-map Out | Encapsulation |
+| ---------- | -------- | ------------ | ------------- | ------------- |
+| EVPN-OVERLAY-PEERS | True |  - | - | default |
 
 #### Router BGP Device Configuration
 
@@ -439,9 +444,9 @@ ASN Notation: asplain
 !
 router bgp 65111.100
    router-id 172.16.110.3
-   maximum-paths 4 ecmp 4
    update wait-install
    no bgp default ipv4-unicast
+   maximum-paths 4 ecmp 4
    distance bgp 20 200 200
    neighbor EVPN-OVERLAY-PEERS peer group
    neighbor EVPN-OVERLAY-PEERS next-hop-unchanged
@@ -457,50 +462,50 @@ router bgp 65111.100
    neighbor IPv4-UNDERLAY-PEERS maximum-routes 12000
    neighbor 172.16.20.1 peer group EVPN-OVERLAY-PEERS
    neighbor 172.16.20.1 remote-as 65201
-   neighbor 172.16.20.1 description DC2-RS1
+   neighbor 172.16.20.1 description DC2-RS1_Loopback0
    neighbor 172.16.20.1 route-map RM-EVPN-FILTER-AS65201 out
    neighbor 172.16.110.4 peer group EVPN-OVERLAY-PEERS
    neighbor 172.16.110.4 remote-as 65112.100
-   neighbor 172.16.110.4 description DC1.POD1.LEAF2A
+   neighbor 172.16.110.4 description DC1.POD1.LEAF2A_Loopback0
    neighbor 172.16.110.5 peer group EVPN-OVERLAY-PEERS
    neighbor 172.16.110.5 remote-as 65112.100
-   neighbor 172.16.110.5 description DC1-POD1-LEAF2B
+   neighbor 172.16.110.5 description DC1-POD1-LEAF2B_Loopback0
    neighbor 172.16.200.1 peer group EVPN-OVERLAY-PEERS
    neighbor 172.16.200.1 remote-as 65200
-   neighbor 172.16.200.1 description DC2-SUPER-SPINE1
+   neighbor 172.16.200.1 description DC2-SUPER-SPINE1_Loopback0
    neighbor 172.16.200.1 route-map RM-EVPN-FILTER-AS65200 out
    neighbor 172.16.210.1 peer group EVPN-OVERLAY-PEERS
    neighbor 172.16.210.1 remote-as 65210
-   neighbor 172.16.210.1 description DC2-POD1-SPINE1
+   neighbor 172.16.210.1 description DC2-POD1-SPINE1_Loopback0
    neighbor 172.16.210.1 route-map RM-EVPN-FILTER-AS65210 out
    neighbor 172.16.210.3 peer group EVPN-OVERLAY-PEERS
    neighbor 172.16.210.3 remote-as 65211
-   neighbor 172.16.210.3 description DC2-POD1-LEAF1A
+   neighbor 172.16.210.3 description DC2-POD1-LEAF1A_Loopback0
    neighbor 172.16.210.3 route-map RM-EVPN-FILTER-AS65211 out
    neighbor 172.17.10.5 peer group IPv4-UNDERLAY-PEERS
    neighbor 172.17.10.5 remote-as 65101
-   neighbor 172.17.10.5 description DC1-RS1_Ethernet3
    neighbor 172.17.10.5 bfd
+   neighbor 172.17.10.5 description DC1-RS1_Ethernet3
    neighbor 172.17.110.0 peer group IPv4-UNDERLAY-PEERS
    neighbor 172.17.110.0 remote-as 65110.100
    neighbor 172.17.110.0 description DC1-POD1-SPINE1_Ethernet3
    neighbor 172.17.110.2 peer group IPv4-UNDERLAY-PEERS
    neighbor 172.17.110.2 remote-as 65110.100
    neighbor 172.17.110.2 description DC1-POD1-SPINE2_Ethernet3
-   redistribute attached-host
    redistribute connected
+   redistribute attached-host
    !
    address-family evpn
       neighbor EVPN-OVERLAY-PEERS activate
       route import match-failure action discard
    !
-   address-family rt-membership
-      neighbor EVPN-OVERLAY-PEERS activate
-      neighbor EVPN-OVERLAY-PEERS default-route-target only
-   !
    address-family ipv4
       no neighbor EVPN-OVERLAY-PEERS activate
       neighbor IPv4-UNDERLAY-PEERS activate
+   !
+   address-family rt-membership
+      neighbor EVPN-OVERLAY-PEERS activate
+      neighbor EVPN-OVERLAY-PEERS default-route-target only
 ```
 
 ## BFD

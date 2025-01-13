@@ -7,6 +7,7 @@
   - [Management API HTTP](#management-api-http)
 - [Authentication](#authentication)
   - [Local Users](#local-users)
+  - [Enable Password](#enable-password)
 - [Monitoring](#monitoring)
   - [SNMP](#snmp)
 - [Spanning Tree](#spanning-tree)
@@ -44,20 +45,20 @@
 
 | Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management1 | oob_management | oob | MGMT | 192.168.1.14/24 | 192.168.1.254 |
+| Management1 | OOB_MANAGEMENT | oob | MGMT | 192.168.1.14/24 | 192.168.1.254 |
 
 ##### IPv6
 
 | Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management1 | oob_management | oob | MGMT | - | - |
+| Management1 | OOB_MANAGEMENT | oob | MGMT | - | - |
 
 #### Management Interfaces Device Configuration
 
 ```eos
 !
 interface Management1
-   description oob_management
+   description OOB_MANAGEMENT
    no shutdown
    vrf MGMT
    ip address 192.168.1.14/24
@@ -105,6 +106,10 @@ management api http-commands
 !
 username admin privilege 15 role network-admin secret sha512 <removed>
 ```
+
+### Enable Password
+
+Enable password has been disabled
 
 ## Monitoring
 
@@ -166,46 +171,46 @@ vlan internal order ascending range 1006 1199
 
 ##### IPv4
 
-| Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
-| --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet1 | P2P_LINK_TO_DC1-SUPER-SPINE1_Ethernet4 | routed | - | 172.16.12.3/31 | default | - | False | - | - |
-| Ethernet2 | P2P_LINK_TO_DC1-SUPER-SPINE2_Ethernet4 | routed | - | 172.16.12.67/31 | default | - | False | - | - |
-| Ethernet3 | P2P_LINK_TO_DC1-POD2-LEAF1A_Ethernet2 | routed | - | 172.17.120.2/31 | default | - | False | - | - |
-| Ethernet4 | P2P_LINK_TO_DC2-POD1-SPINE2_Ethernet5 | routed | - | 200.200.200.101/24 | default | - | False | - | - |
+| Interface | Description | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
+| --------- | ----------- | ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
+| Ethernet1 | P2P_DC1-SUPER-SPINE1_Ethernet4 | - | 172.16.12.3/31 | default | - | False | - | - |
+| Ethernet2 | P2P_DC1-SUPER-SPINE2_Ethernet4 | - | 172.16.12.67/31 | default | - | False | - | - |
+| Ethernet3 | P2P_DC1-POD2-LEAF1A_Ethernet2 | - | 172.17.120.2/31 | default | - | False | - | - |
+| Ethernet4 | P2P_DC2-POD1-SPINE2_Ethernet5 | - | 200.200.200.101/24 | default | - | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
 ```eos
 !
 interface Ethernet1
-   description P2P_LINK_TO_DC1-SUPER-SPINE1_Ethernet4
+   description P2P_DC1-SUPER-SPINE1_Ethernet4
    no shutdown
-   mac security profile MACSEC_PROFILE
    no switchport
    ip address 172.16.12.3/31
+   mac security profile MACSEC_PROFILE
    ptp enable
    service-profile QOS-PROFILE
 !
 interface Ethernet2
-   description P2P_LINK_TO_DC1-SUPER-SPINE2_Ethernet4
+   description P2P_DC1-SUPER-SPINE2_Ethernet4
    no shutdown
-   mac security profile MACSEC_PROFILE
    no switchport
    ip address 172.16.12.67/31
+   mac security profile MACSEC_PROFILE
    ptp enable
    service-profile QOS-PROFILE
 !
 interface Ethernet3
-   description P2P_LINK_TO_DC1-POD2-LEAF1A_Ethernet2
+   description P2P_DC1-POD2-LEAF1A_Ethernet2
    no shutdown
-   mac security profile MACSEC_PROFILE
    no switchport
    ip address 172.17.120.2/31
+   mac security profile MACSEC_PROFILE
    ptp enable
    service-profile QOS-PROFILE
 !
 interface Ethernet4
-   description P2P_LINK_TO_DC2-POD1-SPINE2_Ethernet5
+   description P2P_DC2-POD1-SPINE2_Ethernet5
    no shutdown
    no switchport
    ip address 200.200.200.101/24
@@ -220,20 +225,20 @@ interface Ethernet4
 
 | Interface | Description | VRF | IP Address |
 | --------- | ----------- | --- | ---------- |
-| Loopback0 | EVPN_Overlay_Peering | default | 172.16.120.2/32 |
+| Loopback0 | ROUTER_ID | default | 172.16.120.2/32 |
 
 ##### IPv6
 
 | Interface | Description | VRF | IPv6 Address |
 | --------- | ----------- | --- | ------------ |
-| Loopback0 | EVPN_Overlay_Peering | default | - |
+| Loopback0 | ROUTER_ID | default | - |
 
 #### Loopback Interfaces Device Configuration
 
 ```eos
 !
 interface Loopback0
-   description EVPN_Overlay_Peering
+   description ROUTER_ID
    no shutdown
    ip address 172.16.120.2/32
 ```
@@ -343,9 +348,9 @@ ASN Notation: asplain
 
 ##### EVPN Peer Groups
 
-| Peer Group | Activate | Encapsulation |
-| ---------- | -------- | ------------- |
-| EVPN-OVERLAY-PEERS | True | default |
+| Peer Group | Activate | Route-map In | Route-map Out | Encapsulation |
+| ---------- | -------- | ------------ | ------------- | ------------- |
+| EVPN-OVERLAY-PEERS | True |  - | - | default |
 
 #### Router BGP Device Configuration
 
@@ -353,9 +358,9 @@ ASN Notation: asplain
 !
 router bgp 65120
    router-id 172.16.120.2
-   maximum-paths 4 ecmp 4
    update wait-install
    no bgp default ipv4-unicast
+   maximum-paths 4 ecmp 4
    distance bgp 20 200 200
    neighbor EVPN-OVERLAY-PEERS peer group
    neighbor EVPN-OVERLAY-PEERS next-hop-unchanged
@@ -377,27 +382,27 @@ router bgp 65120
    neighbor 172.16.12.66 description DC1-SUPER-SPINE2_Ethernet4
    neighbor 172.16.120.3 peer group EVPN-OVERLAY-PEERS
    neighbor 172.16.120.3 remote-as 65121
-   neighbor 172.16.120.3 description DC1-POD2-LEAF1A
+   neighbor 172.16.120.3 description DC1-POD2-LEAF1A_Loopback0
    neighbor 172.17.120.3 peer group IPv4-UNDERLAY-PEERS
    neighbor 172.17.120.3 remote-as 65121
    neighbor 172.17.120.3 description DC1-POD2-LEAF1A_Ethernet2
    neighbor 200.200.200.201 peer group IPv4-UNDERLAY-PEERS
    neighbor 200.200.200.201 remote-as 65210
    neighbor 200.200.200.201 local-as 65112 no-prepend replace-as
-   neighbor 200.200.200.201 description DC2-POD1-SPINE2
    no neighbor 200.200.200.201 bfd
+   neighbor 200.200.200.201 description DC2-POD1-SPINE2
    redistribute connected route-map RM-CONN-2-BGP
    !
    address-family evpn
       neighbor EVPN-OVERLAY-PEERS activate
    !
-   address-family rt-membership
-      neighbor EVPN-OVERLAY-PEERS activate
-      neighbor EVPN-OVERLAY-PEERS default-route-target only
-   !
    address-family ipv4
       no neighbor EVPN-OVERLAY-PEERS activate
       neighbor IPv4-UNDERLAY-PEERS activate
+   !
+   address-family rt-membership
+      neighbor EVPN-OVERLAY-PEERS activate
+      neighbor EVPN-OVERLAY-PEERS default-route-target only
 ```
 
 ## BFD

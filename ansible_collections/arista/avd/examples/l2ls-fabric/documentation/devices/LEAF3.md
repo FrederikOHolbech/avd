@@ -9,6 +9,7 @@
   - [Management API HTTP](#management-api-http)
 - [Authentication](#authentication)
   - [Local Users](#local-users)
+  - [Enable Password](#enable-password)
   - [AAA Authentication](#aaa-authentication)
   - [AAA Authorization](#aaa-authorization)
 - [MLAG](#mlag)
@@ -48,20 +49,20 @@
 
 | Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management0 | oob_management | oob | MGMT | 172.16.100.107/24 | 172.16.100.1 |
+| Management0 | OOB_MANAGEMENT | oob | MGMT | 172.16.100.107/24 | 172.16.100.1 |
 
 ##### IPv6
 
 | Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management0 | oob_management | oob | MGMT | - | - |
+| Management0 | OOB_MANAGEMENT | oob | MGMT | - | - |
 
 #### Management Interfaces Device Configuration
 
 ```eos
 !
 interface Management0
-   description oob_management
+   description OOB_MANAGEMENT
    no shutdown
    vrf MGMT
    ip address 172.16.100.107/24
@@ -153,6 +154,10 @@ management api http-commands
 username admin privilege 15 role network-admin secret sha512 <removed>
 username arista privilege 15 role network-admin nopassword
 ```
+
+### Enable Password
+
+Enable password has been disabled
 
 ### AAA Authentication
 
@@ -258,7 +263,7 @@ vlan internal order ascending range 1006 1199
 | ------- | ---- | ------------ |
 | 10 | BLUE-NET | - |
 | 30 | ORANGE-NET | - |
-| 4094 | MLAG_PEER | MLAG |
+| 4094 | MLAG | MLAG |
 
 ### VLANs Device Configuration
 
@@ -271,7 +276,7 @@ vlan 30
    name ORANGE-NET
 !
 vlan 4094
-   name MLAG_PEER
+   name MLAG
    trunk group MLAG
 ```
 
@@ -285,11 +290,11 @@ vlan 4094
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet1 | SPINE1_Ethernet3 | *trunk | *10,30 | *- | *- | 1 |
-| Ethernet2 | SPINE2_Ethernet3 | *trunk | *10,30 | *- | *- | 1 |
-| Ethernet3 |  HostC_Eth1 | access | 10 | - | - | - |
-| Ethernet47 | MLAG_PEER_LEAF4_Ethernet47 | *trunk | *- | *- | *['MLAG'] | 47 |
-| Ethernet48 | MLAG_PEER_LEAF4_Ethernet48 | *trunk | *- | *- | *['MLAG'] | 47 |
+| Ethernet1 | L2_SPINE1_Ethernet3 | *trunk | *10,30 | *- | *- | 1 |
+| Ethernet2 | L2_SPINE2_Ethernet3 | *trunk | *10,30 | *- | *- | 1 |
+| Ethernet3 | SERVER_HostC_Eth1 | access | 10 | - | - | - |
+| Ethernet47 | MLAG_LEAF4_Ethernet47 | *trunk | *- | *- | *MLAG | 47 |
+| Ethernet48 | MLAG_LEAF4_Ethernet48 | *trunk | *- | *- | *MLAG | 47 |
 
 *Inherited from Port-Channel Interface
 
@@ -298,17 +303,17 @@ vlan 4094
 ```eos
 !
 interface Ethernet1
-   description SPINE1_Ethernet3
+   description L2_SPINE1_Ethernet3
    no shutdown
    channel-group 1 mode active
 !
 interface Ethernet2
-   description SPINE2_Ethernet3
+   description L2_SPINE2_Ethernet3
    no shutdown
    channel-group 1 mode active
 !
 interface Ethernet3
-   description HostC_Eth1
+   description SERVER_HostC_Eth1
    no shutdown
    switchport access vlan 10
    switchport mode access
@@ -316,12 +321,12 @@ interface Ethernet3
    spanning-tree portfast
 !
 interface Ethernet47
-   description MLAG_PEER_LEAF4_Ethernet47
+   description MLAG_LEAF4_Ethernet47
    no shutdown
    channel-group 47 mode active
 !
 interface Ethernet48
-   description MLAG_PEER_LEAF4_Ethernet48
+   description MLAG_LEAF4_Ethernet48
    no shutdown
    channel-group 47 mode active
 ```
@@ -332,29 +337,29 @@ interface Ethernet48
 
 ##### L2
 
-| Interface | Description | Type | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
-| --------- | ----------- | ---- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
-| Port-Channel1 | SPINES_Po3 | switched | trunk | 10,30 | - | - | - | - | 1 | - |
-| Port-Channel47 | MLAG_PEER_LEAF4_Po47 | switched | trunk | - | - | ['MLAG'] | - | - | - | - |
+| Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
+| --------- | ----------- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
+| Port-Channel1 | L2_SPINES_Port-Channel3 | trunk | 10,30 | - | - | - | - | 1 | - |
+| Port-Channel47 | MLAG_LEAF4_Port-Channel47 | trunk | - | - | MLAG | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
 
 ```eos
 !
 interface Port-Channel1
-   description SPINES_Po3
+   description L2_SPINES_Port-Channel3
    no shutdown
-   switchport
    switchport trunk allowed vlan 10,30
    switchport mode trunk
+   switchport
    mlag 1
 !
 interface Port-Channel47
-   description MLAG_PEER_LEAF4_Po47
+   description MLAG_LEAF4_Port-Channel47
    no shutdown
-   switchport
    switchport mode trunk
    switchport trunk group MLAG
+   switchport
 ```
 
 ### VLAN Interfaces
@@ -363,20 +368,20 @@ interface Port-Channel47
 
 | Interface | Description | VRF |  MTU | Shutdown |
 | --------- | ----------- | --- | ---- | -------- |
-| Vlan4094 | MLAG_PEER | default | 1500 | False |
+| Vlan4094 | MLAG | default | 1500 | False |
 
 ##### IPv4
 
-| Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | VRRP | ACL In | ACL Out |
-| --------- | --- | ---------- | ------------------ | ------------------------- | ---- | ------ | ------- |
-| Vlan4094 |  default  |  192.168.0.4/31  |  -  |  -  |  -  |  -  |  -  |
+| Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | ACL In | ACL Out |
+| --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
+| Vlan4094 |  default  |  192.168.0.4/31  |  -  |  -  |  -  |  -  |
 
 #### VLAN Interfaces Device Configuration
 
 ```eos
 !
 interface Vlan4094
-   description MLAG_PEER
+   description MLAG
    no shutdown
    mtu 1500
    no autostate

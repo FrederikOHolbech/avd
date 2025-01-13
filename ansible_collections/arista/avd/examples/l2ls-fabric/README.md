@@ -3,7 +3,7 @@
 title: Example for L2LS Fabric
 ---
 <!--
-  ~ Copyright (c) 2023-2024 Arista Networks, Inc.
+  ~ Copyright (c) 2023-2025 Arista Networks, Inc.
   ~ Use of this source code is governed by the Apache License 2.0
   ~ that can be found in the LICENSE file.
   -->
@@ -27,31 +27,9 @@ The example is meant as a starting foundation. You may build more advanced fabri
 
 ## Installation & Requirements
 
-1. Install AVD - Installation guide found [here](../../docs/installation/collection-installation.md).
-2. Install Ansible module requirements - Instructions found [here](../../docs/installation/collection-installation.md).
-3. Run the following playbook to copy the Getting Started examples to your working directory.
-
-``` bash
-# current working directory: ~/ansible-avd-examples
-ansible-playbook arista.avd.install_examples
-```
-
-The output will show something similar to the following. If not, please ensure that AVD and all requirements are correctly installed.
-
-``` shell
- ~/ansible-avd-examples# ansible-playbook arista.avd.install_examples
-
-PLAY [Install Examples]***************************************************************************************************************************************************************************************************************************************************************
-
-TASK [Copy all examples to ~/ansible-avd-examples]*****************************************************************************************************************************************************
-changed: [localhost]
-
-PLAY RECAP
-****************************************************************************************************************************************************************************************************************************************************************************
-localhost                  : ok=1    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
-```
-
-After the playbook has run successfully, the following directory structure will be created.
+--8<--
+examples/common/installation.md
+--8<--
 
 ``` shell
 ansible-avd-examples/     (directory where playbook was run)
@@ -67,10 +45,6 @@ ansible-avd-examples/     (directory where playbook was run)
     ├── inventory.yml
     └── README.md (this document)
 ```
-
-???+ info
-
-    If the content of any file in the example is ***modified*** and the playbook is rerun, the file ***will not*** be overwritten. However, if any file in the example is ***deleted*** and the playbook is rerun, the file will be re-created.
 
 ## Design Overview
 
@@ -169,7 +143,7 @@ The tabs below show the Ansible **group_vars** used in this example.
     ```
 
 === "DC1_FABRIC"
-    At the fabric level (DC1_FABRIC), the following variables are defined in **group_vars/DC1_FABRIC.yml**. In addition, the fabric name, design type (l2ls), spine and leaf defaults, ansible authentication, and interface links are defined at this level. Other variables you must supply include spanning-tree mode, priority, and an MLAG IP pool.
+    At the fabric level (DC1_FABRIC), the following variables are defined in **group_vars/DC1_FABRIC.yml**. In addition, the fabric name, spine and leaf defaults, ansible authentication, and interface links are defined at this level. Other variables you must supply include spanning-tree mode, priority, and an MLAG IP pool.
 
     Variables applied under the node key type (spine/leaf) defaults section are inherited by nodes under each type. These variables may be overwritten under the node itself.
 
@@ -182,7 +156,7 @@ The tabs below show the Ansible **group_vars** used in this example.
     ```
 
 === "DC1_SPINES"
-    In an L2LS design, there are two types of spine nodes: `spine` and `l3spine`. In AVD, the node type defines the functionality and the EOS CLI configuration to be generated. For an L2LS design, we will use node type: spine. Later, we will add routing to the spines by changing the node type to l3spine.
+    In an L2LS design, there are two types of spine nodes: `l2spine` and `l3spine`. In AVD, the node type defines the functionality and the EOS CLI configuration to be generated. For an L2LS design, we will use node type `l2spine`. Later, we will add routing to the spines by changing the node type to `l3spine`.
 
     ``` yaml
     --8<--
@@ -191,7 +165,7 @@ The tabs below show the Ansible **group_vars** used in this example.
     ```
 
 === "DC1_LEAFS"
-    In an L2LS design, we have one type of leaf node: `leaf`.
+    In an L2LS design, we have one type of leaf node: `l2leaf`.
 
     ``` yaml
     --8<--

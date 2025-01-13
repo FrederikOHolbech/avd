@@ -1,12 +1,24 @@
-# Copyright (c) 2023-2024 Arista Networks, Inc.
+# Copyright (c) 2023-2025 Arista Networks, Inc.
 # Use of this source code is governed by the Apache License 2.0
 # that can be found in the LICENSE file.
 #
 # arista.avd.hide_passwords filter
 #
-__metaclass__ = type
+from ansible.errors import AnsibleFilterError
 
-from ansible_collections.arista.avd.plugins.plugin_utils.errors import AristaAvdError
+from ansible_collections.arista.avd.plugins.plugin_utils.pyavd_wrappers import RaiseOnUse, wrap_filter
+
+PLUGIN_NAME = "arista.avd.hide_passwords"
+
+try:
+    from pyavd.j2filters import hide_passwords
+except ImportError as e:
+    hide_passwords = RaiseOnUse(
+        AnsibleFilterError(
+            f"The '{PLUGIN_NAME}' plugin requires the 'pyavd' Python library. Got import error",
+            orig_exc=e,
+        ),
+    )
 
 DOCUMENTATION = r"""
 name: hide_passwords
@@ -40,14 +52,8 @@ _value:
 """
 
 
-def hide_passwords(value: str, hide_passwords: bool = False) -> str:
-    if not isinstance(hide_passwords, bool):
-        raise AristaAvdError(f"{hide_passwords} in hide_passwords filter is not of type bool")
-    return "<removed>" if hide_passwords else value
-
-
-class FilterModule(object):
-    def filters(self):
+class FilterModule:
+    def filters(self) -> dict:
         return {
-            "hide_passwords": hide_passwords,
+            "hide_passwords": wrap_filter(PLUGIN_NAME)(hide_passwords),
         }

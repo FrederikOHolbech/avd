@@ -1,12 +1,13 @@
-# Copyright (c) 2023-2024 Arista Networks, Inc.
+# Copyright (c) 2023-2025 Arista Networks, Inc.
 # Use of this source code is governed by the Apache License 2.0
 # that can be found in the LICENSE file.
 from __future__ import annotations
 
 import csv
-from typing import TYPE_CHECKING, Generator
+from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
+    from collections.abc import Generator
     from io import TextIOWrapper
 
     from .results_manager import ResultsManager
@@ -31,7 +32,7 @@ class CSVReport:
 
         Results are sourced from `failed_tests` or `all_tests`, based on whether the report includes only failed tests or all results.
 
-        Yields
+        Yields:
         ------
             Generator[dict, None, None]: A generator of test result dictionaries representing CSV rows.
         """

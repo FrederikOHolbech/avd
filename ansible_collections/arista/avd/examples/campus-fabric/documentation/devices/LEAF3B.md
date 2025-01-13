@@ -9,6 +9,7 @@
   - [Management API HTTP](#management-api-http)
 - [Authentication](#authentication)
   - [Local Users](#local-users)
+  - [Enable Password](#enable-password)
   - [AAA Authorization](#aaa-authorization)
 - [MLAG](#mlag)
   - [MLAG Summary](#mlag-summary)
@@ -49,20 +50,20 @@
 
 | Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management0 | oob_management | oob | MGMT | 172.16.100.107/24 | 172.16.100.1 |
+| Management0 | OOB_MANAGEMENT | oob | MGMT | 172.16.100.107/24 | 172.16.100.1 |
 
 ##### IPv6
 
 | Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management0 | oob_management | oob | MGMT | - | - |
+| Management0 | OOB_MANAGEMENT | oob | MGMT | - | - |
 
 #### Management Interfaces Device Configuration
 
 ```eos
 !
 interface Management0
-   description oob_management
+   description OOB_MANAGEMENT
    no shutdown
    vrf MGMT
    ip address 172.16.100.107/24
@@ -152,6 +153,10 @@ management api http-commands
 !
 username admin privilege 15 role network-admin secret sha512 <removed>
 ```
+
+### Enable Password
+
+Enable password has been disabled
 
 ### AAA Authorization
 
@@ -243,7 +248,7 @@ vlan internal order ascending range 1006 1199
 | 310 | IDF3-Data | - |
 | 320 | IDF3-Voice | - |
 | 330 | IDF3-Guest | - |
-| 4094 | MLAG_PEER | MLAG |
+| 4094 | MLAG | MLAG |
 
 ### VLANs Device Configuration
 
@@ -262,7 +267,7 @@ vlan 330
    name IDF3-Guest
 !
 vlan 4094
-   name MLAG_PEER
+   name MLAG
    trunk group MLAG
 ```
 
@@ -276,109 +281,109 @@ vlan 4094
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet1 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet2 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet3 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet4 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet5 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet6 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet7 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet8 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet9 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet10 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet11 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet12 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet13 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet14 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet15 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet16 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet17 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet18 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet19 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet20 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet21 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet22 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet23 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet24 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet25 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet26 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet27 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet28 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet29 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet30 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet31 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet32 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet33 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet34 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet35 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet36 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet37 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet38 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet39 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet40 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet41 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet42 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet43 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet44 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet45 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet46 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet47 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet48 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet49 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet50 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet51 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet52 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet53 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet54 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet55 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet56 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet57 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet58 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet59 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet60 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet61 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet62 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet63 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet64 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet65 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet66 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet67 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet68 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet69 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet70 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet71 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet72 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet73 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet74 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet75 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet76 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet77 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet78 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet79 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet80 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet81 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet82 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet83 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet84 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet85 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet86 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet87 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet88 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet89 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet90 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet91 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet92 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet93 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet94 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet95 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet96 |  IDF3 Standard Port | trunk phone | - | 310 | - | - |
-| Ethernet97/1 | SPINE1_Ethernet51/1 | *trunk | *10,310,320,330 | *- | *- | 971 |
-| Ethernet97/2 | SPINE2_Ethernet51/1 | *trunk | *10,310,320,330 | *- | *- | 971 |
-| Ethernet97/3 | LEAF3C_Ethernet97/2 | *trunk | *10,310,320,330 | *- | *- | 973 |
-| Ethernet97/4 | LEAF3D_Ethernet97/2 | *trunk | *10,310,320,330 | *- | *- | 974 |
-| Ethernet98/1 | LEAF3E_Ethernet97/2 | *trunk | *10,310,320,330 | *- | *- | 981 |
-| Ethernet98/3 | MLAG_PEER_LEAF3A_Ethernet98/3 | *trunk | *- | *- | *['MLAG'] | 983 |
-| Ethernet98/4 | MLAG_PEER_LEAF3A_Ethernet98/4 | *trunk | *- | *- | *['MLAG'] | 983 |
+| Ethernet1 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet2 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet3 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet4 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet5 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet6 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet7 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet8 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet9 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet10 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet11 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet12 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet13 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet14 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet15 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet16 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet17 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet18 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet19 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet20 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet21 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet22 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet23 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet24 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet25 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet26 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet27 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet28 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet29 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet30 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet31 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet32 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet33 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet34 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet35 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet36 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet37 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet38 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet39 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet40 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet41 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet42 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet43 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet44 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet45 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet46 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet47 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet48 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet49 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet50 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet51 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet52 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet53 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet54 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet55 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet56 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet57 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet58 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet59 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet60 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet61 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet62 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet63 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet64 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet65 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet66 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet67 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet68 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet69 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet70 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet71 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet72 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet73 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet74 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet75 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet76 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet77 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet78 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet79 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet80 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet81 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet82 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet83 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet84 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet85 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet86 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet87 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet88 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet89 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet90 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet91 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet92 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet93 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet94 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet95 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet96 | IDF3 Standard Port | trunk phone | - | 310 | - | - |
+| Ethernet97/1 | L2_SPINE1_Ethernet51/1 | *trunk | *10,310,320,330 | *- | *- | 971 |
+| Ethernet97/2 | L2_SPINE2_Ethernet51/1 | *trunk | *10,310,320,330 | *- | *- | 971 |
+| Ethernet97/3 | L2_LEAF3C_Ethernet97/2 | *trunk | *10,310,320,330 | *- | *- | 973 |
+| Ethernet97/4 | L2_LEAF3D_Ethernet97/2 | *trunk | *10,310,320,330 | *- | *- | 974 |
+| Ethernet98/1 | L2_LEAF3E_Ethernet97/2 | *trunk | *10,310,320,330 | *- | *- | 981 |
+| Ethernet98/3 | MLAG_LEAF3A_Ethernet98/3 | *trunk | *- | *- | *MLAG | 983 |
+| Ethernet98/4 | MLAG_LEAF3A_Ethernet98/4 | *trunk | *- | *- | *MLAG | 983 |
 
 *Inherited from Port-Channel Interface
 
@@ -495,6 +500,8 @@ interface Ethernet1
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -504,8 +511,6 @@ interface Ethernet1
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet2
    description IDF3 Standard Port
@@ -515,6 +520,8 @@ interface Ethernet2
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -524,8 +531,6 @@ interface Ethernet2
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3
    description IDF3 Standard Port
@@ -535,6 +540,8 @@ interface Ethernet3
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -544,8 +551,6 @@ interface Ethernet3
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4
    description IDF3 Standard Port
@@ -555,6 +560,8 @@ interface Ethernet4
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -564,8 +571,6 @@ interface Ethernet4
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5
    description IDF3 Standard Port
@@ -575,6 +580,8 @@ interface Ethernet5
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -584,8 +591,6 @@ interface Ethernet5
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6
    description IDF3 Standard Port
@@ -595,6 +600,8 @@ interface Ethernet6
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -604,8 +611,6 @@ interface Ethernet6
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7
    description IDF3 Standard Port
@@ -615,6 +620,8 @@ interface Ethernet7
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -624,8 +631,6 @@ interface Ethernet7
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet8
    description IDF3 Standard Port
@@ -635,6 +640,8 @@ interface Ethernet8
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -644,8 +651,6 @@ interface Ethernet8
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet9
    description IDF3 Standard Port
@@ -655,6 +660,8 @@ interface Ethernet9
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -664,8 +671,6 @@ interface Ethernet9
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet10
    description IDF3 Standard Port
@@ -675,6 +680,8 @@ interface Ethernet10
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -684,8 +691,6 @@ interface Ethernet10
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet11
    description IDF3 Standard Port
@@ -695,6 +700,8 @@ interface Ethernet11
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -704,8 +711,6 @@ interface Ethernet11
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet12
    description IDF3 Standard Port
@@ -715,6 +720,8 @@ interface Ethernet12
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -724,8 +731,6 @@ interface Ethernet12
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet13
    description IDF3 Standard Port
@@ -735,6 +740,8 @@ interface Ethernet13
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -744,8 +751,6 @@ interface Ethernet13
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet14
    description IDF3 Standard Port
@@ -755,6 +760,8 @@ interface Ethernet14
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -764,8 +771,6 @@ interface Ethernet14
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet15
    description IDF3 Standard Port
@@ -775,6 +780,8 @@ interface Ethernet15
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -784,8 +791,6 @@ interface Ethernet15
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet16
    description IDF3 Standard Port
@@ -795,6 +800,8 @@ interface Ethernet16
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -804,8 +811,6 @@ interface Ethernet16
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet17
    description IDF3 Standard Port
@@ -815,6 +820,8 @@ interface Ethernet17
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -824,8 +831,6 @@ interface Ethernet17
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet18
    description IDF3 Standard Port
@@ -835,6 +840,8 @@ interface Ethernet18
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -844,8 +851,6 @@ interface Ethernet18
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet19
    description IDF3 Standard Port
@@ -855,6 +860,8 @@ interface Ethernet19
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -864,8 +871,6 @@ interface Ethernet19
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet20
    description IDF3 Standard Port
@@ -875,6 +880,8 @@ interface Ethernet20
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -884,8 +891,6 @@ interface Ethernet20
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet21
    description IDF3 Standard Port
@@ -895,6 +900,8 @@ interface Ethernet21
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -904,8 +911,6 @@ interface Ethernet21
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet22
    description IDF3 Standard Port
@@ -915,6 +920,8 @@ interface Ethernet22
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -924,8 +931,6 @@ interface Ethernet22
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet23
    description IDF3 Standard Port
@@ -935,6 +940,8 @@ interface Ethernet23
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -944,8 +951,6 @@ interface Ethernet23
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet24
    description IDF3 Standard Port
@@ -955,6 +960,8 @@ interface Ethernet24
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -964,8 +971,6 @@ interface Ethernet24
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet25
    description IDF3 Standard Port
@@ -975,6 +980,8 @@ interface Ethernet25
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -984,8 +991,6 @@ interface Ethernet25
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet26
    description IDF3 Standard Port
@@ -995,6 +1000,8 @@ interface Ethernet26
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1004,8 +1011,6 @@ interface Ethernet26
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet27
    description IDF3 Standard Port
@@ -1015,6 +1020,8 @@ interface Ethernet27
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1024,8 +1031,6 @@ interface Ethernet27
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet28
    description IDF3 Standard Port
@@ -1035,6 +1040,8 @@ interface Ethernet28
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1044,8 +1051,6 @@ interface Ethernet28
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet29
    description IDF3 Standard Port
@@ -1055,6 +1060,8 @@ interface Ethernet29
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1064,8 +1071,6 @@ interface Ethernet29
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet30
    description IDF3 Standard Port
@@ -1075,6 +1080,8 @@ interface Ethernet30
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1084,8 +1091,6 @@ interface Ethernet30
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet31
    description IDF3 Standard Port
@@ -1095,6 +1100,8 @@ interface Ethernet31
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1104,8 +1111,6 @@ interface Ethernet31
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet32
    description IDF3 Standard Port
@@ -1115,6 +1120,8 @@ interface Ethernet32
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1124,8 +1131,6 @@ interface Ethernet32
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet33
    description IDF3 Standard Port
@@ -1135,6 +1140,8 @@ interface Ethernet33
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1144,8 +1151,6 @@ interface Ethernet33
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet34
    description IDF3 Standard Port
@@ -1155,6 +1160,8 @@ interface Ethernet34
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1164,8 +1171,6 @@ interface Ethernet34
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet35
    description IDF3 Standard Port
@@ -1175,6 +1180,8 @@ interface Ethernet35
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1184,8 +1191,6 @@ interface Ethernet35
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet36
    description IDF3 Standard Port
@@ -1195,6 +1200,8 @@ interface Ethernet36
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1204,8 +1211,6 @@ interface Ethernet36
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet37
    description IDF3 Standard Port
@@ -1215,6 +1220,8 @@ interface Ethernet37
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1224,8 +1231,6 @@ interface Ethernet37
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet38
    description IDF3 Standard Port
@@ -1235,6 +1240,8 @@ interface Ethernet38
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1244,8 +1251,6 @@ interface Ethernet38
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet39
    description IDF3 Standard Port
@@ -1255,6 +1260,8 @@ interface Ethernet39
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1264,8 +1271,6 @@ interface Ethernet39
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet40
    description IDF3 Standard Port
@@ -1275,6 +1280,8 @@ interface Ethernet40
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1284,8 +1291,6 @@ interface Ethernet40
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet41
    description IDF3 Standard Port
@@ -1295,6 +1300,8 @@ interface Ethernet41
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1304,8 +1311,6 @@ interface Ethernet41
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet42
    description IDF3 Standard Port
@@ -1315,6 +1320,8 @@ interface Ethernet42
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1324,8 +1331,6 @@ interface Ethernet42
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet43
    description IDF3 Standard Port
@@ -1335,6 +1340,8 @@ interface Ethernet43
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1344,8 +1351,6 @@ interface Ethernet43
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet44
    description IDF3 Standard Port
@@ -1355,6 +1360,8 @@ interface Ethernet44
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1364,8 +1371,6 @@ interface Ethernet44
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet45
    description IDF3 Standard Port
@@ -1375,6 +1380,8 @@ interface Ethernet45
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1384,8 +1391,6 @@ interface Ethernet45
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet46
    description IDF3 Standard Port
@@ -1395,6 +1400,8 @@ interface Ethernet46
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1404,8 +1411,6 @@ interface Ethernet46
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet47
    description IDF3 Standard Port
@@ -1415,6 +1420,8 @@ interface Ethernet47
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1424,8 +1431,6 @@ interface Ethernet47
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet48
    description IDF3 Standard Port
@@ -1435,6 +1440,8 @@ interface Ethernet48
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1444,8 +1451,6 @@ interface Ethernet48
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet49
    description IDF3 Standard Port
@@ -1455,6 +1460,8 @@ interface Ethernet49
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1464,8 +1471,6 @@ interface Ethernet49
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet50
    description IDF3 Standard Port
@@ -1475,6 +1480,8 @@ interface Ethernet50
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1484,8 +1491,6 @@ interface Ethernet50
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet51
    description IDF3 Standard Port
@@ -1495,6 +1500,8 @@ interface Ethernet51
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1504,8 +1511,6 @@ interface Ethernet51
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet52
    description IDF3 Standard Port
@@ -1515,6 +1520,8 @@ interface Ethernet52
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1524,8 +1531,6 @@ interface Ethernet52
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet53
    description IDF3 Standard Port
@@ -1535,6 +1540,8 @@ interface Ethernet53
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1544,8 +1551,6 @@ interface Ethernet53
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet54
    description IDF3 Standard Port
@@ -1555,6 +1560,8 @@ interface Ethernet54
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1564,8 +1571,6 @@ interface Ethernet54
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet55
    description IDF3 Standard Port
@@ -1575,6 +1580,8 @@ interface Ethernet55
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1584,8 +1591,6 @@ interface Ethernet55
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet56
    description IDF3 Standard Port
@@ -1595,6 +1600,8 @@ interface Ethernet56
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1604,8 +1611,6 @@ interface Ethernet56
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet57
    description IDF3 Standard Port
@@ -1615,6 +1620,8 @@ interface Ethernet57
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1624,8 +1631,6 @@ interface Ethernet57
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet58
    description IDF3 Standard Port
@@ -1635,6 +1640,8 @@ interface Ethernet58
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1644,8 +1651,6 @@ interface Ethernet58
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet59
    description IDF3 Standard Port
@@ -1655,6 +1660,8 @@ interface Ethernet59
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1664,8 +1671,6 @@ interface Ethernet59
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet60
    description IDF3 Standard Port
@@ -1675,6 +1680,8 @@ interface Ethernet60
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1684,8 +1691,6 @@ interface Ethernet60
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet61
    description IDF3 Standard Port
@@ -1695,6 +1700,8 @@ interface Ethernet61
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1704,8 +1711,6 @@ interface Ethernet61
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet62
    description IDF3 Standard Port
@@ -1715,6 +1720,8 @@ interface Ethernet62
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1724,8 +1731,6 @@ interface Ethernet62
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet63
    description IDF3 Standard Port
@@ -1735,6 +1740,8 @@ interface Ethernet63
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1744,8 +1751,6 @@ interface Ethernet63
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet64
    description IDF3 Standard Port
@@ -1755,6 +1760,8 @@ interface Ethernet64
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1764,8 +1771,6 @@ interface Ethernet64
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet65
    description IDF3 Standard Port
@@ -1775,6 +1780,8 @@ interface Ethernet65
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1784,8 +1791,6 @@ interface Ethernet65
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet66
    description IDF3 Standard Port
@@ -1795,6 +1800,8 @@ interface Ethernet66
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1804,8 +1811,6 @@ interface Ethernet66
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet67
    description IDF3 Standard Port
@@ -1815,6 +1820,8 @@ interface Ethernet67
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1824,8 +1831,6 @@ interface Ethernet67
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet68
    description IDF3 Standard Port
@@ -1835,6 +1840,8 @@ interface Ethernet68
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1844,8 +1851,6 @@ interface Ethernet68
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet69
    description IDF3 Standard Port
@@ -1855,6 +1860,8 @@ interface Ethernet69
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1864,8 +1871,6 @@ interface Ethernet69
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet70
    description IDF3 Standard Port
@@ -1875,6 +1880,8 @@ interface Ethernet70
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1884,8 +1891,6 @@ interface Ethernet70
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet71
    description IDF3 Standard Port
@@ -1895,6 +1900,8 @@ interface Ethernet71
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1904,8 +1911,6 @@ interface Ethernet71
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet72
    description IDF3 Standard Port
@@ -1915,6 +1920,8 @@ interface Ethernet72
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1924,8 +1931,6 @@ interface Ethernet72
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet73
    description IDF3 Standard Port
@@ -1935,6 +1940,8 @@ interface Ethernet73
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1944,8 +1951,6 @@ interface Ethernet73
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet74
    description IDF3 Standard Port
@@ -1955,6 +1960,8 @@ interface Ethernet74
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1964,8 +1971,6 @@ interface Ethernet74
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet75
    description IDF3 Standard Port
@@ -1975,6 +1980,8 @@ interface Ethernet75
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -1984,8 +1991,6 @@ interface Ethernet75
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet76
    description IDF3 Standard Port
@@ -1995,6 +2000,8 @@ interface Ethernet76
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -2004,8 +2011,6 @@ interface Ethernet76
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet77
    description IDF3 Standard Port
@@ -2015,6 +2020,8 @@ interface Ethernet77
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -2024,8 +2031,6 @@ interface Ethernet77
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet78
    description IDF3 Standard Port
@@ -2035,6 +2040,8 @@ interface Ethernet78
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -2044,8 +2051,6 @@ interface Ethernet78
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet79
    description IDF3 Standard Port
@@ -2055,6 +2060,8 @@ interface Ethernet79
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -2064,8 +2071,6 @@ interface Ethernet79
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet80
    description IDF3 Standard Port
@@ -2075,6 +2080,8 @@ interface Ethernet80
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -2084,8 +2091,6 @@ interface Ethernet80
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet81
    description IDF3 Standard Port
@@ -2095,6 +2100,8 @@ interface Ethernet81
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -2104,8 +2111,6 @@ interface Ethernet81
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet82
    description IDF3 Standard Port
@@ -2115,6 +2120,8 @@ interface Ethernet82
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -2124,8 +2131,6 @@ interface Ethernet82
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet83
    description IDF3 Standard Port
@@ -2135,6 +2140,8 @@ interface Ethernet83
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -2144,8 +2151,6 @@ interface Ethernet83
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet84
    description IDF3 Standard Port
@@ -2155,6 +2160,8 @@ interface Ethernet84
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -2164,8 +2171,6 @@ interface Ethernet84
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet85
    description IDF3 Standard Port
@@ -2175,6 +2180,8 @@ interface Ethernet85
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -2184,8 +2191,6 @@ interface Ethernet85
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet86
    description IDF3 Standard Port
@@ -2195,6 +2200,8 @@ interface Ethernet86
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -2204,8 +2211,6 @@ interface Ethernet86
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet87
    description IDF3 Standard Port
@@ -2215,6 +2220,8 @@ interface Ethernet87
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -2224,8 +2231,6 @@ interface Ethernet87
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet88
    description IDF3 Standard Port
@@ -2235,6 +2240,8 @@ interface Ethernet88
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -2244,8 +2251,6 @@ interface Ethernet88
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet89
    description IDF3 Standard Port
@@ -2255,6 +2260,8 @@ interface Ethernet89
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -2264,8 +2271,6 @@ interface Ethernet89
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet90
    description IDF3 Standard Port
@@ -2275,6 +2280,8 @@ interface Ethernet90
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -2284,8 +2291,6 @@ interface Ethernet90
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet91
    description IDF3 Standard Port
@@ -2295,6 +2300,8 @@ interface Ethernet91
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -2304,8 +2311,6 @@ interface Ethernet91
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet92
    description IDF3 Standard Port
@@ -2315,6 +2320,8 @@ interface Ethernet92
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -2324,8 +2331,6 @@ interface Ethernet92
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet93
    description IDF3 Standard Port
@@ -2335,6 +2340,8 @@ interface Ethernet93
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -2344,8 +2351,6 @@ interface Ethernet93
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet94
    description IDF3 Standard Port
@@ -2355,6 +2360,8 @@ interface Ethernet94
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -2364,8 +2371,6 @@ interface Ethernet94
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet95
    description IDF3 Standard Port
@@ -2375,6 +2380,8 @@ interface Ethernet95
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -2384,8 +2391,6 @@ interface Ethernet95
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet96
    description IDF3 Standard Port
@@ -2395,6 +2400,8 @@ interface Ethernet96
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 330
    dot1x reauthentication
@@ -2404,41 +2411,39 @@ interface Ethernet96
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet97/1
-   description SPINE1_Ethernet51/1
+   description L2_SPINE1_Ethernet51/1
    no shutdown
    channel-group 971 mode active
 !
 interface Ethernet97/2
-   description SPINE2_Ethernet51/1
+   description L2_SPINE2_Ethernet51/1
    no shutdown
    channel-group 971 mode active
 !
 interface Ethernet97/3
-   description LEAF3C_Ethernet97/2
+   description L2_LEAF3C_Ethernet97/2
    no shutdown
    channel-group 973 mode active
 !
 interface Ethernet97/4
-   description LEAF3D_Ethernet97/2
+   description L2_LEAF3D_Ethernet97/2
    no shutdown
    channel-group 974 mode active
 !
 interface Ethernet98/1
-   description LEAF3E_Ethernet97/2
+   description L2_LEAF3E_Ethernet97/2
    no shutdown
    channel-group 981 mode active
 !
 interface Ethernet98/3
-   description MLAG_PEER_LEAF3A_Ethernet98/3
+   description MLAG_LEAF3A_Ethernet98/3
    no shutdown
    channel-group 983 mode active
 !
 interface Ethernet98/4
-   description MLAG_PEER_LEAF3A_Ethernet98/4
+   description MLAG_LEAF3A_Ethernet98/4
    no shutdown
    channel-group 983 mode active
 ```
@@ -2449,56 +2454,56 @@ interface Ethernet98/4
 
 ##### L2
 
-| Interface | Description | Type | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
-| --------- | ----------- | ---- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
-| Port-Channel971 | SPINES_Po501 | switched | trunk | 10,310,320,330 | - | - | - | - | 971 | - |
-| Port-Channel973 | LEAF3C_Po971 | switched | trunk | 10,310,320,330 | - | - | - | - | 973 | - |
-| Port-Channel974 | LEAF3D_Po971 | switched | trunk | 10,310,320,330 | - | - | - | - | 974 | - |
-| Port-Channel981 | LEAF3E_Po971 | switched | trunk | 10,310,320,330 | - | - | - | - | 981 | - |
-| Port-Channel983 | MLAG_PEER_LEAF3A_Po983 | switched | trunk | - | - | ['MLAG'] | - | - | - | - |
+| Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
+| --------- | ----------- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
+| Port-Channel971 | L2_SPINES_Port-Channel501 | trunk | 10,310,320,330 | - | - | - | - | 971 | - |
+| Port-Channel973 | L2_LEAF3C_Port-Channel971 | trunk | 10,310,320,330 | - | - | - | - | 973 | - |
+| Port-Channel974 | L2_LEAF3D_Port-Channel971 | trunk | 10,310,320,330 | - | - | - | - | 974 | - |
+| Port-Channel981 | L2_LEAF3E_Port-Channel971 | trunk | 10,310,320,330 | - | - | - | - | 981 | - |
+| Port-Channel983 | MLAG_LEAF3A_Port-Channel983 | trunk | - | - | MLAG | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
 
 ```eos
 !
 interface Port-Channel971
-   description SPINES_Po501
+   description L2_SPINES_Port-Channel501
    no shutdown
-   switchport
    switchport trunk allowed vlan 10,310,320,330
    switchport mode trunk
+   switchport
    mlag 971
 !
 interface Port-Channel973
-   description LEAF3C_Po971
+   description L2_LEAF3C_Port-Channel971
    no shutdown
-   switchport
    switchport trunk allowed vlan 10,310,320,330
    switchport mode trunk
+   switchport
    mlag 973
 !
 interface Port-Channel974
-   description LEAF3D_Po971
+   description L2_LEAF3D_Port-Channel971
    no shutdown
-   switchport
    switchport trunk allowed vlan 10,310,320,330
    switchport mode trunk
+   switchport
    mlag 974
 !
 interface Port-Channel981
-   description LEAF3E_Po971
+   description L2_LEAF3E_Port-Channel971
    no shutdown
-   switchport
    switchport trunk allowed vlan 10,310,320,330
    switchport mode trunk
+   switchport
    mlag 981
 !
 interface Port-Channel983
-   description MLAG_PEER_LEAF3A_Po983
+   description MLAG_LEAF3A_Port-Channel983
    no shutdown
-   switchport
    switchport mode trunk
    switchport trunk group MLAG
+   switchport
 ```
 
 ### VLAN Interfaces
@@ -2508,14 +2513,14 @@ interface Port-Channel983
 | Interface | Description | VRF |  MTU | Shutdown |
 | --------- | ----------- | --- | ---- | -------- |
 | Vlan10 | Inband Management | default | 1500 | False |
-| Vlan4094 | MLAG_PEER | default | 1500 | False |
+| Vlan4094 | MLAG | default | 1500 | False |
 
 ##### IPv4
 
-| Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | VRRP | ACL In | ACL Out |
-| --------- | --- | ---------- | ------------------ | ------------------------- | ---- | ------ | ------- |
-| Vlan10 |  default  |  10.10.10.10/24  |  -  |  -  |  -  |  -  |  -  |
-| Vlan4094 |  default  |  192.168.0.11/31  |  -  |  -  |  -  |  -  |  -  |
+| Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | ACL In | ACL Out |
+| --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
+| Vlan10 |  default  |  10.10.10.10/24  |  -  |  -  |  -  |  -  |
+| Vlan4094 |  default  |  192.168.0.11/31  |  -  |  -  |  -  |  -  |
 
 #### VLAN Interfaces Device Configuration
 
@@ -2528,7 +2533,7 @@ interface Vlan10
    ip address 10.10.10.10/24
 !
 interface Vlan4094
-   description MLAG_PEER
+   description MLAG
    no shutdown
    mtu 1500
    no autostate
@@ -2583,8 +2588,8 @@ no ip routing vrf MGMT
 
 ```eos
 !
-ip route vrf MGMT 0.0.0.0/0 172.16.100.1
 ip route 0.0.0.0/0 10.10.10.1
+ip route vrf MGMT 0.0.0.0/0 172.16.100.1
 ```
 
 ## Multicast

@@ -1,11 +1,6 @@
-# Copyright (c) 2023-2024 Arista Networks, Inc.
+# Copyright (c) 2023-2025 Arista Networks, Inc.
 # Use of this source code is governed by the Apache License 2.0
 # that can be found in the LICENSE file.
-
-# NOTE: This is supposed to be deprecated as per
-# https://docs.ansible.com/ansible/latest/dev_guide/developing_modules_documenting.html#ansible-metadata-block
-# But our doc Jinja2 template renders it as preview which is what we want
-ANSIBLE_METADATA = {"metadata_version": "1.0", "status": ["preview"]}
 
 DOCUMENTATION = r"""
 ---
@@ -59,7 +54,7 @@ options:
 seealso:
   - name: ANTA website
     description: Documentation for the ANTA test framework
-    link: https://anta.ninja
+    link: https://anta.arista.com
 notes:
   - Enabling the cProfile feature for performance profiling may impact the plugin's performance, especially in production environments.
   - Hosts with `is_deployed` is False are automatically skipped, and no test results are processed for these hosts.

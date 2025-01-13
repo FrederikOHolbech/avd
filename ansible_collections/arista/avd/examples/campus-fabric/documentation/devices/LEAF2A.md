@@ -9,6 +9,7 @@
   - [Management API HTTP](#management-api-http)
 - [Authentication](#authentication)
   - [Local Users](#local-users)
+  - [Enable Password](#enable-password)
   - [AAA Authorization](#aaa-authorization)
 - [Spanning Tree](#spanning-tree)
   - [Spanning Tree Summary](#spanning-tree-summary)
@@ -48,20 +49,20 @@
 
 | Management Interface | Description | Type | VRF | IP Address | Gateway |
 | -------------------- | ----------- | ---- | --- | ---------- | ------- |
-| Management0 | oob_management | oob | MGMT | 172.16.100.105/24 | 172.16.100.1 |
+| Management0 | OOB_MANAGEMENT | oob | MGMT | 172.16.100.105/24 | 172.16.100.1 |
 
 ##### IPv6
 
 | Management Interface | Description | Type | VRF | IPv6 Address | IPv6 Gateway |
 | -------------------- | ----------- | ---- | --- | ------------ | ------------ |
-| Management0 | oob_management | oob | MGMT | - | - |
+| Management0 | OOB_MANAGEMENT | oob | MGMT | - | - |
 
 #### Management Interfaces Device Configuration
 
 ```eos
 !
 interface Management0
-   description oob_management
+   description OOB_MANAGEMENT
    no shutdown
    vrf MGMT
    ip address 172.16.100.105/24
@@ -151,6 +152,10 @@ management api http-commands
 !
 username admin privilege 15 role network-admin secret sha512 <removed>
 ```
+
+### Enable Password
+
+Enable password has been disabled
 
 ### AAA Authorization
 
@@ -242,248 +247,248 @@ vlan 230
 
 | Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | Channel-Group |
 | --------- | ----------- | ---- | ----- | ----------- | ----------- | ------------- |
-| Ethernet1/1 | SPINE1_Ethernet49/1 | *trunk | *10,210,220,230 | *- | *- | 11 |
-| Ethernet1/3 | SPINE2_Ethernet49/1 | *trunk | *10,210,220,230 | *- | *- | 11 |
-| Ethernet3/1 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/2 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/3 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/4 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/5 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/6 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/7 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/8 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/9 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/10 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/11 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/12 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/13 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/14 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/15 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/16 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/17 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/18 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/19 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/20 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/21 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/22 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/23 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/24 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/25 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/26 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/27 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/28 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/29 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/30 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/31 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/32 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/33 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/34 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/35 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/36 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/37 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/38 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/39 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/40 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/41 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/42 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/43 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/44 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/45 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/46 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/47 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet3/48 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/1 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/2 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/3 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/4 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/5 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/6 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/7 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/8 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/9 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/10 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/11 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/12 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/13 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/14 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/15 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/16 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/17 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/18 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/19 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/20 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/21 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/22 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/23 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/24 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/25 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/26 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/27 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/28 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/29 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/30 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/31 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/32 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/33 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/34 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/35 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/36 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/37 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/38 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/39 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/40 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/41 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/42 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/43 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/44 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/45 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/46 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/47 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet4/48 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/1 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/2 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/3 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/4 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/5 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/6 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/7 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/8 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/9 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/10 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/11 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/12 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/13 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/14 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/15 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/16 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/17 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/18 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/19 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/20 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/21 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/22 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/23 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/24 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/25 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/26 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/27 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/28 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/29 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/30 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/31 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/32 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/33 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/34 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/35 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/36 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/37 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/38 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/39 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/40 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/41 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/42 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/43 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/44 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/45 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/46 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/47 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet5/48 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/1 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/2 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/3 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/4 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/5 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/6 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/7 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/8 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/9 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/10 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/11 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/12 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/13 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/14 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/15 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/16 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/17 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/18 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/19 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/20 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/21 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/22 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/23 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/24 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/25 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/26 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/27 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/28 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/29 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/30 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/31 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/32 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/33 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/34 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/35 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/36 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/37 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/38 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/39 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/40 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/41 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/42 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/43 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/44 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/45 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/46 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/47 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet6/48 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/1 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/2 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/3 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/4 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/5 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/6 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/7 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/8 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/9 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/10 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/11 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/12 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/13 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/14 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/15 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/16 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/17 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/18 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/19 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/20 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/21 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/22 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/23 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/24 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/25 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/26 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/27 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/28 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/29 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/30 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/31 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/32 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/33 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/34 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/35 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/36 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/37 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/38 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/39 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/40 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/41 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/42 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/43 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/44 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/45 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/46 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/47 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
-| Ethernet7/48 |  IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet1/1 | L2_SPINE1_Ethernet49/1 | *trunk | *10,210,220,230 | *- | *- | 11 |
+| Ethernet1/3 | L2_SPINE2_Ethernet49/1 | *trunk | *10,210,220,230 | *- | *- | 11 |
+| Ethernet3/1 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/2 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/3 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/4 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/5 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/6 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/7 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/8 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/9 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/10 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/11 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/12 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/13 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/14 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/15 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/16 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/17 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/18 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/19 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/20 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/21 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/22 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/23 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/24 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/25 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/26 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/27 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/28 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/29 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/30 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/31 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/32 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/33 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/34 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/35 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/36 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/37 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/38 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/39 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/40 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/41 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/42 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/43 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/44 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/45 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/46 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/47 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet3/48 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/1 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/2 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/3 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/4 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/5 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/6 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/7 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/8 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/9 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/10 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/11 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/12 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/13 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/14 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/15 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/16 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/17 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/18 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/19 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/20 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/21 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/22 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/23 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/24 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/25 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/26 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/27 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/28 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/29 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/30 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/31 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/32 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/33 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/34 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/35 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/36 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/37 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/38 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/39 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/40 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/41 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/42 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/43 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/44 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/45 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/46 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/47 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet4/48 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/1 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/2 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/3 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/4 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/5 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/6 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/7 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/8 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/9 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/10 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/11 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/12 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/13 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/14 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/15 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/16 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/17 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/18 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/19 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/20 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/21 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/22 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/23 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/24 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/25 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/26 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/27 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/28 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/29 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/30 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/31 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/32 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/33 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/34 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/35 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/36 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/37 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/38 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/39 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/40 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/41 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/42 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/43 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/44 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/45 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/46 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/47 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet5/48 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/1 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/2 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/3 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/4 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/5 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/6 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/7 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/8 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/9 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/10 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/11 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/12 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/13 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/14 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/15 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/16 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/17 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/18 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/19 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/20 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/21 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/22 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/23 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/24 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/25 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/26 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/27 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/28 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/29 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/30 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/31 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/32 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/33 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/34 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/35 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/36 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/37 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/38 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/39 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/40 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/41 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/42 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/43 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/44 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/45 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/46 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/47 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet6/48 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/1 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/2 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/3 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/4 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/5 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/6 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/7 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/8 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/9 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/10 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/11 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/12 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/13 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/14 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/15 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/16 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/17 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/18 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/19 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/20 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/21 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/22 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/23 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/24 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/25 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/26 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/27 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/28 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/29 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/30 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/31 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/32 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/33 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/34 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/35 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/36 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/37 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/38 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/39 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/40 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/41 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/42 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/43 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/44 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/45 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/46 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/47 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
+| Ethernet7/48 | IDF2 Standard Port | trunk phone | - | 210 | - | - |
 
 *Inherited from Port-Channel Interface
 
@@ -737,12 +742,12 @@ vlan 230
 ```eos
 !
 interface Ethernet1/1
-   description SPINE1_Ethernet49/1
+   description L2_SPINE1_Ethernet49/1
    no shutdown
    channel-group 11 mode active
 !
 interface Ethernet1/3
-   description SPINE2_Ethernet49/1
+   description L2_SPINE2_Ethernet49/1
    no shutdown
    channel-group 11 mode active
 !
@@ -754,6 +759,13 @@ interface Ethernet3/1
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -763,13 +775,6 @@ interface Ethernet3/1
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/2
    description IDF2 Standard Port
@@ -779,6 +784,13 @@ interface Ethernet3/2
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -788,13 +800,6 @@ interface Ethernet3/2
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/3
    description IDF2 Standard Port
@@ -804,6 +809,13 @@ interface Ethernet3/3
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -813,13 +825,6 @@ interface Ethernet3/3
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/4
    description IDF2 Standard Port
@@ -829,6 +834,13 @@ interface Ethernet3/4
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -838,13 +850,6 @@ interface Ethernet3/4
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/5
    description IDF2 Standard Port
@@ -854,6 +859,13 @@ interface Ethernet3/5
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -863,13 +875,6 @@ interface Ethernet3/5
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/6
    description IDF2 Standard Port
@@ -879,6 +884,13 @@ interface Ethernet3/6
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -888,13 +900,6 @@ interface Ethernet3/6
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/7
    description IDF2 Standard Port
@@ -904,6 +909,13 @@ interface Ethernet3/7
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -913,13 +925,6 @@ interface Ethernet3/7
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/8
    description IDF2 Standard Port
@@ -929,6 +934,13 @@ interface Ethernet3/8
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -938,13 +950,6 @@ interface Ethernet3/8
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/9
    description IDF2 Standard Port
@@ -954,6 +959,13 @@ interface Ethernet3/9
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -963,13 +975,6 @@ interface Ethernet3/9
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/10
    description IDF2 Standard Port
@@ -979,6 +984,13 @@ interface Ethernet3/10
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -988,13 +1000,6 @@ interface Ethernet3/10
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/11
    description IDF2 Standard Port
@@ -1004,6 +1009,13 @@ interface Ethernet3/11
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1013,13 +1025,6 @@ interface Ethernet3/11
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/12
    description IDF2 Standard Port
@@ -1029,6 +1034,13 @@ interface Ethernet3/12
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1038,13 +1050,6 @@ interface Ethernet3/12
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/13
    description IDF2 Standard Port
@@ -1054,6 +1059,13 @@ interface Ethernet3/13
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1063,13 +1075,6 @@ interface Ethernet3/13
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/14
    description IDF2 Standard Port
@@ -1079,6 +1084,13 @@ interface Ethernet3/14
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1088,13 +1100,6 @@ interface Ethernet3/14
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/15
    description IDF2 Standard Port
@@ -1104,6 +1109,13 @@ interface Ethernet3/15
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1113,13 +1125,6 @@ interface Ethernet3/15
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/16
    description IDF2 Standard Port
@@ -1129,6 +1134,13 @@ interface Ethernet3/16
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1138,13 +1150,6 @@ interface Ethernet3/16
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/17
    description IDF2 Standard Port
@@ -1154,6 +1159,13 @@ interface Ethernet3/17
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1163,13 +1175,6 @@ interface Ethernet3/17
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/18
    description IDF2 Standard Port
@@ -1179,6 +1184,13 @@ interface Ethernet3/18
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1188,13 +1200,6 @@ interface Ethernet3/18
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/19
    description IDF2 Standard Port
@@ -1204,6 +1209,13 @@ interface Ethernet3/19
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1213,13 +1225,6 @@ interface Ethernet3/19
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/20
    description IDF2 Standard Port
@@ -1229,6 +1234,13 @@ interface Ethernet3/20
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1238,13 +1250,6 @@ interface Ethernet3/20
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/21
    description IDF2 Standard Port
@@ -1254,6 +1259,13 @@ interface Ethernet3/21
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1263,13 +1275,6 @@ interface Ethernet3/21
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/22
    description IDF2 Standard Port
@@ -1279,6 +1284,13 @@ interface Ethernet3/22
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1288,13 +1300,6 @@ interface Ethernet3/22
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/23
    description IDF2 Standard Port
@@ -1304,6 +1309,13 @@ interface Ethernet3/23
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1313,13 +1325,6 @@ interface Ethernet3/23
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/24
    description IDF2 Standard Port
@@ -1329,6 +1334,13 @@ interface Ethernet3/24
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1338,13 +1350,6 @@ interface Ethernet3/24
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/25
    description IDF2 Standard Port
@@ -1354,6 +1359,13 @@ interface Ethernet3/25
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1363,13 +1375,6 @@ interface Ethernet3/25
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/26
    description IDF2 Standard Port
@@ -1379,6 +1384,13 @@ interface Ethernet3/26
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1388,13 +1400,6 @@ interface Ethernet3/26
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/27
    description IDF2 Standard Port
@@ -1404,6 +1409,13 @@ interface Ethernet3/27
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1413,13 +1425,6 @@ interface Ethernet3/27
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/28
    description IDF2 Standard Port
@@ -1429,6 +1434,13 @@ interface Ethernet3/28
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1438,13 +1450,6 @@ interface Ethernet3/28
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/29
    description IDF2 Standard Port
@@ -1454,6 +1459,13 @@ interface Ethernet3/29
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1463,13 +1475,6 @@ interface Ethernet3/29
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/30
    description IDF2 Standard Port
@@ -1479,6 +1484,13 @@ interface Ethernet3/30
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1488,13 +1500,6 @@ interface Ethernet3/30
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/31
    description IDF2 Standard Port
@@ -1504,6 +1509,13 @@ interface Ethernet3/31
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1513,13 +1525,6 @@ interface Ethernet3/31
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/32
    description IDF2 Standard Port
@@ -1529,6 +1534,13 @@ interface Ethernet3/32
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1538,13 +1550,6 @@ interface Ethernet3/32
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/33
    description IDF2 Standard Port
@@ -1554,6 +1559,13 @@ interface Ethernet3/33
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1563,13 +1575,6 @@ interface Ethernet3/33
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/34
    description IDF2 Standard Port
@@ -1579,6 +1584,13 @@ interface Ethernet3/34
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1588,13 +1600,6 @@ interface Ethernet3/34
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/35
    description IDF2 Standard Port
@@ -1604,6 +1609,13 @@ interface Ethernet3/35
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1613,13 +1625,6 @@ interface Ethernet3/35
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/36
    description IDF2 Standard Port
@@ -1629,6 +1634,13 @@ interface Ethernet3/36
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1638,13 +1650,6 @@ interface Ethernet3/36
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/37
    description IDF2 Standard Port
@@ -1654,6 +1659,13 @@ interface Ethernet3/37
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1663,13 +1675,6 @@ interface Ethernet3/37
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/38
    description IDF2 Standard Port
@@ -1679,6 +1684,13 @@ interface Ethernet3/38
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1688,13 +1700,6 @@ interface Ethernet3/38
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/39
    description IDF2 Standard Port
@@ -1704,6 +1709,13 @@ interface Ethernet3/39
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1713,13 +1725,6 @@ interface Ethernet3/39
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/40
    description IDF2 Standard Port
@@ -1729,6 +1734,13 @@ interface Ethernet3/40
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1738,13 +1750,6 @@ interface Ethernet3/40
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/41
    description IDF2 Standard Port
@@ -1754,6 +1759,13 @@ interface Ethernet3/41
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1763,13 +1775,6 @@ interface Ethernet3/41
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/42
    description IDF2 Standard Port
@@ -1779,6 +1784,13 @@ interface Ethernet3/42
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1788,13 +1800,6 @@ interface Ethernet3/42
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/43
    description IDF2 Standard Port
@@ -1804,6 +1809,13 @@ interface Ethernet3/43
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1813,13 +1825,6 @@ interface Ethernet3/43
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/44
    description IDF2 Standard Port
@@ -1829,6 +1834,13 @@ interface Ethernet3/44
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1838,13 +1850,6 @@ interface Ethernet3/44
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/45
    description IDF2 Standard Port
@@ -1854,6 +1859,13 @@ interface Ethernet3/45
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1863,13 +1875,6 @@ interface Ethernet3/45
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/46
    description IDF2 Standard Port
@@ -1879,6 +1884,13 @@ interface Ethernet3/46
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1888,13 +1900,6 @@ interface Ethernet3/46
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/47
    description IDF2 Standard Port
@@ -1904,6 +1909,13 @@ interface Ethernet3/47
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1913,13 +1925,6 @@ interface Ethernet3/47
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet3/48
    description IDF2 Standard Port
@@ -1929,6 +1934,13 @@ interface Ethernet3/48
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1938,13 +1950,6 @@ interface Ethernet3/48
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/1
    description IDF2 Standard Port
@@ -1954,6 +1959,13 @@ interface Ethernet4/1
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1963,13 +1975,6 @@ interface Ethernet4/1
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/2
    description IDF2 Standard Port
@@ -1979,6 +1984,13 @@ interface Ethernet4/2
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -1988,13 +2000,6 @@ interface Ethernet4/2
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/3
    description IDF2 Standard Port
@@ -2004,6 +2009,13 @@ interface Ethernet4/3
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2013,13 +2025,6 @@ interface Ethernet4/3
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/4
    description IDF2 Standard Port
@@ -2029,6 +2034,13 @@ interface Ethernet4/4
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2038,13 +2050,6 @@ interface Ethernet4/4
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/5
    description IDF2 Standard Port
@@ -2054,6 +2059,13 @@ interface Ethernet4/5
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2063,13 +2075,6 @@ interface Ethernet4/5
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/6
    description IDF2 Standard Port
@@ -2079,6 +2084,13 @@ interface Ethernet4/6
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2088,13 +2100,6 @@ interface Ethernet4/6
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/7
    description IDF2 Standard Port
@@ -2104,6 +2109,13 @@ interface Ethernet4/7
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2113,13 +2125,6 @@ interface Ethernet4/7
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/8
    description IDF2 Standard Port
@@ -2129,6 +2134,13 @@ interface Ethernet4/8
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2138,13 +2150,6 @@ interface Ethernet4/8
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/9
    description IDF2 Standard Port
@@ -2154,6 +2159,13 @@ interface Ethernet4/9
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2163,13 +2175,6 @@ interface Ethernet4/9
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/10
    description IDF2 Standard Port
@@ -2179,6 +2184,13 @@ interface Ethernet4/10
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2188,13 +2200,6 @@ interface Ethernet4/10
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/11
    description IDF2 Standard Port
@@ -2204,6 +2209,13 @@ interface Ethernet4/11
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2213,13 +2225,6 @@ interface Ethernet4/11
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/12
    description IDF2 Standard Port
@@ -2229,6 +2234,13 @@ interface Ethernet4/12
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2238,13 +2250,6 @@ interface Ethernet4/12
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/13
    description IDF2 Standard Port
@@ -2254,6 +2259,13 @@ interface Ethernet4/13
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2263,13 +2275,6 @@ interface Ethernet4/13
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/14
    description IDF2 Standard Port
@@ -2279,6 +2284,13 @@ interface Ethernet4/14
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2288,13 +2300,6 @@ interface Ethernet4/14
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/15
    description IDF2 Standard Port
@@ -2304,6 +2309,13 @@ interface Ethernet4/15
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2313,13 +2325,6 @@ interface Ethernet4/15
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/16
    description IDF2 Standard Port
@@ -2329,6 +2334,13 @@ interface Ethernet4/16
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2338,13 +2350,6 @@ interface Ethernet4/16
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/17
    description IDF2 Standard Port
@@ -2354,6 +2359,13 @@ interface Ethernet4/17
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2363,13 +2375,6 @@ interface Ethernet4/17
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/18
    description IDF2 Standard Port
@@ -2379,6 +2384,13 @@ interface Ethernet4/18
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2388,13 +2400,6 @@ interface Ethernet4/18
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/19
    description IDF2 Standard Port
@@ -2404,6 +2409,13 @@ interface Ethernet4/19
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2413,13 +2425,6 @@ interface Ethernet4/19
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/20
    description IDF2 Standard Port
@@ -2429,6 +2434,13 @@ interface Ethernet4/20
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2438,13 +2450,6 @@ interface Ethernet4/20
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/21
    description IDF2 Standard Port
@@ -2454,6 +2459,13 @@ interface Ethernet4/21
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2463,13 +2475,6 @@ interface Ethernet4/21
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/22
    description IDF2 Standard Port
@@ -2479,6 +2484,13 @@ interface Ethernet4/22
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2488,13 +2500,6 @@ interface Ethernet4/22
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/23
    description IDF2 Standard Port
@@ -2504,6 +2509,13 @@ interface Ethernet4/23
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2513,13 +2525,6 @@ interface Ethernet4/23
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/24
    description IDF2 Standard Port
@@ -2529,6 +2534,13 @@ interface Ethernet4/24
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2538,13 +2550,6 @@ interface Ethernet4/24
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/25
    description IDF2 Standard Port
@@ -2554,6 +2559,13 @@ interface Ethernet4/25
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2563,13 +2575,6 @@ interface Ethernet4/25
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/26
    description IDF2 Standard Port
@@ -2579,6 +2584,13 @@ interface Ethernet4/26
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2588,13 +2600,6 @@ interface Ethernet4/26
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/27
    description IDF2 Standard Port
@@ -2604,6 +2609,13 @@ interface Ethernet4/27
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2613,13 +2625,6 @@ interface Ethernet4/27
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/28
    description IDF2 Standard Port
@@ -2629,6 +2634,13 @@ interface Ethernet4/28
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2638,13 +2650,6 @@ interface Ethernet4/28
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/29
    description IDF2 Standard Port
@@ -2654,6 +2659,13 @@ interface Ethernet4/29
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2663,13 +2675,6 @@ interface Ethernet4/29
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/30
    description IDF2 Standard Port
@@ -2679,6 +2684,13 @@ interface Ethernet4/30
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2688,13 +2700,6 @@ interface Ethernet4/30
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/31
    description IDF2 Standard Port
@@ -2704,6 +2709,13 @@ interface Ethernet4/31
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2713,13 +2725,6 @@ interface Ethernet4/31
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/32
    description IDF2 Standard Port
@@ -2729,6 +2734,13 @@ interface Ethernet4/32
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2738,13 +2750,6 @@ interface Ethernet4/32
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/33
    description IDF2 Standard Port
@@ -2754,6 +2759,13 @@ interface Ethernet4/33
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2763,13 +2775,6 @@ interface Ethernet4/33
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/34
    description IDF2 Standard Port
@@ -2779,6 +2784,13 @@ interface Ethernet4/34
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2788,13 +2800,6 @@ interface Ethernet4/34
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/35
    description IDF2 Standard Port
@@ -2804,6 +2809,13 @@ interface Ethernet4/35
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2813,13 +2825,6 @@ interface Ethernet4/35
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/36
    description IDF2 Standard Port
@@ -2829,6 +2834,13 @@ interface Ethernet4/36
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2838,13 +2850,6 @@ interface Ethernet4/36
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/37
    description IDF2 Standard Port
@@ -2854,6 +2859,13 @@ interface Ethernet4/37
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2863,13 +2875,6 @@ interface Ethernet4/37
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/38
    description IDF2 Standard Port
@@ -2879,6 +2884,13 @@ interface Ethernet4/38
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2888,13 +2900,6 @@ interface Ethernet4/38
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/39
    description IDF2 Standard Port
@@ -2904,6 +2909,13 @@ interface Ethernet4/39
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2913,13 +2925,6 @@ interface Ethernet4/39
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/40
    description IDF2 Standard Port
@@ -2929,6 +2934,13 @@ interface Ethernet4/40
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2938,13 +2950,6 @@ interface Ethernet4/40
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/41
    description IDF2 Standard Port
@@ -2954,6 +2959,13 @@ interface Ethernet4/41
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2963,13 +2975,6 @@ interface Ethernet4/41
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/42
    description IDF2 Standard Port
@@ -2979,6 +2984,13 @@ interface Ethernet4/42
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -2988,13 +3000,6 @@ interface Ethernet4/42
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/43
    description IDF2 Standard Port
@@ -3004,6 +3009,13 @@ interface Ethernet4/43
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3013,13 +3025,6 @@ interface Ethernet4/43
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/44
    description IDF2 Standard Port
@@ -3029,6 +3034,13 @@ interface Ethernet4/44
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3038,13 +3050,6 @@ interface Ethernet4/44
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/45
    description IDF2 Standard Port
@@ -3054,6 +3059,13 @@ interface Ethernet4/45
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3063,13 +3075,6 @@ interface Ethernet4/45
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/46
    description IDF2 Standard Port
@@ -3079,6 +3084,13 @@ interface Ethernet4/46
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3088,13 +3100,6 @@ interface Ethernet4/46
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/47
    description IDF2 Standard Port
@@ -3104,6 +3109,13 @@ interface Ethernet4/47
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3113,13 +3125,6 @@ interface Ethernet4/47
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet4/48
    description IDF2 Standard Port
@@ -3129,6 +3134,13 @@ interface Ethernet4/48
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3138,13 +3150,6 @@ interface Ethernet4/48
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/1
    description IDF2 Standard Port
@@ -3154,6 +3159,13 @@ interface Ethernet5/1
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3163,13 +3175,6 @@ interface Ethernet5/1
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/2
    description IDF2 Standard Port
@@ -3179,6 +3184,13 @@ interface Ethernet5/2
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3188,13 +3200,6 @@ interface Ethernet5/2
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/3
    description IDF2 Standard Port
@@ -3204,6 +3209,13 @@ interface Ethernet5/3
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3213,13 +3225,6 @@ interface Ethernet5/3
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/4
    description IDF2 Standard Port
@@ -3229,6 +3234,13 @@ interface Ethernet5/4
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3238,13 +3250,6 @@ interface Ethernet5/4
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/5
    description IDF2 Standard Port
@@ -3254,6 +3259,13 @@ interface Ethernet5/5
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3263,13 +3275,6 @@ interface Ethernet5/5
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/6
    description IDF2 Standard Port
@@ -3279,6 +3284,13 @@ interface Ethernet5/6
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3288,13 +3300,6 @@ interface Ethernet5/6
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/7
    description IDF2 Standard Port
@@ -3304,6 +3309,13 @@ interface Ethernet5/7
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3313,13 +3325,6 @@ interface Ethernet5/7
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/8
    description IDF2 Standard Port
@@ -3329,6 +3334,13 @@ interface Ethernet5/8
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3338,13 +3350,6 @@ interface Ethernet5/8
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/9
    description IDF2 Standard Port
@@ -3354,6 +3359,13 @@ interface Ethernet5/9
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3363,13 +3375,6 @@ interface Ethernet5/9
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/10
    description IDF2 Standard Port
@@ -3379,6 +3384,13 @@ interface Ethernet5/10
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3388,13 +3400,6 @@ interface Ethernet5/10
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/11
    description IDF2 Standard Port
@@ -3404,6 +3409,13 @@ interface Ethernet5/11
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3413,13 +3425,6 @@ interface Ethernet5/11
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/12
    description IDF2 Standard Port
@@ -3429,6 +3434,13 @@ interface Ethernet5/12
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3438,13 +3450,6 @@ interface Ethernet5/12
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/13
    description IDF2 Standard Port
@@ -3454,6 +3459,13 @@ interface Ethernet5/13
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3463,13 +3475,6 @@ interface Ethernet5/13
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/14
    description IDF2 Standard Port
@@ -3479,6 +3484,13 @@ interface Ethernet5/14
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3488,13 +3500,6 @@ interface Ethernet5/14
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/15
    description IDF2 Standard Port
@@ -3504,6 +3509,13 @@ interface Ethernet5/15
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3513,13 +3525,6 @@ interface Ethernet5/15
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/16
    description IDF2 Standard Port
@@ -3529,6 +3534,13 @@ interface Ethernet5/16
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3538,13 +3550,6 @@ interface Ethernet5/16
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/17
    description IDF2 Standard Port
@@ -3554,6 +3559,13 @@ interface Ethernet5/17
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3563,13 +3575,6 @@ interface Ethernet5/17
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/18
    description IDF2 Standard Port
@@ -3579,6 +3584,13 @@ interface Ethernet5/18
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3588,13 +3600,6 @@ interface Ethernet5/18
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/19
    description IDF2 Standard Port
@@ -3604,6 +3609,13 @@ interface Ethernet5/19
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3613,13 +3625,6 @@ interface Ethernet5/19
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/20
    description IDF2 Standard Port
@@ -3629,6 +3634,13 @@ interface Ethernet5/20
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3638,13 +3650,6 @@ interface Ethernet5/20
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/21
    description IDF2 Standard Port
@@ -3654,6 +3659,13 @@ interface Ethernet5/21
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3663,13 +3675,6 @@ interface Ethernet5/21
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/22
    description IDF2 Standard Port
@@ -3679,6 +3684,13 @@ interface Ethernet5/22
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3688,13 +3700,6 @@ interface Ethernet5/22
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/23
    description IDF2 Standard Port
@@ -3704,6 +3709,13 @@ interface Ethernet5/23
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3713,13 +3725,6 @@ interface Ethernet5/23
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/24
    description IDF2 Standard Port
@@ -3729,6 +3734,13 @@ interface Ethernet5/24
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3738,13 +3750,6 @@ interface Ethernet5/24
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/25
    description IDF2 Standard Port
@@ -3754,6 +3759,13 @@ interface Ethernet5/25
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3763,13 +3775,6 @@ interface Ethernet5/25
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/26
    description IDF2 Standard Port
@@ -3779,6 +3784,13 @@ interface Ethernet5/26
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3788,13 +3800,6 @@ interface Ethernet5/26
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/27
    description IDF2 Standard Port
@@ -3804,6 +3809,13 @@ interface Ethernet5/27
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3813,13 +3825,6 @@ interface Ethernet5/27
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/28
    description IDF2 Standard Port
@@ -3829,6 +3834,13 @@ interface Ethernet5/28
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3838,13 +3850,6 @@ interface Ethernet5/28
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/29
    description IDF2 Standard Port
@@ -3854,6 +3859,13 @@ interface Ethernet5/29
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3863,13 +3875,6 @@ interface Ethernet5/29
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/30
    description IDF2 Standard Port
@@ -3879,6 +3884,13 @@ interface Ethernet5/30
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3888,13 +3900,6 @@ interface Ethernet5/30
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/31
    description IDF2 Standard Port
@@ -3904,6 +3909,13 @@ interface Ethernet5/31
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3913,13 +3925,6 @@ interface Ethernet5/31
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/32
    description IDF2 Standard Port
@@ -3929,6 +3934,13 @@ interface Ethernet5/32
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3938,13 +3950,6 @@ interface Ethernet5/32
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/33
    description IDF2 Standard Port
@@ -3954,6 +3959,13 @@ interface Ethernet5/33
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3963,13 +3975,6 @@ interface Ethernet5/33
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/34
    description IDF2 Standard Port
@@ -3979,6 +3984,13 @@ interface Ethernet5/34
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -3988,13 +4000,6 @@ interface Ethernet5/34
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/35
    description IDF2 Standard Port
@@ -4004,6 +4009,13 @@ interface Ethernet5/35
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4013,13 +4025,6 @@ interface Ethernet5/35
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/36
    description IDF2 Standard Port
@@ -4029,6 +4034,13 @@ interface Ethernet5/36
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4038,13 +4050,6 @@ interface Ethernet5/36
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/37
    description IDF2 Standard Port
@@ -4054,6 +4059,13 @@ interface Ethernet5/37
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4063,13 +4075,6 @@ interface Ethernet5/37
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/38
    description IDF2 Standard Port
@@ -4079,6 +4084,13 @@ interface Ethernet5/38
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4088,13 +4100,6 @@ interface Ethernet5/38
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/39
    description IDF2 Standard Port
@@ -4104,6 +4109,13 @@ interface Ethernet5/39
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4113,13 +4125,6 @@ interface Ethernet5/39
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/40
    description IDF2 Standard Port
@@ -4129,6 +4134,13 @@ interface Ethernet5/40
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4138,13 +4150,6 @@ interface Ethernet5/40
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/41
    description IDF2 Standard Port
@@ -4154,6 +4159,13 @@ interface Ethernet5/41
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4163,13 +4175,6 @@ interface Ethernet5/41
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/42
    description IDF2 Standard Port
@@ -4179,6 +4184,13 @@ interface Ethernet5/42
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4188,13 +4200,6 @@ interface Ethernet5/42
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/43
    description IDF2 Standard Port
@@ -4204,6 +4209,13 @@ interface Ethernet5/43
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4213,13 +4225,6 @@ interface Ethernet5/43
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/44
    description IDF2 Standard Port
@@ -4229,6 +4234,13 @@ interface Ethernet5/44
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4238,13 +4250,6 @@ interface Ethernet5/44
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/45
    description IDF2 Standard Port
@@ -4254,6 +4259,13 @@ interface Ethernet5/45
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4263,13 +4275,6 @@ interface Ethernet5/45
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/46
    description IDF2 Standard Port
@@ -4279,6 +4284,13 @@ interface Ethernet5/46
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4288,13 +4300,6 @@ interface Ethernet5/46
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/47
    description IDF2 Standard Port
@@ -4304,6 +4309,13 @@ interface Ethernet5/47
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4313,13 +4325,6 @@ interface Ethernet5/47
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet5/48
    description IDF2 Standard Port
@@ -4329,6 +4334,13 @@ interface Ethernet5/48
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4338,13 +4350,6 @@ interface Ethernet5/48
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/1
    description IDF2 Standard Port
@@ -4354,6 +4359,13 @@ interface Ethernet6/1
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4363,13 +4375,6 @@ interface Ethernet6/1
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/2
    description IDF2 Standard Port
@@ -4379,6 +4384,13 @@ interface Ethernet6/2
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4388,13 +4400,6 @@ interface Ethernet6/2
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/3
    description IDF2 Standard Port
@@ -4404,6 +4409,13 @@ interface Ethernet6/3
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4413,13 +4425,6 @@ interface Ethernet6/3
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/4
    description IDF2 Standard Port
@@ -4429,6 +4434,13 @@ interface Ethernet6/4
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4438,13 +4450,6 @@ interface Ethernet6/4
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/5
    description IDF2 Standard Port
@@ -4454,6 +4459,13 @@ interface Ethernet6/5
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4463,13 +4475,6 @@ interface Ethernet6/5
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/6
    description IDF2 Standard Port
@@ -4479,6 +4484,13 @@ interface Ethernet6/6
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4488,13 +4500,6 @@ interface Ethernet6/6
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/7
    description IDF2 Standard Port
@@ -4504,6 +4509,13 @@ interface Ethernet6/7
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4513,13 +4525,6 @@ interface Ethernet6/7
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/8
    description IDF2 Standard Port
@@ -4529,6 +4534,13 @@ interface Ethernet6/8
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4538,13 +4550,6 @@ interface Ethernet6/8
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/9
    description IDF2 Standard Port
@@ -4554,6 +4559,13 @@ interface Ethernet6/9
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4563,13 +4575,6 @@ interface Ethernet6/9
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/10
    description IDF2 Standard Port
@@ -4579,6 +4584,13 @@ interface Ethernet6/10
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4588,13 +4600,6 @@ interface Ethernet6/10
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/11
    description IDF2 Standard Port
@@ -4604,6 +4609,13 @@ interface Ethernet6/11
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4613,13 +4625,6 @@ interface Ethernet6/11
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/12
    description IDF2 Standard Port
@@ -4629,6 +4634,13 @@ interface Ethernet6/12
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4638,13 +4650,6 @@ interface Ethernet6/12
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/13
    description IDF2 Standard Port
@@ -4654,6 +4659,13 @@ interface Ethernet6/13
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4663,13 +4675,6 @@ interface Ethernet6/13
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/14
    description IDF2 Standard Port
@@ -4679,6 +4684,13 @@ interface Ethernet6/14
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4688,13 +4700,6 @@ interface Ethernet6/14
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/15
    description IDF2 Standard Port
@@ -4704,6 +4709,13 @@ interface Ethernet6/15
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4713,13 +4725,6 @@ interface Ethernet6/15
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/16
    description IDF2 Standard Port
@@ -4729,6 +4734,13 @@ interface Ethernet6/16
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4738,13 +4750,6 @@ interface Ethernet6/16
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/17
    description IDF2 Standard Port
@@ -4754,6 +4759,13 @@ interface Ethernet6/17
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4763,13 +4775,6 @@ interface Ethernet6/17
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/18
    description IDF2 Standard Port
@@ -4779,6 +4784,13 @@ interface Ethernet6/18
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4788,13 +4800,6 @@ interface Ethernet6/18
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/19
    description IDF2 Standard Port
@@ -4804,6 +4809,13 @@ interface Ethernet6/19
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4813,13 +4825,6 @@ interface Ethernet6/19
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/20
    description IDF2 Standard Port
@@ -4829,6 +4834,13 @@ interface Ethernet6/20
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4838,13 +4850,6 @@ interface Ethernet6/20
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/21
    description IDF2 Standard Port
@@ -4854,6 +4859,13 @@ interface Ethernet6/21
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4863,13 +4875,6 @@ interface Ethernet6/21
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/22
    description IDF2 Standard Port
@@ -4879,6 +4884,13 @@ interface Ethernet6/22
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4888,13 +4900,6 @@ interface Ethernet6/22
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/23
    description IDF2 Standard Port
@@ -4904,6 +4909,13 @@ interface Ethernet6/23
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4913,13 +4925,6 @@ interface Ethernet6/23
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/24
    description IDF2 Standard Port
@@ -4929,6 +4934,13 @@ interface Ethernet6/24
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4938,13 +4950,6 @@ interface Ethernet6/24
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/25
    description IDF2 Standard Port
@@ -4954,6 +4959,13 @@ interface Ethernet6/25
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4963,13 +4975,6 @@ interface Ethernet6/25
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/26
    description IDF2 Standard Port
@@ -4979,6 +4984,13 @@ interface Ethernet6/26
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -4988,13 +5000,6 @@ interface Ethernet6/26
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/27
    description IDF2 Standard Port
@@ -5004,6 +5009,13 @@ interface Ethernet6/27
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5013,13 +5025,6 @@ interface Ethernet6/27
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/28
    description IDF2 Standard Port
@@ -5029,6 +5034,13 @@ interface Ethernet6/28
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5038,13 +5050,6 @@ interface Ethernet6/28
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/29
    description IDF2 Standard Port
@@ -5054,6 +5059,13 @@ interface Ethernet6/29
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5063,13 +5075,6 @@ interface Ethernet6/29
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/30
    description IDF2 Standard Port
@@ -5079,6 +5084,13 @@ interface Ethernet6/30
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5088,13 +5100,6 @@ interface Ethernet6/30
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/31
    description IDF2 Standard Port
@@ -5104,6 +5109,13 @@ interface Ethernet6/31
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5113,13 +5125,6 @@ interface Ethernet6/31
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/32
    description IDF2 Standard Port
@@ -5129,6 +5134,13 @@ interface Ethernet6/32
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5138,13 +5150,6 @@ interface Ethernet6/32
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/33
    description IDF2 Standard Port
@@ -5154,6 +5159,13 @@ interface Ethernet6/33
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5163,13 +5175,6 @@ interface Ethernet6/33
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/34
    description IDF2 Standard Port
@@ -5179,6 +5184,13 @@ interface Ethernet6/34
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5188,13 +5200,6 @@ interface Ethernet6/34
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/35
    description IDF2 Standard Port
@@ -5204,6 +5209,13 @@ interface Ethernet6/35
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5213,13 +5225,6 @@ interface Ethernet6/35
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/36
    description IDF2 Standard Port
@@ -5229,6 +5234,13 @@ interface Ethernet6/36
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5238,13 +5250,6 @@ interface Ethernet6/36
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/37
    description IDF2 Standard Port
@@ -5254,6 +5259,13 @@ interface Ethernet6/37
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5263,13 +5275,6 @@ interface Ethernet6/37
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/38
    description IDF2 Standard Port
@@ -5279,6 +5284,13 @@ interface Ethernet6/38
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5288,13 +5300,6 @@ interface Ethernet6/38
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/39
    description IDF2 Standard Port
@@ -5304,6 +5309,13 @@ interface Ethernet6/39
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5313,13 +5325,6 @@ interface Ethernet6/39
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/40
    description IDF2 Standard Port
@@ -5329,6 +5334,13 @@ interface Ethernet6/40
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5338,13 +5350,6 @@ interface Ethernet6/40
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/41
    description IDF2 Standard Port
@@ -5354,6 +5359,13 @@ interface Ethernet6/41
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5363,13 +5375,6 @@ interface Ethernet6/41
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/42
    description IDF2 Standard Port
@@ -5379,6 +5384,13 @@ interface Ethernet6/42
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5388,13 +5400,6 @@ interface Ethernet6/42
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/43
    description IDF2 Standard Port
@@ -5404,6 +5409,13 @@ interface Ethernet6/43
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5413,13 +5425,6 @@ interface Ethernet6/43
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/44
    description IDF2 Standard Port
@@ -5429,6 +5434,13 @@ interface Ethernet6/44
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5438,13 +5450,6 @@ interface Ethernet6/44
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/45
    description IDF2 Standard Port
@@ -5454,6 +5459,13 @@ interface Ethernet6/45
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5463,13 +5475,6 @@ interface Ethernet6/45
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/46
    description IDF2 Standard Port
@@ -5479,6 +5484,13 @@ interface Ethernet6/46
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5488,13 +5500,6 @@ interface Ethernet6/46
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/47
    description IDF2 Standard Port
@@ -5504,6 +5509,13 @@ interface Ethernet6/47
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5513,13 +5525,6 @@ interface Ethernet6/47
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet6/48
    description IDF2 Standard Port
@@ -5529,6 +5534,13 @@ interface Ethernet6/48
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5538,13 +5550,6 @@ interface Ethernet6/48
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/1
    description IDF2 Standard Port
@@ -5554,6 +5559,13 @@ interface Ethernet7/1
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5563,13 +5575,6 @@ interface Ethernet7/1
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/2
    description IDF2 Standard Port
@@ -5579,6 +5584,13 @@ interface Ethernet7/2
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5588,13 +5600,6 @@ interface Ethernet7/2
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/3
    description IDF2 Standard Port
@@ -5604,6 +5609,13 @@ interface Ethernet7/3
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5613,13 +5625,6 @@ interface Ethernet7/3
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/4
    description IDF2 Standard Port
@@ -5629,6 +5634,13 @@ interface Ethernet7/4
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5638,13 +5650,6 @@ interface Ethernet7/4
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/5
    description IDF2 Standard Port
@@ -5654,6 +5659,13 @@ interface Ethernet7/5
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5663,13 +5675,6 @@ interface Ethernet7/5
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/6
    description IDF2 Standard Port
@@ -5679,6 +5684,13 @@ interface Ethernet7/6
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5688,13 +5700,6 @@ interface Ethernet7/6
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/7
    description IDF2 Standard Port
@@ -5704,6 +5709,13 @@ interface Ethernet7/7
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5713,13 +5725,6 @@ interface Ethernet7/7
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/8
    description IDF2 Standard Port
@@ -5729,6 +5734,13 @@ interface Ethernet7/8
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5738,13 +5750,6 @@ interface Ethernet7/8
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/9
    description IDF2 Standard Port
@@ -5754,6 +5759,13 @@ interface Ethernet7/9
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5763,13 +5775,6 @@ interface Ethernet7/9
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/10
    description IDF2 Standard Port
@@ -5779,6 +5784,13 @@ interface Ethernet7/10
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5788,13 +5800,6 @@ interface Ethernet7/10
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/11
    description IDF2 Standard Port
@@ -5804,6 +5809,13 @@ interface Ethernet7/11
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5813,13 +5825,6 @@ interface Ethernet7/11
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/12
    description IDF2 Standard Port
@@ -5829,6 +5834,13 @@ interface Ethernet7/12
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5838,13 +5850,6 @@ interface Ethernet7/12
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/13
    description IDF2 Standard Port
@@ -5854,6 +5859,13 @@ interface Ethernet7/13
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5863,13 +5875,6 @@ interface Ethernet7/13
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/14
    description IDF2 Standard Port
@@ -5879,6 +5884,13 @@ interface Ethernet7/14
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5888,13 +5900,6 @@ interface Ethernet7/14
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/15
    description IDF2 Standard Port
@@ -5904,6 +5909,13 @@ interface Ethernet7/15
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5913,13 +5925,6 @@ interface Ethernet7/15
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/16
    description IDF2 Standard Port
@@ -5929,6 +5934,13 @@ interface Ethernet7/16
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5938,13 +5950,6 @@ interface Ethernet7/16
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/17
    description IDF2 Standard Port
@@ -5954,6 +5959,13 @@ interface Ethernet7/17
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5963,13 +5975,6 @@ interface Ethernet7/17
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/18
    description IDF2 Standard Port
@@ -5979,6 +5984,13 @@ interface Ethernet7/18
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -5988,13 +6000,6 @@ interface Ethernet7/18
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/19
    description IDF2 Standard Port
@@ -6004,6 +6009,13 @@ interface Ethernet7/19
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6013,13 +6025,6 @@ interface Ethernet7/19
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/20
    description IDF2 Standard Port
@@ -6029,6 +6034,13 @@ interface Ethernet7/20
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6038,13 +6050,6 @@ interface Ethernet7/20
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/21
    description IDF2 Standard Port
@@ -6054,6 +6059,13 @@ interface Ethernet7/21
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6063,13 +6075,6 @@ interface Ethernet7/21
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/22
    description IDF2 Standard Port
@@ -6079,6 +6084,13 @@ interface Ethernet7/22
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6088,13 +6100,6 @@ interface Ethernet7/22
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/23
    description IDF2 Standard Port
@@ -6104,6 +6109,13 @@ interface Ethernet7/23
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6113,13 +6125,6 @@ interface Ethernet7/23
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/24
    description IDF2 Standard Port
@@ -6129,6 +6134,13 @@ interface Ethernet7/24
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6138,13 +6150,6 @@ interface Ethernet7/24
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/25
    description IDF2 Standard Port
@@ -6154,6 +6159,13 @@ interface Ethernet7/25
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6163,13 +6175,6 @@ interface Ethernet7/25
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/26
    description IDF2 Standard Port
@@ -6179,6 +6184,13 @@ interface Ethernet7/26
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6188,13 +6200,6 @@ interface Ethernet7/26
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/27
    description IDF2 Standard Port
@@ -6204,6 +6209,13 @@ interface Ethernet7/27
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6213,13 +6225,6 @@ interface Ethernet7/27
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/28
    description IDF2 Standard Port
@@ -6229,6 +6234,13 @@ interface Ethernet7/28
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6238,13 +6250,6 @@ interface Ethernet7/28
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/29
    description IDF2 Standard Port
@@ -6254,6 +6259,13 @@ interface Ethernet7/29
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6263,13 +6275,6 @@ interface Ethernet7/29
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/30
    description IDF2 Standard Port
@@ -6279,6 +6284,13 @@ interface Ethernet7/30
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6288,13 +6300,6 @@ interface Ethernet7/30
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/31
    description IDF2 Standard Port
@@ -6304,6 +6309,13 @@ interface Ethernet7/31
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6313,13 +6325,6 @@ interface Ethernet7/31
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/32
    description IDF2 Standard Port
@@ -6329,6 +6334,13 @@ interface Ethernet7/32
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6338,13 +6350,6 @@ interface Ethernet7/32
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/33
    description IDF2 Standard Port
@@ -6354,6 +6359,13 @@ interface Ethernet7/33
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6363,13 +6375,6 @@ interface Ethernet7/33
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/34
    description IDF2 Standard Port
@@ -6379,6 +6384,13 @@ interface Ethernet7/34
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6388,13 +6400,6 @@ interface Ethernet7/34
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/35
    description IDF2 Standard Port
@@ -6404,6 +6409,13 @@ interface Ethernet7/35
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6413,13 +6425,6 @@ interface Ethernet7/35
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/36
    description IDF2 Standard Port
@@ -6429,6 +6434,13 @@ interface Ethernet7/36
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6438,13 +6450,6 @@ interface Ethernet7/36
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/37
    description IDF2 Standard Port
@@ -6454,6 +6459,13 @@ interface Ethernet7/37
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6463,13 +6475,6 @@ interface Ethernet7/37
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/38
    description IDF2 Standard Port
@@ -6479,6 +6484,13 @@ interface Ethernet7/38
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6488,13 +6500,6 @@ interface Ethernet7/38
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/39
    description IDF2 Standard Port
@@ -6504,6 +6509,13 @@ interface Ethernet7/39
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6513,13 +6525,6 @@ interface Ethernet7/39
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/40
    description IDF2 Standard Port
@@ -6529,6 +6534,13 @@ interface Ethernet7/40
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6538,13 +6550,6 @@ interface Ethernet7/40
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/41
    description IDF2 Standard Port
@@ -6554,6 +6559,13 @@ interface Ethernet7/41
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6563,13 +6575,6 @@ interface Ethernet7/41
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/42
    description IDF2 Standard Port
@@ -6579,6 +6584,13 @@ interface Ethernet7/42
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6588,13 +6600,6 @@ interface Ethernet7/42
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/43
    description IDF2 Standard Port
@@ -6604,6 +6609,13 @@ interface Ethernet7/43
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6613,13 +6625,6 @@ interface Ethernet7/43
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/44
    description IDF2 Standard Port
@@ -6629,6 +6634,13 @@ interface Ethernet7/44
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6638,13 +6650,6 @@ interface Ethernet7/44
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/45
    description IDF2 Standard Port
@@ -6654,6 +6659,13 @@ interface Ethernet7/45
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6663,13 +6675,6 @@ interface Ethernet7/45
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/46
    description IDF2 Standard Port
@@ -6679,6 +6684,13 @@ interface Ethernet7/46
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6688,13 +6700,6 @@ interface Ethernet7/46
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/47
    description IDF2 Standard Port
@@ -6704,6 +6709,13 @@ interface Ethernet7/47
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6713,13 +6725,6 @@ interface Ethernet7/47
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 !
 interface Ethernet7/48
    description IDF2 Standard Port
@@ -6729,6 +6734,13 @@ interface Ethernet7/48
    switchport phone trunk untagged
    switchport mode trunk phone
    switchport
+   poe priority critical
+   poe reboot action maintain
+   poe link down action maintain
+   poe shutdown action power-off
+   poe limit 30.00 watts
+   spanning-tree portfast
+   spanning-tree bpduguard enable
    dot1x pae authenticator
    dot1x authentication failure action traffic allow vlan 230
    dot1x reauthentication
@@ -6738,13 +6750,6 @@ interface Ethernet7/48
    dot1x timeout tx-period 3
    dot1x timeout reauth-period server
    dot1x reauthorization request limit 3
-   poe priority critical
-   poe reboot action maintain
-   poe link down action maintain
-   poe shutdown action power-off
-   poe limit 30.00 watts
-   spanning-tree portfast
-   spanning-tree bpduguard enable
 ```
 
 ### Port-Channel Interfaces
@@ -6753,20 +6758,20 @@ interface Ethernet7/48
 
 ##### L2
 
-| Interface | Description | Type | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
-| --------- | ----------- | ---- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
-| Port-Channel11 | SPINES_Po491 | switched | trunk | 10,210,220,230 | - | - | - | - | - | - |
+| Interface | Description | Mode | VLANs | Native VLAN | Trunk Group | LACP Fallback Timeout | LACP Fallback Mode | MLAG ID | EVPN ESI |
+| --------- | ----------- | ---- | ----- | ----------- | ------------| --------------------- | ------------------ | ------- | -------- |
+| Port-Channel11 | L2_SPINES_Port-Channel491 | trunk | 10,210,220,230 | - | - | - | - | - | - |
 
 #### Port-Channel Interfaces Device Configuration
 
 ```eos
 !
 interface Port-Channel11
-   description SPINES_Po491
+   description L2_SPINES_Port-Channel491
    no shutdown
-   switchport
    switchport trunk allowed vlan 10,210,220,230
    switchport mode trunk
+   switchport
 ```
 
 ### VLAN Interfaces
@@ -6779,9 +6784,9 @@ interface Port-Channel11
 
 ##### IPv4
 
-| Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | VRRP | ACL In | ACL Out |
-| --------- | --- | ---------- | ------------------ | ------------------------- | ---- | ------ | ------- |
-| Vlan10 |  default  |  10.10.10.8/24  |  -  |  -  |  -  |  -  |  -  |
+| Interface | VRF | IP Address | IP Address Virtual | IP Router Virtual Address | ACL In | ACL Out |
+| --------- | --- | ---------- | ------------------ | ------------------------- | ------ | ------- |
+| Vlan10 |  default  |  10.10.10.8/24  |  -  |  -  |  -  |  -  |
 
 #### VLAN Interfaces Device Configuration
 
@@ -6842,8 +6847,8 @@ no ip routing vrf MGMT
 
 ```eos
 !
-ip route vrf MGMT 0.0.0.0/0 172.16.100.1
 ip route 0.0.0.0/0 10.10.10.1
+ip route vrf MGMT 0.0.0.0/0 172.16.100.1
 ```
 
 ## Multicast

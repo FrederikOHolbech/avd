@@ -1,11 +1,10 @@
-# Copyright (c) 2023-2024 Arista Networks, Inc.
+# Copyright (c) 2023-2025 Arista Networks, Inc.
 # Use of this source code is governed by the Apache License 2.0
 # that can be found in the LICENSE file.
 ---
 - name: Verify Requirements
-  tags: [always, avd_req]
   delegate_to: localhost
-  when: avd_requirements is not defined
+  when: avd_requirements is not defined and avd_verify_requirements | default(true)
   arista.avd.verify_requirements:
     requirements: "{{ lookup('file', requirements_path ~ '/requirements.txt').splitlines() }}"
     avd_ignore_requirements: "{{ avd_ignore_requirements | default(false) }}"

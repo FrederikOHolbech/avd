@@ -3,7 +3,7 @@
 title: Ansible Collection Role build_output_folders
 ---
 <!--
-  ~ Copyright (c) 2023-2024 Arista Networks, Inc.
+  ~ Copyright (c) 2023-2025 Arista Networks, Inc.
   ~ Use of this source code is governed by the Apache License 2.0
   ~ that can be found in the LICENSE file.
   -->
@@ -72,10 +72,9 @@ Below is an example to use in your playbook to build output folders using defaul
 - name: Build Switch configuration
   hosts: DC1_FABRIC
   connection: local
-  gather_facts: no
+  gather_facts: false
   tasks:
     - name: 'Build local folders for output'
-      tags: [build]
       ansible.builtin.import_role:
         name: arista.avd.build_output_folders
 ```

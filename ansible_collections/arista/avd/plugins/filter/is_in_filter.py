@@ -1,12 +1,26 @@
-# Copyright (c) 2023-2024 Arista Networks, Inc.
+# Copyright (c) 2023-2025 Arista Networks, Inc.
 # Use of this source code is governed by the Apache License 2.0
 # that can be found in the LICENSE file.
 #
 # device-filter filter
 #
-from __future__ import absolute_import, division, print_function
 
-__metaclass__ = type
+
+from ansible.errors import AnsibleFilterError
+
+from ansible_collections.arista.avd.plugins.plugin_utils.pyavd_wrappers import RaiseOnUse, wrap_filter
+
+PLUGIN_NAME = "arista.avd.is_in_filter"
+
+try:
+    from pyavd.j2filters import is_in_filter
+except ImportError as e:
+    is_in_filter = RaiseOnUse(
+        AnsibleFilterError(
+            f"The '{PLUGIN_NAME}' plugin requires the 'pyavd' Python library. Got import error",
+            orig_exc=e,
+        ),
+    )
 
 DOCUMENTATION = r"""
 ---
@@ -48,17 +62,8 @@ _value:
 """
 
 
-class FilterModule(object):
-    def is_in_filter(self, hostname, hostname_filter):
-        if hostname_filter is None:
-            hostname_filter = ["all"]
-        if "all" in hostname_filter:
-            return True
-        elif any(element in hostname for element in hostname_filter):
-            return True
-        return False
-
-    def filters(self):
+class FilterModule:
+    def filters(self) -> dict:
         return {
-            "is_in_filter": self.is_in_filter,
+            "is_in_filter": wrap_filter(PLUGIN_NAME)(is_in_filter),
         }

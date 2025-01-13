@@ -3,7 +3,7 @@
 title: arista.avd.eos_validate_state_reports
 ---
 <!--
-  ~ Copyright (c) 2023-2024 Arista Networks, Inc.
+  ~ Copyright (c) 2023-2025 Arista Networks, Inc.
   ~ Use of this source code is governed by the Apache License 2.0
   ~ that can be found in the LICENSE file.
   -->
@@ -12,9 +12,6 @@ title: arista.avd.eos_validate_state_reports
 
 !!! note
     Always use the FQCN (Fully Qualified Collection Name) `arista.avd.eos_validate_state_reports` when using this plugin.
-
-!!! warning "This module is in **preview** mode"
-    This module is not guaranteed to have a backwards compatible interface.
 
 Generates validation reports for the eos_validate_state role
 
@@ -52,7 +49,7 @@ The plugin offers the following functionalities:
 
 ## See Also
 
-- ANTA website: [https://anta.ninja](https://anta.ninja)<br>Documentation for the ANTA test framework
+- ANTA website: [https://anta.arista.com](https://anta.arista.com)<br>Documentation for the ANTA test framework
 
 ## Examples
 
